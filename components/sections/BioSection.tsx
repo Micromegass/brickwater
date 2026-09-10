@@ -5,10 +5,12 @@ import { loadBio, loadImages } from "@/lib/content/load";
 import { Stain } from "@/components/ui/Stain";
 
 const STRIP = [
-  "brickwater-biergarten-guitar-02",
-  "brickwater-live-brick-wall-2021",
-  "brickwater-bricky-waters-fence-sitting-01",
+  "brickwater-live-red-light-2019",
+  "brickwater-harmonica-live-2020",
   "brickwater-bricky-waters-stage-portrait-01",
+  // Fourth slot: the client asked for InShot20200226_221538321.jpg, which is not
+  // in assets/source. Standing in with the 2021 live shot until that file lands.
+  "brickwater-live-brick-wall-2021",
 ];
 
 export async function BioSection({ locale }: { locale: Locale }) {

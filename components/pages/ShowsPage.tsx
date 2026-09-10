@@ -39,7 +39,7 @@ export async function ShowsPage({ locale }: { locale: Locale }) {
       <section className="section pt-0">
         <div className="container grid gap-12 lg:grid-cols-12 lg:items-center">
           <figure className="lg:col-span-5">
-            <Photo id="brickwater-harmonica-live-2020" locale={locale} sizes="(min-width: 1024px) 38vw, 100vw" className="sleeve-photo" />
+            <Photo id="brickwater-bricky-waters-stage-portrait-02" locale={locale} sizes="(min-width: 1024px) 38vw, 100vw" className="sleeve-photo" />
           </figure>
           <div className="lg:col-span-7">
             <blockquote className="text-h2 font-semibold text-balance">
