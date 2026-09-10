@@ -1,0 +1,7 @@
+{
+  "auditedCommit": "feeb9a83b3fd59c91d1e2c5e3727608edb869ab8",
+  "auditedAt": "2026-09-10T14:20:07Z",
+  "skill": "vibe-security",
+  "verdict": "pass",
+  "notes": "Static Next.js export, no backend, no auth, no forms, no payments, no database. Checked: (1) secrets: none in repo, .env* ignored, the old site's leaked Instagram token was not carried over; (2) deployment: public/_headers sets CSP (script-src 'self' 'unsafe-inline' is unavoidable for a static export that inlines RSC payloads; no unsafe-eval; frame-src limited to youtube-nocookie.com and bandcamp.com; object-src none; frame-ancestors none), HSTS preload, nosniff, X-Frame-Options DENY, Referrer-Policy, Permissions-Policy, COOP; production build emits no browser source maps; only out/ is deployed; (3) third parties load only after a click; external links carry rel=noopener; (4) CI: the deploy-hook URL is read from a GitHub secret into an env var, never echoed; (5) npm audit: 0 vulnerabilities in production dependencies, 12 in dev-only tooling (lighthouse/serve chains), none reachable at runtime. Findings: no Critical/High. Low: CSP relies on 'unsafe-inline' for scripts (documented in _headers), dev-dependency advisories to be revisited on the next tooling update."
+}
