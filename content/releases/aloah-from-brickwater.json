@@ -1,0 +1,55 @@
+{
+  "slug": "aloah-from-brickwater",
+  "title": "Aloah from Brickwater",
+  "altTitle": "Aloha From Brickwater - EP",
+  "date": "2015-03-10",
+  "type": "ep",
+  "cover": "brickwater-aloah-from-brickwater-ep-cover",
+  "description": {
+    "de": "Die erste EP, in einer akustischen Session bei btm-guitars in Nürnberg aufgenommen. Fünf Protestlieder mit Mandoline, Lap Steel und viel Herz.",
+    "en": "The first EP, recorded during an acoustic session at btm-guitars in Nuremberg. Five protest songs with mandolin, lap steel and a lot of heart."
+  },
+  "credits": [
+    "Idea, lyrics, vocals and main guitar: Brickwater",
+    "Mandolin, lap steel, electrics and bass: Jens Hold",
+    "Recording and production: Jens Hold",
+    "Mixing and mastering: Patrick Zilles",
+    "Illustration: Elan..FKZ..GVK",
+    "Layout: Dr. Dave",
+    "Logo: Viktoria Cichon"
+  ],
+  "tracks": [
+    {
+      "n": 1,
+      "title": "Long Enough",
+      "duration": "2:56"
+    },
+    {
+      "n": 2,
+      "title": "This Fucking Ship Is Sinking",
+      "duration": "2:45"
+    },
+    {
+      "n": 3,
+      "title": "It's Haunting Me",
+      "duration": "3:27"
+    },
+    {
+      "n": 4,
+      "title": "The Carpet",
+      "duration": "3:38"
+    },
+    {
+      "n": 5,
+      "title": "I Hope You Said What You Needed To Say",
+      "duration": "4:01"
+    }
+  ],
+  "links": {
+    "bandcamp": "https://brickwater.bandcamp.com/album/aloah-from-brickwater",
+    "spotify": "https://open.spotify.com/album/2SMADw0ndqYuPzlwzlMDWv",
+    "appleMusic": "https://music.apple.com/de/album/aloha-from-brickwater-ep/1425452025",
+    "deezer": "https://www.deezer.com/album/70559672"
+  },
+  "bandcampAlbumId": "3309346565"
+}

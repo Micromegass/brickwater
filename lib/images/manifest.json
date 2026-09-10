@@ -1,0 +1,343 @@
+{
+  "brickwater-bricky-waters-park-stairs": {
+    "hash": "c84ce3d9",
+    "width": 4080,
+    "height": 2296,
+    "widths": [
+      640,
+      1024,
+      1600,
+      2400
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAADQAQCdASoQAAkAA4BaJZQC7AC5g0uwQAD+mwPi6uOPtnugd91QLSPfjzn5kslSRPQUjPqXFRHWHICdiqvSmF8s9RwlOQAA"
+  },
+  "brickwater-bricky-waters-fence-standing-01": {
+    "hash": "b70a63e9",
+    "width": 4080,
+    "height": 2296,
+    "widths": [
+      640,
+      1024,
+      1600,
+      2400
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAACQAQCdASoQAAkAA4BaJQBOgA0LrcAA/gu5XjEwL3tYVpAbpDnv6xel3iBZ+p1cGOZnr/0UMHYSzVuA1KivV9qkj7Sz1eG24FfgrBrYN9gAAA=="
+  },
+  "brickwater-bricky-waters-fence-standing-02": {
+    "hash": "adeab1f4",
+    "width": 4080,
+    "height": 2296,
+    "widths": [
+      640,
+      1024,
+      1600,
+      2400
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAADwAQCdASoQAAkAA4BaJQBOgCPV0n75/AAA4n5jseFwhNhTyeR9kUx2R86FDKweobOC3vqb+kRd6BxidUBq6kDlrSk/41CJxHeJRhQeM/IAAA=="
+  },
+  "brickwater-bricky-waters-fence-sitting-01": {
+    "hash": "901da37a",
+    "width": 4080,
+    "height": 2296,
+    "widths": [
+      640,
+      1024,
+      1600,
+      2400
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAADwAQCdASoQAAkAA4BaJYgCdADcQTYb/LAA/XjrIaKXc6lidUUQIvwHyiWuKgGMMYnJTqNTUe96VmpKNKB7h/fY+XAmkvieYlCYNNkjejAAAA=="
+  },
+  "brickwater-bricky-waters-fence-sitting-02": {
+    "hash": "efa3c480",
+    "width": 4080,
+    "height": 2296,
+    "widths": [
+      640,
+      1024,
+      1600,
+      2400
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAADwAQCdASoQAAkAA4BaJQBOgCLvxpt5SwgA/sB94NwAdnj50/OD1Y811b4PiIZFcKp5cA4Q6HLelhAaFOu04OnsLrMvllga5m7olCAA"
+  },
+  "brickwater-bricky-waters-fence-sitting-03": {
+    "hash": "e1e44273",
+    "width": 4080,
+    "height": 2296,
+    "widths": [
+      640,
+      1024,
+      1600,
+      2400
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAADwAQCdASoQAAkAA4BaJQBOgCPTYeNa0oAA/qoeQArrjRDPzeBu150HcgFOSkaYRLrO2SEgHlkIoU/S7JwXcFSdCcvxSA2n4AA="
+  },
+  "brickwater-biergarten-guitar-01": {
+    "hash": "97f6d99b",
+    "width": 4080,
+    "height": 2296,
+    "widths": [
+      640,
+      1024,
+      1600,
+      2400
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAACwAQCdASoQAAkAA4BaJYgCdAEO5PAAAP6rRnsxbLNeLXBxgflbuNkVq1+Y5DBOXbkefmduDLUpd7owzsjRA7AA"
+  },
+  "brickwater-biergarten-guitar-02": {
+    "hash": "7522a00d",
+    "width": 4080,
+    "height": 2296,
+    "widths": [
+      640,
+      1024,
+      1600,
+      2400
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAADQAQCdASoQAAkAA4BaJbACdAEUonwHFgD+vJzOQ4HlBHNfEG7Rax3gQ6Z1wN1tLCPgm40Dpuf2MhtRxJer3TnQO8F8xLos40AAAA=="
+  },
+  "brickwater-bricky-waters-stage-portrait-01": {
+    "hash": "cb01adba",
+    "width": 2296,
+    "height": 4080,
+    "widths": [
+      640,
+      1024,
+      1600,
+      2296
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRsQAAABXRUJQVlA4ILgAAADwAwCdASoQABwAPu1kqk4ppaQiMAgBMB2JZgCdAywFUdQowAqF4WAQAP79VGPlW3vfWohVWWOtJbSDPuDjuHxoW6Gl2pv/ddF5z43C5+6QQ7ftEFezPpWw35dVv21F+B30oxHtmUKfXA9bncN58wuDV0ST8iKpI86nWOTIDCBGPWoMsXrlb6kisawzprvoC1w1xqZnJsQKlTSmz+dae8eyjcs/QocAfKRJSbMzAKFzLwFvRt4dQAAA"
+  },
+  "brickwater-bricky-waters-stage-portrait-02": {
+    "hash": "9777615e",
+    "width": 2296,
+    "height": 4080,
+    "widths": [
+      640,
+      1024,
+      1600,
+      2296
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRpwAAABXRUJQVlA4IJAAAACwAwCdASoQABwAPu1iqk2ppaQiMAgBMB2JQAAJR3BKYkgJ1Ej9YAD+8N93aYhMALdAPvji33AS0kpR6nBCPW97P7ZGftfiFnB7m5b0Q5IrC3nepey65Gs/8v+4abnD6gHg4KFan/vN1hb1AhXfQP3bqXoMu/0YgJC09gCxpvRVSyzCtvSBf68861Pc/bVgAAA="
+  },
+  "folks-worst-nightmare-bricky-waters-and-friend": {
+    "hash": "34dc2786",
+    "width": 1146,
+    "height": 2048,
+    "widths": [
+      640,
+      1024,
+      1146
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRvoAAABXRUJQVlA4IO4AAACQBACdASoQAB0APu1iqU2ppaOiMAgBMB2JaACdB3gGxmNU71U32VMrf88arAAA+PK14EK8xUPOEMy1DV5ArG/B8vaWypUHHJTUrmSVEX+KxZFsIpNzNWPOG2eYCPtsnocYT8dLXZ+sVFNGI2PI2eelvurECg2FyhQL3ESKctiGo/vr33tLgP1CO3hM1cfle4sNy04QkG/SH/n/9Roo9Pe3pWHvXvalb6f8oJnPpfJnu9R2CqQSPHfrgesNGXWreAM7ISXyLK3yic2wN2d1jOP6+X17GYavjyG2N3I34roP8yby6WQpT0azbiIBdAAA"
+  },
+  "folks-worst-nightmare-logo": {
+    "hash": "179b1464",
+    "width": 3665,
+    "height": 3600,
+    "widths": [
+      640,
+      1024,
+      1600,
+      2400
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAAAwAgCdASoQABAAA4BaJaQAD5FQPPsV1wFoEAD+68HuhnBhCT9XavWDa9wpWC/+akxDjDZYfCc7KemP6NiyA9/eGQdhNVEyoiZbJ2iUbc8fCmDUjvDIQl/7MzLjCx/XSuuCL5dvFiMVonCfdZpt+CKgA+jYv8AAAAA="
+  },
+  "folks-worst-nightmare-logo-inverted": {
+    "hash": "8e814372",
+    "width": 800,
+    "height": 786,
+    "widths": [
+      640,
+      800
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAAAwAgCdASoQABAAA4BaJaQAD5LQK5aTqNEK4AD+8bpasrzT59Qe37qPmWnOzPp7cUX/uGhpf5SkWzgRJy+jQBqmn9uTy2NSl5WSHxoyactPWJ42PFx+SQ3jVzUhmFB5ibM0YvRbaHcJXG69/qzV98+PxzogVpM+wAA="
+  },
+  "brickwater-live-red-light-2019": {
+    "hash": "61ae6920",
+    "width": 1596,
+    "height": 1598,
+    "widths": [
+      640,
+      1024,
+      1596
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAADQAQCdASoQABAAA4BaJbACdADbTik4qAD+6qrWadrS8AM7+moj5OGIP7RhOxmV9Zg+A5ojU/dzr3KhGFaUfN8WfhlBb52lw3cnWDp4Zaa9ta7azcKNrzB6trI37TXasAnmXpc7LsdvAAAA"
+  },
+  "bricky-waters-portrait-bw-2019": {
+    "hash": "6dcbb2ad",
+    "width": 1798,
+    "height": 1802,
+    "widths": [
+      640,
+      1024,
+      1600,
+      1798
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAABQAgCdASoQABAAA4BaJaQAD4uwfJoHc+AJtAAA/vkUZCs1cn6LXCPZMCHrJwPiSYp2oUmBg0Z00w27VZyU5qdgaAPwVCvpuOfIJ/Vzcn5VElYsiIFoEAAA"
+  },
+  "brickwater-harmonica-live-2020": {
+    "hash": "a6710503",
+    "width": 1335,
+    "height": 1335,
+    "widths": [
+      640,
+      1024,
+      1335
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAABQAgCdASoQABAAA4BaJYwCdAEPAiutJ5AqgAAA/tvl9HdVJ4tWJ+tErDncHdZrDso0odDUCiyQxyJMDWjoU1XsfIi6GAUD9xKvlG/88wvk8DahWonP0X+UhqAAAA=="
+  },
+  "bricky-waters-cat-mural-2020": {
+    "hash": "246e6f59",
+    "width": 1920,
+    "height": 1920,
+    "widths": [
+      640,
+      1024,
+      1600,
+      1920
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRowAAABXRUJQVlA4IIAAAAAwAgCdASoQABAAA4BaJbACdAYvDWogQ1KgAAD5UwotIZm4SQnP9q96YggFXtqxVXxBCVi1eGNY5rzGBRzOUdis84SrnILvHZ1vKHLyuYoKN1id974BII9egU81kRkTgkLjz2/j5ys8nZ0Cy4xDo5ihyYOxo1BspYEWjfYIMAAAAA=="
+  },
+  "brickwater-live-brick-wall-2021": {
+    "hash": "ff69afac",
+    "width": 1726,
+    "height": 1732,
+    "widths": [
+      640,
+      1024,
+      1600,
+      1726
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAAAQAgCdASoQABAAA4BaJZgCdIExEqBB5cAAAP7ytJX+CWyWSohkOUSzsTq2MxVduGwzciudvtTqy3f/bFuF7dkpMHEzrYojx9rLTELjpcKhjavQ78i8abcn5AK2U8fns6iGA4AA"
+  },
+  "brickwater-band-live-stage-lights-bw": {
+    "hash": "a367ad46",
+    "width": 1535,
+    "height": 545,
+    "widths": [
+      640,
+      1024,
+      1535
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRkgAAABXRUJQVlA4IDwAAACwAQCdASoQAAYAA4BaJaQAAtyU1HlAAP7tDVaRMfTHh9enpWz43w/TvTuHm07fQp/nqTFx4FotCvVWAAA="
+  },
+  "brickwater-band-live-stage-banner-bw": {
+    "hash": "7b3205a9",
+    "width": 1535,
+    "height": 545,
+    "widths": [
+      640,
+      1024,
+      1535
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAABwAQCdASoQAAYAA4BaJaQAAWKLAAD+94fh+4ryKDOmbc8rWYahXSh0zjKGh2ezVkJzY8FOcpxcAAAA"
+  },
+  "brickwater-season-one-album-cover": {
+    "hash": "f3595577",
+    "width": 3773,
+    "height": 3773,
+    "widths": [
+      640,
+      1024,
+      1600,
+      2400
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAAAwAgCdASoQABAAA4BaJYwCdAD0kI7RAAepAAD++Blxn3ax8TqnXmQ6BQJct86tJgMNjyBFnP2KDaKjSC6F3LqKiIXv65crb0ID2UT3T7gHjW+HoVFquMuBF8AAAA=="
+  },
+  "brickwater-against-couragefalls-album-cover": {
+    "hash": "7f8b1f4d",
+    "width": 1200,
+    "height": 1200,
+    "widths": [
+      640,
+      1024,
+      1200
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAACQAgCdASoQABAAA4BaJZgCdH8AgqDEpnmgzs+7AAD+rZHSKikMSwfqmAslqw6V8N4dBs/Cm4ytX+PzjA0q4tu5mxdaFcjpPiR9W/yjJbu1/X5ZIy4LQeqo0iT2JgV7h4fbDSWDe59aAAAA"
+  },
+  "brickwater-aloah-from-brickwater-ep-cover": {
+    "hash": "aac3c558",
+    "width": 751,
+    "height": 739,
+    "widths": [
+      640,
+      751
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAABwAgCdASoQABAAA4BaJbACdFQAA4k/sJgn+wKAAP7LWKcGLSYORKkYhOHWA45whdb+xte2cWdHo9hR2Exps6y8uJ2mso1G9Uu5RpJZfNjh+/xCcd3mdEz+Pa/8YJbZ8kTr/u+3tHgAAA=="
+  },
+  "brickwater-jumping-just-to-fall-single-cover": {
+    "hash": "a4ad6d1c",
+    "width": 1200,
+    "height": 1200,
+    "widths": [
+      640,
+      1024,
+      1200
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRiYAAABXRUJQVlA4IBoAAAAwAQCdASoQABAAA4BaJaQAA3AA/vUSfAAAAA=="
+  },
+  "video-starving-poster": {
+    "hash": "fee5155f",
+    "width": 1280,
+    "height": 720,
+    "widths": [
+      640,
+      1024,
+      1280
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAAAQAgCdASoQAAkAA4BaJZwC7AEfblTnkyAAAP722USiqRxkVA0fLlVxSCCW8cgSJ2xWAtZEe8xNkhVsItQ6X9mBTgAAAA=="
+  },
+  "video-jumping-just-to-fall-poster": {
+    "hash": "c82df652",
+    "width": 1280,
+    "height": 720,
+    "widths": [
+      640,
+      1024,
+      1280
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAADQAQCdASoQAAkAA4BaJQAAS7ixjCMfAAD+6R8R5ndxe26LBSkLJogzwsW4QGZ/TZss9K2jyJFphEL69d7dh37AAAA="
+  },
+  "video-medicine-acoustic-poster": {
+    "hash": "701fe084",
+    "width": 480,
+    "height": 360,
+    "widths": [
+      480
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAADwAQCdASoQAAwAA4BaJaQAApOwJpwcBcAA/op7s5vut+6nPzFViraB9fD0kCbYt7ntKPBAX/nqsduWkxjZvP/8zz2jX1U2Pg85uBtiwKxTwVtkD3C3NOL1Ipej1IYfmpZdXVhQTMvpLBhRfwMegykxZC0eKvSO0AA="
+  },
+  "video-lower-the-blinds-poster": {
+    "hash": "99764dc0",
+    "width": 1280,
+    "height": 720,
+    "widths": [
+      640,
+      1024,
+      1280
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAADwAQCdASoQAAkAA4BaJQBOgCB2Pq3cZMAA/uiOVj8AutDV1jByu55euxyGwa56QvIS5NHAn+ZHyzrWy68tXPCmAm+hYAAA"
+  },
+  "video-one-more-night-of-heavy-drinking-poster": {
+    "hash": "5fa2d81b",
+    "width": 1280,
+    "height": 720,
+    "widths": [
+      640,
+      1024,
+      1280
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAADQAQCdASoQAAkAA4BaJZgCdADvduZYAAD9/F+RvDOjyVXM3lkCAK2omb8bhDtG5K1/O793WsZSbo7lWEuws0Pi7BU4wQYjkVf6UxcP4AA="
+  },
+  "video-stuck-in-the-rocknroll-office-poster": {
+    "hash": "fb843823",
+    "width": 1280,
+    "height": 720,
+    "widths": [
+      640,
+      1024,
+      1280
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAADQAQCdASoQAAkAA4BaJZwAAZZlk2eugAD+Z0uUkzcmpygzerRCUiK3jd2Uo4/xE0ScTRRRUqlbrijHfbAXrmuBpwDFyRxPJjR6jgAA"
+  }
+}

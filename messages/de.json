@@ -1,0 +1,158 @@
+{
+  "site": {
+    "name": "Brickwater",
+    "tagline": "Indie, Folk und Punk aus Nürnberg",
+    "description": "Brickwater: Indie, Folk und Punk aus Nürnberg. Konzerte, Musik, Videos und Songtexte von Bricky Waters, solo oder mit Folk's Worst Nightmare."
+  },
+  "nav": {
+    "home": "Start",
+    "shows": "Konzerte",
+    "music": "Musik",
+    "videos": "Videos",
+    "contact": "Kontakt",
+    "openMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen",
+    "skipToContent": "Zum Inhalt springen",
+    "switchLanguage": "English version",
+    "switchLanguageShort": "EN",
+    "mainNavigation": "Hauptnavigation",
+    "homeLink": "Brickwater, zur Startseite"
+  },
+  "hero": {
+    "eyebrow": "Solo oder mit Folk's Worst Nightmare",
+    "claim": "Lieder mit Tief- und Leichtsinn.",
+    "ctaShows": "Konzerte",
+    "ctaListen": "Musik hören",
+    "nextShow": "Nächstes Konzert",
+    "wordmarkHint": "Bewege den Zeiger über die Steine"
+  },
+  "about": {
+    "heading": "Schön, dass du da bist",
+    "readMore": "Ganze Bio lesen",
+    "readLess": "Weniger anzeigen"
+  },
+  "shows": {
+    "heading": "Konzerte",
+    "intro": "Kopfsteinpflaster, Waldlichtung oder Festivalbühne. Hier stehen alle Termine.",
+    "upcoming": "Demnächst",
+    "past": "Gespielt",
+    "empty": "Gerade sind keine Konzerte angekündigt. Neue Termine erscheinen hier zuerst.",
+    "emptyFollow": "Brickwater auf Instagram folgen",
+    "tickets": "Tickets",
+    "info": "Infos",
+    "calendar": "In den Kalender",
+    "calendarLabel": "Termin {venue} als Kalenderdatei speichern",
+    "map": "Anfahrt",
+    "mapLabel": "Anfahrt zu {venue} in Google Maps öffnen",
+    "status": {
+      "cancelled": "Abgesagt",
+      "postponed": "Verschoben",
+      "soldout": "Ausverkauft"
+    },
+    "doors": "Beginn {time} Uhr",
+    "allShows": "Alle Konzerte",
+    "bookingHint": "Du willst Brickwater buchen?",
+    "bookingCta": "Schreib uns",
+    "count": "{count, plural, =0 {Keine Konzerte} one {# Konzert} other {# Konzerte}}"
+  },
+  "music": {
+    "heading": "Musik",
+    "intro": "Vier Releases seit 2015, von der akustischen EP bis zum Full-Band-Album.",
+    "latest": "Aktuelles Release",
+    "allReleases": "Alle Releases",
+    "listenOn": "Anhören auf",
+    "buy": "Auf Bandcamp kaufen",
+    "listenBandcamp": "Auf Bandcamp hören",
+    "tracks": "{count, plural, one {# Song} other {# Songs}}",
+    "tracklist": "Titelliste",
+    "lyrics": "Songtext",
+    "showLyrics": "Songtext anzeigen",
+    "hideLyrics": "Songtext ausblenden",
+    "noLyrics": "Für diesen Song liegt kein Text vor.",
+    "credits": "Credits",
+    "appearsOn": "Außerdem zu hören auf",
+    "released": "Erschienen am {date}",
+    "types": {
+      "album": "Album",
+      "ep": "EP",
+      "single": "Single"
+    },
+    "services": {
+      "bandcamp": "Bandcamp",
+      "spotify": "Spotify",
+      "appleMusic": "Apple Music",
+      "deezer": "Deezer",
+      "youtube": "YouTube"
+    },
+    "player": "Player für {title}",
+    "detail": "Zum Release"
+  },
+  "videos": {
+    "heading": "Videos",
+    "intro": "Offizielle Videos und Sessions vom Folk's Worst Nightmare Kanal.",
+    "play": "Video abspielen: {title}",
+    "more": "Weitere Videos",
+    "channel": "Alle Videos auf YouTube"
+  },
+  "fwn": {
+    "heading": "Folk's Worst Nightmare",
+    "cta": "Zum Kollektiv auf YouTube",
+    "bandcamp": "FWN auf Bandcamp"
+  },
+  "contact": {
+    "heading": "Booking und Kontakt",
+    "text": "Für Konzertanfragen, Festivals, Wohnzimmer und alles dazwischen.",
+    "email": "E-Mail schreiben",
+    "copy": "Adresse kopieren",
+    "copied": "Kopiert",
+    "follow": "Folgen"
+  },
+  "footer": {
+    "legal": "Impressum",
+    "privacy": "Datenschutz",
+    "rights": "© {year} Brickwater",
+    "made": "Gemacht in Nürnberg",
+    "photoCredits": "Fotos"
+  },
+  "embeds": {
+    "load": "Player laden",
+    "youtubeHint": "Beim Abspielen werden Daten an YouTube (Google) übertragen. Mehr dazu in der Datenschutzerklärung.",
+    "bandcampHint": "Beim Laden werden Daten an Bandcamp übertragen. Mehr dazu in der Datenschutzerklärung.",
+    "remember": "Auswahl merken",
+    "reset": "Einwilligung für eingebettete Inhalte zurücksetzen",
+    "resetDone": "Einwilligung zurückgesetzt",
+    "privacyLink": "Datenschutzerklärung",
+    "iframeTitle": "{title} auf {provider}"
+  },
+  "notFound": {
+    "title": "Seite nicht gefunden",
+    "text": "Diese Seite gibt es nicht oder nicht mehr.",
+    "home": "Zur Startseite"
+  },
+  "meta": {
+    "home": {
+      "title": "Brickwater: Indie, Folk und Punk aus Nürnberg",
+      "description": "Brickwater ist Bricky Waters: Indie, Folk und Punk aus Nürnberg, solo oder mit Folk's Worst Nightmare. Konzerte, Musik, Videos und Songtexte."
+    },
+    "shows": {
+      "title": "Konzerte",
+      "description": "Alle Konzerttermine von Brickwater: solo, mit Folk's Worst Nightmare, auf Festivals und in Clubs. Mit Tickets und Kalenderdatei."
+    },
+    "music": {
+      "title": "Musik",
+      "description": "Alle Releases von Brickwater: Season One, Jumping just to fall, Against Couragefalls und Aloah from Brickwater. Mit Songtexten und Streaming-Links."
+    },
+    "release": {
+      "title": "{title} ({type}, {year})",
+      "description": "{title} von Brickwater, {type} aus dem Jahr {year}: Titelliste, Songtexte und Links zu Bandcamp, Spotify und Apple Music."
+    },
+    "legal": {
+      "title": "Impressum",
+      "description": "Impressum und Anbieterkennzeichnung der Website brickwater.de."
+    },
+    "privacy": {
+      "title": "Datenschutzerklärung",
+      "description": "Datenschutzerklärung der Website brickwater.de: Hosting, eingebettete Inhalte, Kontakt und deine Rechte."
+    }
+  }
+}

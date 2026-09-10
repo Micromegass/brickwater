@@ -1,0 +1,158 @@
+{
+  "site": {
+    "name": "Brickwater",
+    "tagline": "Indie, folk and punk from Nuremberg",
+    "description": "Brickwater: indie, folk and punk from Nuremberg. Shows, music, videos and lyrics by Bricky Waters, solo or with Folk's Worst Nightmare."
+  },
+  "nav": {
+    "home": "Home",
+    "shows": "Shows",
+    "music": "Music",
+    "videos": "Videos",
+    "contact": "Contact",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "skipToContent": "Skip to content",
+    "switchLanguage": "Deutsche Version",
+    "switchLanguageShort": "DE",
+    "mainNavigation": "Main navigation",
+    "homeLink": "Brickwater, back to the start page"
+  },
+  "hero": {
+    "eyebrow": "Solo or with Folk's Worst Nightmare",
+    "claim": "Songs with depth and levity.",
+    "ctaShows": "Shows",
+    "ctaListen": "Listen",
+    "nextShow": "Next show",
+    "wordmarkHint": "Move your pointer across the bricks"
+  },
+  "about": {
+    "heading": "Good to have you here",
+    "readMore": "Read the full bio",
+    "readLess": "Show less"
+  },
+  "shows": {
+    "heading": "Shows",
+    "intro": "Cobblestones, forest clearings or festival stages. Every date lives here.",
+    "upcoming": "Upcoming",
+    "past": "Played",
+    "empty": "No shows are announced right now. New dates appear here first.",
+    "emptyFollow": "Follow Brickwater on Instagram",
+    "tickets": "Tickets",
+    "info": "Details",
+    "calendar": "Add to calendar",
+    "calendarLabel": "Save the {venue} date as a calendar file",
+    "map": "Directions",
+    "mapLabel": "Open directions to {venue} in Google Maps",
+    "status": {
+      "cancelled": "Cancelled",
+      "postponed": "Postponed",
+      "soldout": "Sold out"
+    },
+    "doors": "Starts at {time}",
+    "allShows": "All shows",
+    "bookingHint": "Want to book Brickwater?",
+    "bookingCta": "Get in touch",
+    "count": "{count, plural, =0 {No shows} one {# show} other {# shows}}"
+  },
+  "music": {
+    "heading": "Music",
+    "intro": "Four releases since 2015, from the acoustic EP to the full-band album.",
+    "latest": "Latest release",
+    "allReleases": "All releases",
+    "listenOn": "Listen on",
+    "buy": "Buy on Bandcamp",
+    "listenBandcamp": "Listen on Bandcamp",
+    "tracks": "{count, plural, one {# song} other {# songs}}",
+    "tracklist": "Tracklist",
+    "lyrics": "Lyrics",
+    "showLyrics": "Show lyrics",
+    "hideLyrics": "Hide lyrics",
+    "noLyrics": "No lyrics available for this song.",
+    "credits": "Credits",
+    "appearsOn": "Also heard on",
+    "released": "Released on {date}",
+    "types": {
+      "album": "Album",
+      "ep": "EP",
+      "single": "Single"
+    },
+    "services": {
+      "bandcamp": "Bandcamp",
+      "spotify": "Spotify",
+      "appleMusic": "Apple Music",
+      "deezer": "Deezer",
+      "youtube": "YouTube"
+    },
+    "player": "Player for {title}",
+    "detail": "View release"
+  },
+  "videos": {
+    "heading": "Videos",
+    "intro": "Official videos and sessions from the Folk's Worst Nightmare channel.",
+    "play": "Play video: {title}",
+    "more": "More videos",
+    "channel": "All videos on YouTube"
+  },
+  "fwn": {
+    "heading": "Folk's Worst Nightmare",
+    "cta": "The collective on YouTube",
+    "bandcamp": "FWN on Bandcamp"
+  },
+  "contact": {
+    "heading": "Booking and contact",
+    "text": "For show requests, festivals, living rooms and everything in between.",
+    "email": "Write an email",
+    "copy": "Copy address",
+    "copied": "Copied",
+    "follow": "Follow"
+  },
+  "footer": {
+    "legal": "Legal notice",
+    "privacy": "Privacy",
+    "rights": "© {year} Brickwater",
+    "made": "Made in Nuremberg",
+    "photoCredits": "Photos"
+  },
+  "embeds": {
+    "load": "Load player",
+    "youtubeHint": "Playing transfers data to YouTube (Google). See the privacy policy for details.",
+    "bandcampHint": "Loading transfers data to Bandcamp. See the privacy policy for details.",
+    "remember": "Remember my choice",
+    "reset": "Reset consent for embedded content",
+    "resetDone": "Consent reset",
+    "privacyLink": "Privacy policy",
+    "iframeTitle": "{title} on {provider}"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "This page does not exist, or not any more.",
+    "home": "Back to the start page"
+  },
+  "meta": {
+    "home": {
+      "title": "Brickwater: indie, folk and punk from Nuremberg",
+      "description": "Brickwater is Bricky Waters: indie, folk and punk from Nuremberg, solo or with Folk's Worst Nightmare. Shows, music, videos and lyrics."
+    },
+    "shows": {
+      "title": "Shows",
+      "description": "All Brickwater show dates: solo, with Folk's Worst Nightmare, at festivals and in clubs. With tickets and calendar files."
+    },
+    "music": {
+      "title": "Music",
+      "description": "All Brickwater releases: Season One, Jumping just to fall, Against Couragefalls and Aloah from Brickwater. With lyrics and streaming links."
+    },
+    "release": {
+      "title": "{title} ({type}, {year})",
+      "description": "{title} by Brickwater, {type} from {year}: tracklist, lyrics and links to Bandcamp, Spotify and Apple Music."
+    },
+    "legal": {
+      "title": "Legal notice",
+      "description": "Legal notice and provider identification for brickwater.de."
+    },
+    "privacy": {
+      "title": "Privacy policy",
+      "description": "Privacy policy for brickwater.de: hosting, embedded content, contact and your rights."
+    }
+  }
+}

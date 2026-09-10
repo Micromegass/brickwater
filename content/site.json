@@ -1,0 +1,55 @@
+{
+  "name": "Brickwater",
+  "url": "https://www.brickwater.de",
+  "email": "brickwater@gmx.de",
+  "city": "Nürnberg",
+  "country": "DE",
+  "frontperson": "Bricky Waters",
+  "genres": ["Indie", "Folk", "Punk"],
+  "foundingYear": 2015,
+  "operator": {
+    "name": "Roman Deska",
+    "street": "Kopernikusplatz 25",
+    "postalCode": "90459",
+    "city": "Nürnberg",
+    "country": "Deutschland"
+  },
+  "socials": {
+    "instagram": "https://www.instagram.com/_brickwater_music/",
+    "bandcamp": "https://brickwater.bandcamp.com/",
+    "spotify": "https://open.spotify.com/artist/3ExCH2eoMuC70pzonI5N05",
+    "appleMusic": "https://music.apple.com/de/artist/brickwater/1425452026",
+    "youtube": "https://www.youtube.com/@folksworstnightmare1528",
+    "deezer": "https://www.deezer.com/artist/50013322"
+  },
+  "sameAs": [
+    "https://www.instagram.com/_brickwater_music/",
+    "https://brickwater.bandcamp.com/",
+    "https://open.spotify.com/artist/3ExCH2eoMuC70pzonI5N05",
+    "https://music.apple.com/de/artist/brickwater/1425452026",
+    "https://www.deezer.com/artist/50013322",
+    "https://www.youtube.com/@folksworstnightmare1528",
+    "https://www.discogs.com/artist/7307515-Brickwater",
+    "https://musicbrainz.org/artist/89775596-fc8c-46f4-9dee-d8997a93379f"
+  ],
+  "fwn": {
+    "name": "Folk's Worst Nightmare",
+    "youtube": "https://www.youtube.com/@folksworstnightmare1528",
+    "bandcamp": "https://folksworstnightmare.bandcamp.com/"
+  },
+  "videos": [
+    { "id": "ugmcmAWwCs8", "title": "Starving", "kind": "official", "year": 2019, "poster": "video-starving-poster" },
+    { "id": "fHqmfA3HigQ", "title": "Jumping just to fall", "kind": "official", "year": 2018, "poster": "video-jumping-just-to-fall-poster" },
+    { "id": "xkvlwDs2us8", "title": "Medicine (acoustic version)", "kind": "session", "year": 2019, "poster": "video-medicine-acoustic-poster" },
+    { "id": "XdVo2prR4Iw", "title": "Lower The Blinds", "kind": "session", "year": 2017, "poster": "video-lower-the-blinds-poster" },
+    { "id": "mS8wLzoCRVE", "title": "One More Night Of Heavy Drinking (with The Black Elephant Band)", "kind": "session", "year": 2017, "poster": "video-one-more-night-of-heavy-drinking-poster" },
+    { "id": "MR0gtfG36Vc", "title": "Stuck In The Rock'n'Roll Office (The Black Elephant Band with Brickwater)", "kind": "session", "year": 2020, "poster": "video-stuck-in-the-rocknroll-office-poster" }
+  ],
+  "appearsOn": [
+    { "title": "Folk's Worst Nightmare (Compilation)", "year": 2019, "track": "It's Okay (with FWN)", "url": "https://folksworstnightmare.bandcamp.com/album/folks-worst-nightmare" },
+    { "title": "CORONAPENDENT (Der Linde Soli Sampler)", "year": 2020, "track": "I Don't Wanna Hear It Anymore", "url": "https://lindesolisampler.bandcamp.com/album/coronapendent" },
+    { "title": "EgoTherapie: Der Geschmack der Tage", "year": 2025, "track": "Der Geschmack Der Tage (feat. Brickwater)", "url": "https://egotherapie.bandcamp.com/album/der-geschmack-der-tage-2" },
+    { "title": "Straßenkreuzer Vierzehn: Hamkuma Af Di B2", "year": 2015, "track": "Long Enough", "url": "https://www.discogs.com/release/22534910" },
+    { "title": "The Black Elephant Band: Fixing Great Mistakes With Duct Tape", "year": 2022, "track": "Backing vocals", "url": "https://www.discogs.com/release/28221256" }
+  ]
+}

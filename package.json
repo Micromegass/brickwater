@@ -1,0 +1,61 @@
+{
+  "name": "brickwater",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Website of Brickwater, indie/folk/punk from Nürnberg",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "next dev -p 3100",
+    "prebuild": "npm run validate:content && npm run gen:ics",
+    "build": "next build",
+    "postbuild": "tsx scripts/postbuild.ts",
+    "preview": "serve out -l 4173",
+    "images": "node scripts/images.mjs",
+    "gen:wordmark": "tsx scripts/wordmark.ts",
+    "gen:ics": "tsx scripts/ics.ts",
+    "validate:content": "tsx scripts/validate-content.ts",
+    "typecheck": "next typegen && tsc --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "lh:seo": "lhci autorun",
+    "check": "npm run validate:content && npm run typecheck && npm run lint && npm test"
+  },
+  "dependencies": {
+    "@react-three/drei": "10.7.8",
+    "@react-three/fiber": "9.7.0",
+    "motion": "13.2.0",
+    "next": "16.3.4",
+    "next-intl": "4.14.3",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "three": "0.185.1",
+    "zod": "4.6.1"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@fontsource-variable/bricolage-grotesque": "5.3.0",
+    "@fontsource-variable/instrument-sans": "5.3.0",
+    "@lhci/cli": "0.15.1",
+    "@napi-rs/canvas": "1.0.9",
+    "@playwright/test": "1.63.0",
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/node": "24.13.4",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.7",
+    "@types/three": "0.185.4",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.3.4",
+    "postcss": "8.5.28",
+    "serve": "14.2.6",
+    "sharp": "0.35.4",
+    "tailwindcss": "4.3.3",
+    "tsx": "4.23.13",
+    "typescript": "5.9.3",
+    "vite": "7.3.6",
+    "vitest": "4.1.11"
+  }
+}

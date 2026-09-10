@@ -1,0 +1,33 @@
+# dependencies
+node_modules/
+
+# next.js
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# generated at build time
+public/ics/
+
+# originals (kept locally, see CLAUDE.md)
+assets/source/
+
+# tests and audits
+playwright-report/
+test-results/
+.lighthouseci/
+
+# environment: never commit secrets
+.env
+.env.*
+!.env.example
+
+# impeccable per-developer overrides
+.impeccable/config.local.json
+.impeccable/live/
+.impeccable/mocks/
+.impeccable/sketches/
+
+# os
+.DS_Store

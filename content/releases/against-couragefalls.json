@@ -1,0 +1,84 @@
+{
+  "slug": "against-couragefalls",
+  "title": "Against Couragefalls",
+  "altTitle": "Brickwater Against Couragefalls",
+  "date": "2016-09-04",
+  "type": "album",
+  "cover": "brickwater-against-couragefalls-album-cover",
+  "description": {
+    "de": "Elf Songs, aufgenommen in den Räumen von btm-guitars in Nürnberg. „We all visit Couragefalls from time to time, what is okay, as long as we reach out to each other to move on again.“",
+    "en": "Eleven songs recorded at btm-guitars in Nuremberg. “We all visit Couragefalls from time to time, what is okay, as long as we reach out to each other to move on again.”"
+  },
+  "credits": [
+    "All songs written and performed by Brickwater",
+    "Mandolin, lap steel, electrics, bass and additional vocals: Jens Hold",
+    "Recording and production: Jens Hold",
+    "Mix and master: Patrick Zilles",
+    "Artwork: Jens Hold",
+    "Logo: vikunia illustration"
+  ],
+  "tracks": [
+    {
+      "n": 1,
+      "title": "Wasteland",
+      "duration": "3:41"
+    },
+    {
+      "n": 2,
+      "title": "You Kissed The Ground",
+      "duration": "3:42"
+    },
+    {
+      "n": 3,
+      "title": "It's Okay",
+      "duration": "3:29"
+    },
+    {
+      "n": 4,
+      "title": "The Lost Nights",
+      "duration": "4:17"
+    },
+    {
+      "n": 5,
+      "title": "I Don't Wanna Hear It Anymore",
+      "duration": "3:01"
+    },
+    {
+      "n": 6,
+      "title": "We're No Friends",
+      "duration": "2:37"
+    },
+    {
+      "n": 7,
+      "title": "Everything We Do",
+      "duration": "2:08"
+    },
+    {
+      "n": 8,
+      "title": "Hear Me Roar",
+      "duration": "4:03"
+    },
+    {
+      "n": 9,
+      "title": "This Can't Be Real",
+      "duration": "3:32"
+    },
+    {
+      "n": 10,
+      "title": "Zombies",
+      "duration": "3:13"
+    },
+    {
+      "n": 11,
+      "title": "If I Could Climb",
+      "duration": "3:08"
+    }
+  ],
+  "links": {
+    "bandcamp": "https://brickwater.bandcamp.com/album/against-couragefalls",
+    "spotify": "https://open.spotify.com/album/2SRwF9VP42NXc8NU9xfEut",
+    "appleMusic": "https://music.apple.com/de/album/brickwater-against-couragefalls/1425452850",
+    "deezer": "https://www.deezer.com/album/70559682"
+  },
+  "bandcampAlbumId": "2490021531"
+}
