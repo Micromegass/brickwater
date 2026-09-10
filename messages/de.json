@@ -29,7 +29,8 @@
   "about": {
     "heading": "Schön, dass du da bist",
     "readMore": "Ganze Bio lesen",
-    "readLess": "Weniger anzeigen"
+    "readLess": "Weniger anzeigen",
+    "photos": "Fotos"
   },
   "shows": {
     "heading": "Konzerte",
@@ -65,7 +66,7 @@
     "listenBandcamp": "Auf Bandcamp hören",
     "tracks": "{count, plural, one {# Song} other {# Songs}}",
     "tracklist": "Titelliste",
-    "lyrics": "Songtext",
+    "lyrics": "Songtexte",
     "showLyrics": "Songtext anzeigen",
     "hideLyrics": "Songtext ausblenden",
     "noLyrics": "Für diesen Song liegt kein Text vor.",
@@ -154,5 +155,13 @@
       "title": "Datenschutzerklärung",
       "description": "Datenschutzerklärung der Website brickwater.de: Hosting, eingebettete Inhalte, Kontakt und deine Rechte."
     }
+  },
+  "social": {
+    "instagram": "Instagram",
+    "bandcamp": "Bandcamp",
+    "spotify": "Spotify",
+    "appleMusic": "Apple Music",
+    "youtube": "YouTube",
+    "deezer": "Deezer"
   }
 }

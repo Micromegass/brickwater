@@ -1,11 +1,14 @@
-import { getTranslations } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
+import { Impressum } from "@/components/legal/Impressum";
 
-export async function LegalPage({ locale }: { locale: Locale }) {
-  const t = await getTranslations({ locale, namespace: "meta" });
+export function LegalPage({ locale }: { locale: Locale }) {
   return (
     <main id="main">
-      <h1>{t("legal.title")}</h1>
+      <section className="section pt-12 md:pt-16">
+        <div className="container">
+          <Impressum locale={locale} />
+        </div>
+      </section>
     </main>
   );
 }

@@ -22,6 +22,7 @@ export async function generateMetadata({ params }: Props) {
     locale: "de",
     pathname: "/music/[slug]",
     params: { slug },
+    ogKey: `release-${slug}`,
     title: t("release.title", { title: release?.title ?? slug, type, year: release?.year ?? "" }),
     description: t("release.description", { title: release?.title ?? slug, type, year: release?.year ?? "" }),
   });

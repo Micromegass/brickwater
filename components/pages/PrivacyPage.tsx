@@ -1,11 +1,14 @@
-import { getTranslations } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
+import { Datenschutz } from "@/components/legal/Datenschutz";
 
-export async function PrivacyPage({ locale }: { locale: Locale }) {
-  const t = await getTranslations({ locale, namespace: "meta" });
+export function PrivacyPage({ locale }: { locale: Locale }) {
   return (
     <main id="main">
-      <h1>{t("privacy.title")}</h1>
+      <section className="section pt-12 md:pt-16">
+        <div className="container">
+          <Datenschutz locale={locale} />
+        </div>
+      </section>
     </main>
   );
 }

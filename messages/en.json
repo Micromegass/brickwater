@@ -29,7 +29,8 @@
   "about": {
     "heading": "Good to have you here",
     "readMore": "Read the full bio",
-    "readLess": "Show less"
+    "readLess": "Show less",
+    "photos": "Photos"
   },
   "shows": {
     "heading": "Shows",
@@ -154,5 +155,13 @@
       "title": "Privacy policy",
       "description": "Privacy policy for brickwater.de: hosting, embedded content, contact and your rights."
     }
+  },
+  "social": {
+    "instagram": "Instagram",
+    "bandcamp": "Bandcamp",
+    "spotify": "Spotify",
+    "appleMusic": "Apple Music",
+    "youtube": "YouTube",
+    "deezer": "Deezer"
   }
 }

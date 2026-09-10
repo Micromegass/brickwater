@@ -11,7 +11,8 @@ interface PageMetadataInput {
   key?: "home" | "shows" | "music" | "legal" | "privacy";
   title?: string;
   description?: string;
-  ogImage?: string;
+  /** Key of the pre-rendered OG image in public/og (defaults to the metadata key). */
+  ogKey?: string;
 }
 
 export const SITE_NAME = "Brickwater";
@@ -36,7 +37,7 @@ export async function pageMetadata(input: PageMetadataInput): Promise<Metadata> 
       locale: input.locale === "de" ? "de_DE" : "en_GB",
       alternateLocale: input.locale === "de" ? ["en_GB"] : ["de_DE"],
       type: "website",
-      ...(input.ogImage ? { images: [input.ogImage] } : {}),
+      images: [{ url: `/og/${input.ogKey ?? input.key ?? "home"}-${input.locale}.png`, width: 1200, height: 630, alt: title }],
     },
     twitter: { card: "summary_large_image", title, description },
   };

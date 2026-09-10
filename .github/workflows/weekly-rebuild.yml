@@ -1,0 +1,16 @@
+name: Weekly rebuild
+
+# Rebuilds the site on Cloudflare Pages every Monday so past shows retire automatically.
+# Add the Pages deploy hook URL as the repository secret CF_PAGES_DEPLOY_HOOK_URL.
+on:
+  schedule:
+    - cron: "17 3 * * 1"
+  workflow_dispatch:
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call Cloudflare Pages deploy hook
+        if: ${{ secrets.CF_PAGES_DEPLOY_HOOK_URL != '' }}
+        run: curl -fsS -X POST "${{ secrets.CF_PAGES_DEPLOY_HOOK_URL }}"
