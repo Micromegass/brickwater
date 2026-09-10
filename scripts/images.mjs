@@ -94,9 +94,10 @@ for (const [rel, key, options = {}] of SOURCES) {
   };
 }
 
-// remove stale outputs, except the wash textures, which scripts/wash.mjs owns
+// Remove stale outputs. Anything scripts/pigments.mjs owns is not ours to delete.
+const PIGMENT_PREFIXES = ["wash-", "stain-"];
 for (const f of readdirSync(OUT)) {
-  if (f.startsWith("wash-")) continue;
+  if (PIGMENT_PREFIXES.some((prefix) => f.startsWith(prefix))) continue;
   if (f.endsWith(".webp") && !keep.has(f)) {
     unlinkSync(path.join(OUT, f));
     console.log(`removed stale ${f}`);

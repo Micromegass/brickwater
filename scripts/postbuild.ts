@@ -40,7 +40,12 @@ const pages = htmlFiles(OUT);
 const checked = new Set<string>();
 for (const page of pages) {
   const html = readFileSync(page, "utf8");
-  for (const match of html.matchAll(/(?:href|src)="(\/[^"]*)"/g)) {
+  const references = [
+    ...html.matchAll(/(?:href|src)="(\/[^"]*)"/g),
+    // stains and the wordmark wash are addressed from inline styles and CSS
+    ...html.matchAll(/url\((?:&quot;|["'])?(\/[^)"'&]+)(?:&quot;|["'])?\)/g),
+  ];
+  for (const match of references) {
     const href = match[1];
     if (href.startsWith("//") || checked.has(href)) continue;
     checked.add(href);
