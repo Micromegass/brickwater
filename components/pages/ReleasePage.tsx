@@ -128,7 +128,7 @@ export async function ReleasePage({ locale, slug }: { locale: Locale; slug: stri
 
         <section className="section pt-0">
           <div className="container">
-            <h2 className="text-h2 font-extrabold">{t("music.allReleases")}</h2>
+            <h2 className="text-h2 font-extrabold">{t("music.moreReleases")}</h2>
             <ul className="release-row mt-8">
               {others.map((other) => (
                 <li key={other.slug}>

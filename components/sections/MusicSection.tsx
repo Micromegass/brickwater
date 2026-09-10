@@ -32,16 +32,13 @@ export async function MusicSection({ locale }: { locale: Locale }) {
             </Link>
           </div>
           <div className="md:col-span-7">
-            <p className="text-caption font-semibold text-water-wash">
-              {t("latest")}
-            </p>
-            <h3 className="mt-2 text-h2 font-extrabold">
+            <h3 className="text-h2 font-extrabold">
               <Link href={{ pathname: "/music/[slug]", params: { slug: latest.slug } }} className="no-underline hover:underline">
                 {latest.title}
               </Link>
             </h3>
-            <p className="mt-2 text-water-wash">
-              {t(`types.${latest.type}`)}, {latest.year}. {t("tracks", { count: latest.tracks.length })}.
+            <p className="mt-3 text-water-wash">
+              {t("latest")}: {t(`types.${latest.type}`)}, {latest.year}. {t("tracks", { count: latest.tracks.length })}.
             </p>
             <ol className="tracklist mt-6" aria-label={t("tracklist")}>
               {latest.tracks.map((track) => (
