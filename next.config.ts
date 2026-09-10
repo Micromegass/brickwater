@@ -14,6 +14,7 @@ const nextConfig: NextConfig = {
     imageSizes: [320],
     qualities: [75],
   },
+  agentRules: false,
   experimental: {
     globalNotFound: true,
   },

@@ -1,0 +1,25 @@
+{
+  "schema": "impeccable:design-sidecar/1",
+  "source": "app/globals.css",
+  "shadows": {
+    "sleeve": "0 2px 4px rgb(31 29 27 / 0.08), 0 18px 40px -24px rgb(31 29 27 / 0.45)",
+    "sticker": "0 1px 2px rgb(31 29 27 / 0.12), 0 8px 24px -12px rgb(31 29 27 / 0.35)"
+  },
+  "motion": {
+    "easeOutExpo": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "stickerPress": "transform 160ms ease-out-expo, box-shadow 160ms ease-out-expo",
+    "hypeSticker": "transform 240ms ease-out-expo",
+    "posterHover": "transform 500ms ease-out-expo, scale 1.03",
+    "wordmarkFade": "opacity 900ms ease-out-expo",
+    "heroAssembly": "per-brick exponential ease-out, 1.5s duration, delays 0 to 1.1s left to right",
+    "heroRipple": "up to 8 pointer ripples, life 3.2s, vertex shader",
+    "roundelSpin": "rotate 360deg 40s linear infinite, none under prefers-reduced-motion",
+    "reducedMotion": "hero canvas not mounted; roundel static; smooth scrolling off"
+  },
+  "focus": {
+    "ring": "3px solid #c2472b, outline-offset 3px",
+    "ringOnWater": "3px solid #fbfaf8"
+  },
+  "selection": { "background": "#c2472b", "color": "#fbfaf8" },
+  "header": { "backdropFilter": "blur(10px)", "background": "color-mix(in srgb, #fbfaf8 90%, transparent)" }
+}
