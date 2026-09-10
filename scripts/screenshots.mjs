@@ -6,7 +6,7 @@ import path from "node:path";
 import { chromium } from "@playwright/test";
 
 const PORT = 4173;
-const outDir = process.argv[2] ?? path.join(process.cwd(), "test-results/screens");
+const outDir = process.argv[2] ?? path.join(process.cwd(), "screenshots");
 const routes = process.argv.slice(3).length
   ? process.argv.slice(3)
   : ["/", "/konzerte/", "/musik/", "/musik/season-one/", "/impressum/", "/datenschutz/", "/en/", "/en/shows/", "/en/music/aloah-from-brickwater/", "/nope/"];

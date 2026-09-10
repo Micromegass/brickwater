@@ -24,7 +24,8 @@
     "check": "npm run validate:content && npm run typecheck && npm run lint && npm test",
     "gen:og": "tsx scripts/og.tsx",
     "gen:icons": "node scripts/icons.mjs",
-    "gen:pigments": "node scripts/pigments.mjs"
+    "gen:pigments": "node scripts/pigments.mjs",
+    "shot": "node scripts/shot.mjs"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",

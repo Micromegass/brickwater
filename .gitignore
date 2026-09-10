@@ -16,6 +16,7 @@ assets/source/
 # tests and audits
 playwright-report/
 test-results/
+screenshots/
 .lighthouseci/
 
 # environment: never commit secrets

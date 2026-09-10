@@ -4,13 +4,15 @@ import { Photo } from "@/components/ui/Photo";
 import { loadBio, loadImages } from "@/lib/content/load";
 import { Stain } from "@/components/ui/Stain";
 
-const STRIP = [
-  "brickwater-live-red-light-2019",
-  "brickwater-harmonica-live-2020",
-  "brickwater-bricky-waters-stage-portrait-01",
+const STRIP: { id: string; position?: string }[] = [
+  // The 4:3 frame crops a tall photo hard, so anything with a face in it says
+  // where the face sits.
+  { id: "brickwater-live-red-light-2019", position: "object-top" },
+  { id: "brickwater-harmonica-live-2020" },
+  { id: "brickwater-bricky-waters-stage-portrait-01", position: "object-[50%_10%]" },
   // Fourth slot: the client asked for InShot20200226_221538321.jpg, which is not
   // in assets/source. Standing in with the 2021 live shot until that file lands.
-  "brickwater-live-brick-wall-2021",
+  { id: "brickwater-live-brick-wall-2021", position: "object-[50%_10%]" },
 ];
 
 export async function BioSection({ locale }: { locale: Locale }) {
@@ -53,9 +55,14 @@ export async function BioSection({ locale }: { locale: Locale }) {
           </div>
         </div>
         <ul className="photo-strip mt-14 lg:mt-20" aria-label={t("photos")} tabIndex={0}>
-          {STRIP.map((id) => (
-            <li key={id}>
-              <Photo id={id} locale={locale} sizes="(min-width: 1024px) 25vw, 70vw" className="sleeve-photo aspect-[4/3] object-cover" />
+          {STRIP.map((item) => (
+            <li key={item.id}>
+              <Photo
+                id={item.id}
+                locale={locale}
+                sizes="(min-width: 1024px) 25vw, 70vw"
+                className={`sleeve-photo aspect-[4/3] object-cover ${item.position ?? "object-center"}`}
+              />
             </li>
           ))}
         </ul>
