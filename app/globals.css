@@ -162,6 +162,12 @@
     max-width: 66ch;
   }
 
+  /* The artist's own mark, kept from his text and set beside the greeting. */
+  .bio-heart {
+    color: var(--color-clay);
+    font-weight: 400;
+  }
+
   .prose-lyrics p {
     text-wrap: pretty;
     margin-block: 0 1.1em;

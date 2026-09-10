@@ -37,20 +37,17 @@ export async function BioSection({ locale }: { locale: Locale }) {
           </figure>
           <div className="lg:col-span-6 lg:pt-6">
             <h2 id="bio-title" className="text-h2 font-semibold">
-              {t("heading")}
+              {t("heading")}{" "}
+              <span className="bio-heart" aria-hidden="true">
+                ♡
+              </span>
             </h2>
             <div className="mt-8 space-y-5 text-body">
-              {bio.paragraphs.map((paragraph, i) =>
-                paragraph === "♡" ? (
-                  <p key={i} className="text-clay text-2xl" aria-hidden="true">
-                    ♡
-                  </p>
-                ) : (
-                  <p key={i} className="measure">
-                    {paragraph}
-                  </p>
-                ),
-              )}
+              {bio.paragraphs.map((paragraph) => (
+                <p key={paragraph.slice(0, 24)} className="measure">
+                  {paragraph}
+                </p>
+              ))}
             </div>
           </div>
         </div>
