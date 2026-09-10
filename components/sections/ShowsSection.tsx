@@ -4,6 +4,7 @@ import { Link } from "@/i18n/navigation";
 import { ShowsList } from "@/components/shows/ShowsList";
 import { loadShows, loadSite } from "@/lib/content/load";
 import { splitShows } from "@/lib/shows";
+import { Stain } from "@/components/ui/Stain";
 
 export async function ShowsSection({ locale }: { locale: Locale }) {
   const t = await getTranslations({ locale, namespace: "shows" });
@@ -11,8 +12,9 @@ export async function ShowsSection({ locale }: { locale: Locale }) {
   const { upcoming } = splitShows(loadShows(), new Date());
   return (
     <section className="section" id="konzerte" aria-labelledby="shows-title">
+      <Stain shape="clay" className="right-0 top-4 h-[20rem] w-[28rem]" opacity={0.2} />
       <div className="container">
-        <h2 id="shows-title" className="text-h2 font-extrabold">
+        <h2 id="shows-title" className="text-h2 font-semibold">
           {t("heading")}
         </h2>
         <p className="measure mt-4 text-ink-soft">{t("intro")}</p>

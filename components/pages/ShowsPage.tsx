@@ -29,7 +29,7 @@ export async function ShowsPage({ locale }: { locale: Locale }) {
       <JsonLd data={jsonLd} />
       <section className="section pt-12 md:pt-16">
         <div className="container">
-          <h1 className="text-display font-extrabold">{t("shows.heading")}</h1>
+          <h1 className="text-display font-semibold">{t("shows.heading")}</h1>
           <p className="measure mt-5 text-h3 text-ink-soft">{t("shows.intro")}</p>
           <div className="mt-12 rule pt-2">
             <ShowsList locale={locale} upcoming={upcoming} past={past.slice(0, 12)} />
@@ -42,7 +42,7 @@ export async function ShowsPage({ locale }: { locale: Locale }) {
             <Photo id="brickwater-harmonica-live-2020" locale={locale} sizes="(min-width: 1024px) 38vw, 100vw" className="sleeve-photo" />
           </figure>
           <div className="lg:col-span-7">
-            <blockquote className="text-h2 font-extrabold text-balance">
+            <blockquote className="text-h2 font-semibold text-balance">
               <p>{INLAY_QUOTE[locale]}</p>
             </blockquote>
             <p className="etch mt-4 text-ink-soft uppercase">

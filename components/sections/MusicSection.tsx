@@ -5,6 +5,7 @@ import { Link } from "@/i18n/navigation";
 import { StreamingLinks } from "@/components/music/StreamingLinks";
 import { Photo } from "@/components/ui/Photo";
 import { loadReleases } from "@/lib/content/load";
+import { Stain } from "@/components/ui/Stain";
 
 export async function MusicSection({ locale }: { locale: Locale }) {
   const t = await getTranslations({ locale, namespace: "music" });
@@ -19,11 +20,13 @@ export async function MusicSection({ locale }: { locale: Locale }) {
   };
   return (
     <section className="section section-sage" id="musik" aria-labelledby="music-title">
+      <Stain shape="sage" className="right-0 top-0 h-[26rem] w-[24rem]" opacity={0.26} />
+      <Stain shape="clay" className="left-0 bottom-0 h-[22rem] w-[28rem]" opacity={0.16} />
       <div className="container">
-        <h2 id="music-title" className="text-h2 font-extrabold">
+        <h2 id="music-title" className="text-h2 font-semibold">
           {t("heading")}
         </h2>
-        <p className="measure mt-4 text-sage-wash">{t("intro")}</p>
+        <p className="measure mt-4 text-ink-soft">{t("intro")}</p>
 
         <article className="mt-12 grid gap-8 md:grid-cols-12 md:gap-12">
           <div className="md:col-span-5">
@@ -32,12 +35,12 @@ export async function MusicSection({ locale }: { locale: Locale }) {
             </Link>
           </div>
           <div className="md:col-span-7">
-            <h3 className="text-h2 font-extrabold">
+            <h3 className="text-h2 font-semibold">
               <Link href={{ pathname: "/music/[slug]", params: { slug: latest.slug } }} className="no-underline hover:underline">
                 {latest.title}
               </Link>
             </h3>
-            <p className="mt-3 text-sage-wash">
+            <p className="mt-3 text-ink-soft">
               {t("latest")}: {t(`types.${latest.type}`)}, {latest.year}. {t("tracks", { count: latest.tracks.length })}.
             </p>
             <ol className="tracklist mt-6" aria-label={t("tracklist")}>
@@ -50,7 +53,7 @@ export async function MusicSection({ locale }: { locale: Locale }) {
               ))}
             </ol>
             <div className="mt-8">
-              <StreamingLinks links={latest.links} labels={serviceLabels} buyLabel={t("buy")} variant="outline" />
+              <StreamingLinks links={latest.links} labels={serviceLabels} buyLabel={t("buy")} />
             </div>
           </div>
         </article>
@@ -61,14 +64,14 @@ export async function MusicSection({ locale }: { locale: Locale }) {
               <Link href={{ pathname: "/music/[slug]", params: { slug: release.slug } }} className="release-tile">
                 <Photo id={release.cover} locale={locale} sizes="(min-width: 768px) 22vw, 45vw" className="sleeve-cover" />
                 <span className="mt-3 block font-semibold leading-tight">{release.title}</span>
-                <span className="block text-caption text-sage-wash">
+                <span className="block text-caption text-ink-soft">
                   {t(`types.${release.type}`)}, {release.year}
                 </span>
               </Link>
             </li>
           ))}
           <li className="release-tile-more">
-            <Link href="/music" className="sticker sticker-outline-paper">
+            <Link href="/music" className="sticker sticker-paper">
               {t("allReleases")}
               <ArrowUpRight size={18} weight="bold" aria-hidden="true" />
             </Link>

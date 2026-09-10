@@ -13,89 +13,97 @@ colors:
   sage: "#5b6a55"
   sage-deep: "#47523f"
   sage-wash: "#e8ece2"
-  line: "#dcdad5"
+  line: "#dfddd8"
+  paper-sage: "#eef0ea"
+  paper-clay: "#f7efea"
 typography:
   wordmark:
     fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "11.1cqw"
+    fontSize: "7.2cqw"
     fontWeight: 300
     lineHeight: 1
     letterSpacing: "0.135em"
   display:
     fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(3rem, 2rem + 6vw, 6rem)"
-    fontWeight: 800
+    fontSize: "clamp(2rem, 1.5rem + 2.2vw, 3.25rem)"
+    fontWeight: 600
     lineHeight: 0.95
     letterSpacing: "-0.02em"
   headline:
     fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(2.25rem, 1.5rem + 3vw, 3.5rem)"
-    fontWeight: 800
+    fontSize: "clamp(1.55rem, 1.25rem + 1.2vw, 2.1rem)"
+    fontWeight: 600
     lineHeight: 1.02
     letterSpacing: "-0.02em"
   lead:
     fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(1.25rem, 1rem + 1.1vw, 1.7rem)"
+    fontSize: "clamp(1.02rem, 0.94rem + 0.4vw, 1.2rem)"
     fontWeight: 500
     lineHeight: 1.25
     letterSpacing: "normal"
   title:
     fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "1.5rem"
+    fontSize: "1.2rem"
     fontWeight: 700
     lineHeight: 1.2
     letterSpacing: "-0.02em"
   day:
     fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "2.4rem"
-    fontWeight: 800
+    fontSize: "1.7rem"
+    fontWeight: 600
     lineHeight: 1
     letterSpacing: "-0.03em"
   venue:
     fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "1.35rem"
-    fontWeight: 700
+    fontSize: "1.05rem"
+    fontWeight: 600
     lineHeight: 1.15
     letterSpacing: "normal"
   brand:
     fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "1.05rem"
+    fontSize: "0.95rem"
     fontWeight: 400
     lineHeight: 1.2
     letterSpacing: "0.16em"
   body:
     fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "1.0625rem"
+    fontSize: "1rem"
     fontWeight: 400
     lineHeight: 1.6
     letterSpacing: "normal"
   small:
     fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "0.9375rem"
+    fontSize: "0.9rem"
     fontWeight: 400
     lineHeight: 1.5
     letterSpacing: "normal"
   hype:
     fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(0.95rem, 1.2vw, 1.15rem)"
-    fontWeight: 800
+    fontSize: "clamp(0.82rem, 1vw, 0.95rem)"
+    fontWeight: 600
     lineHeight: 1.05
     letterSpacing: "normal"
   etch:
     fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "0.8125rem"
+    fontSize: "0.78rem"
     fontWeight: 500
     lineHeight: 1.45
     letterSpacing: "0.08em"
+  address:
+    fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(1.15rem, 0.9rem + 1.1vw, 1.75rem)"
+    fontWeight: 500
+    lineHeight: 1.15
+    letterSpacing: "-0.01em"
   micro:
     fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "0.72rem"
+    fontSize: "0.62rem"
     fontWeight: 400
     lineHeight: 1.2
     letterSpacing: "0.04em"
   meta:
     fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "0.78rem"
+    fontSize: "0.68rem"
     fontWeight: 400
     lineHeight: 1.3
     letterSpacing: "normal"
@@ -107,41 +115,46 @@ spacing:
   sm: "0.75rem"
   md: "1.5rem"
   lg: "2.5rem"
-  section: "clamp(4rem, 8vw, 7.5rem)"
+  section: "clamp(3.25rem, 5vw, 5.5rem)"
   gutter: "clamp(1.1rem, 4vw, 3rem)"
 components:
   sticker-clay:
     backgroundColor: "{colors.clay}"
     textColor: "{colors.paper}"
     rounded: "{rounded.sticker}"
-    padding: "0.8rem 1.35rem"
+    padding: "0.66rem 1.15rem"
   sticker-clay-hover:
     backgroundColor: "{colors.clay-deep}"
   sticker-ink:
     backgroundColor: "{colors.ink}"
     textColor: "{colors.paper}"
     rounded: "{rounded.sticker}"
-    padding: "0.8rem 1.35rem"
+    padding: "0.66rem 1.15rem"
   sticker-ink-hover:
     backgroundColor: "{colors.ink-deep}"
   sticker-paper:
-    backgroundColor: "{colors.paper}"
+    backgroundColor: "transparent"
     textColor: "{colors.ink}"
     rounded: "{rounded.sticker}"
-    padding: "0.8rem 1.35rem"
+    padding: "0.66rem 1.15rem"
   sticker-paper-hover:
     backgroundColor: "{colors.paper-deep}"
   hype-sticker:
     backgroundColor: "{colors.ink}"
     textColor: "{colors.paper}"
     rounded: "{rounded.sticker}"
-    size: "clamp(6.75rem, 9vw, 8.5rem)"
+    size: "clamp(5.25rem, 6.5vw, 6.5rem)"
   section-sage:
-    backgroundColor: "{colors.sage}"
-    textColor: "{colors.paper}"
+    backgroundColor: "{colors.paper-sage}"
+    textColor: "{colors.ink}"
+  section-clay:
+    backgroundColor: "{colors.paper-clay}"
+    textColor: "{colors.ink}"
+  stain:
+    backgroundColor: "{colors.clay}"
   header:
     backgroundColor: "{colors.paper}"
-    height: "4rem"
+    height: "3.5rem"
 ---
 
 # Design System: Brickwater
@@ -156,9 +169,11 @@ The rejected default was the dark full-bleed band poster with white uppercase ty
 
 **Key Characteristics:**
 - Two materials only: square paper for anything printed, pill stickers for anything pressable.
+- Colour arrives as paint, not as blocks: whole sections sit on paper the pigment has soaked into, and the artist's own brush marks (manchas) drift at the edges of every section.
+- Nothing shouts. The display steps are small, headings sit at weight 600, and hierarchy comes from space and colour rather than size.
 - One display family, Bricolage Grotesque variable, from the runout etching to the wordmark, carried by its optical-size axis.
 - One authored motion moment: the paint soaking into the wordmark on load. After that the page holds still; everything else moves only in answer to a hover or a press.
-- Photographs sit on the paper with a soft, offset sleeve shadow. No overlays, no pills on images, credits set as small etch captions beneath.
+- Every album page wears its own record: its accent, wash and stain are sampled from that sleeve.
 
 ## Colors
 
@@ -170,9 +185,12 @@ The sleeve's own palette: neutral gray paper, printed black, and the two pigment
 - **Clay wash** (#f0dcd2): the only tinted surface on paper, behind the right-to-object block on the privacy page.
 
 ### Secondary
-- **Sage** (#5b6a55): the green wolf, and the one colour field, filling the music section edge to edge. Paper text on it reads at 5.2:1.
-- **Sage wash** (#e8ece2): secondary text, track numbers and durations on the sage field, never gray. 4.8:1 on sage.
-- **Sage deep** (#47523f): borders and dividers inside the field.
+- **Sage** (#5b6a55): the green wolf. It appears as paint, in the manchas and as the tint of a whole section, never as a slab of colour behind text.
+- **Sage deep** (#47523f) and **sage wash** (#e8ece2): the ends of that pigment, for dividers and for the palest marks.
+
+### Soaked grounds
+- **Paper sage** (#eef0ea): the music section. Ink reads at 13.9:1 on it, ink soft at 6.6:1.
+- **Paper clay** (#f7efea): the collective's section. Ink reads at 14:1, ink soft at 6.7:1.
 
 ### Neutral
 - **Paper** (#f3f2f0): page ground, header, paper stickers.
@@ -180,12 +198,13 @@ The sleeve's own palette: neutral gray paper, printed black, and the two pigment
 - **Ink** (#222222): text, ink stickers, the hype sticker, video poster ground.
 - **Ink deep** (#131313): hover of ink stickers, and the tint of the one text shadow on a photographic poster.
 - **Ink soft** (#5a534c): secondary text, intros, captions, footer etching. 6.7:1 on paper.
-- **Line** (#dcdad5): hairlines between show rows and lyric rows, header and footer borders.
+- **Line** (#dfddd8): hairlines between show rows and lyric rows, header and footer borders.
 
 ### Named Rules
 **The One Clay Rule.** Clay is the only accent. At most one primary action per section carries it, and it is never a large field.
 **The Sage Field Rule.** Sage is a region, not an accent: it fills the whole music section and is never used for text, borders or buttons on paper.
-**The Sampled Palette Rule.** New colours are not invented. They are sampled from the sleeve, and a value that cannot be traced to it does not belong in the system.
+**The Sampled Palette Rule.** New colours are not invented. They are sampled from a sleeve, and a value that cannot be traced to one does not belong in the system.
+**The Soaked Ground Rule.** A section may take a pigment, but only as paper that pigment has soaked into. Text always sits on paper, never on a saturated field.
 
 ## Typography
 
@@ -256,6 +275,12 @@ None. Contact is a mailto link plus a copy button.
 ### Navigation
 Sticky 4rem header on 90% paper with a 10px backdrop blur and a hairline. The brand sits left in the sleeve's lettering; links are weight 600 with a 2px clay underline on hover; the language switcher is a small paper sticker reading EN or DE. The skip link is a clipped ink sticker revealed on focus. The footer is uppercase etch text in ink soft: copyright, photo credits, legal links.
 
+### Manchas (signature)
+Marks of the artist's own paint, lifted off the sleeve by `scripts/pigments.mjs`: the paper is dissolved away by turning the paint's own density into an alpha channel, and every edge and corner is faded so a crop can never leave a rectangle. The file carries only the shape; the colour is a token, which is what lets a release page stain the page in its own record's pigment. They sit at 0.12 to 0.26 opacity, always inside their section, always behind the content, always `aria-hidden`, and they disappear entirely under forced colours or where masks are unsupported.
+
+### An album page in its own record (signature)
+`scripts/pigments.mjs` samples each cover's most present painted hue and deepens it until it carries body text on paper, then derives a wash pale enough to sit under ink and a stain at half strength. The page sets those four values as custom properties, so its head band, accent, track numbers, focus ring and mancha all belong to that record while the structure stays identical. The script refuses to emit a palette that fails contrast, and a unit test asserts it for every release.
+
 ### Wordmark (signature)
 BRICKWATER in thin, widely spaced caps, filled by `background-clip: text` with `/images/wash-wordmark.webp`, a wash built by `scripts/wash.mjs` from the sleeve painting. The script averages the painted band down to a nine by six grid, snaps every hue onto one of the two pigment families, holds saturation and lightness inside a band, and fails the build if any part of the wash drops under 3:1 against the paper. On load the paint soaks in once: opacity 0 to 1, background-size 150% 260% to 100% 100%, saturation 0.3 to 1, 1.9s on the expo curve. It never loops. Reduced motion and forced colours get the finished mark with no animation; a browser without background-clip gets clay deep.
 
@@ -269,7 +294,8 @@ Video posters sit in a 16:9 ink frame with the sleeve shadow, the title bottom-l
 
 ### Do:
 - Sample new colours from the sleeve, and keep the whole page light; the sage field is a printed region, not a dark mode.
-- Use clay for exactly one action per section, and let the wordmark be the only place the painting itself appears as material.
+- Use clay for exactly one action per section, and let the wordmark and the manchas be where the painting itself appears as material.
+- Keep the display steps small. If something needs more presence, give it space or pigment, not more size.
 - Set every heading in Bricolage Grotesque at weight 800 and optical size 96; put category words in the sentence below, not above.
 - Show real photographs and real artwork with their credits in etch type beneath; keep covers square with the sleeve shadow.
 - Add motion only in answer to the visitor, beyond the single soak-in of the wordmark.
@@ -277,7 +303,8 @@ Video posters sit in a 16:9 ink frame with the sleeve shadow, the title bottom-l
 ### Don't:
 - No kickers, eyebrows or section numbers above headings; no tracked uppercase labels except the wordmark, the brand, and etch captions.
 - No cards, no nested containers, no rounded corners other than pills, no gradients, no gradient text, no glass, no glows.
-- No second accent colour, no gray text on the sage field, no pure black.
+- No second accent colour beyond a release's own, no gray text on a tinted ground, no pure black.
+- No mancha behind body copy at an opacity that touches its contrast, and never one that a section's edge cuts into a rectangle.
 - No WebGL, no scroll-driven effects, no looping animation.
 - No overlays, badges or pills on photographs; no hand-drawn icons; no emoji as icons.
 - No em dashes anywhere in copy; ranges and separators use a plain hyphen or a full stop.

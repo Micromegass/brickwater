@@ -1,0 +1,30 @@
+{
+  "season-one": {
+    "accent": "#9d5939",
+    "accentDeep": "#834a30",
+    "wash": "#f5efed",
+    "stain": "#9d5939",
+    "contrast": 4.79
+  },
+  "jumping-just-to-fall": {
+    "accent": "#a25534",
+    "accentDeep": "#87472c",
+    "wash": "#f5efed",
+    "stain": "#a25534",
+    "contrast": 4.83
+  },
+  "against-couragefalls": {
+    "accent": "#446993",
+    "accentDeep": "#39587b",
+    "wash": "#edf1f5",
+    "stain": "#446993",
+    "contrast": 5.09
+  },
+  "aloah-from-brickwater": {
+    "accent": "#2b7688",
+    "accentDeep": "#225f6d",
+    "wash": "#edf4f5",
+    "stain": "#338ea3",
+    "contrast": 4.64
+  }
+}

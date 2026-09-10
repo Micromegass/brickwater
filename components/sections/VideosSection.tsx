@@ -4,14 +4,16 @@ import { YouTubeFacade } from "@/components/embeds/YouTubeFacade";
 import { loadSite } from "@/lib/content/load";
 import { photoProps } from "@/lib/images/photo";
 import { localizedPath } from "@/lib/i18n/paths";
+import { Stain } from "@/components/ui/Stain";
 
 export async function VideosSection({ locale }: { locale: Locale }) {
   const t = await getTranslations({ locale });
   const site = loadSite();
   return (
     <section className="section" id="videos" aria-labelledby="videos-title">
+      <Stain shape="ink" className="right-0 bottom-0 h-[20rem] w-[26rem]" opacity={0.12} />
       <div className="container">
-        <h2 id="videos-title" className="text-h2 font-extrabold">
+        <h2 id="videos-title" className="text-h2 font-semibold">
           {t("videos.heading")}
         </h2>
         <p className="measure mt-4 text-ink-soft">{t("videos.intro")}</p>

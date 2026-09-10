@@ -32,7 +32,7 @@ export async function MusicPage({ locale }: { locale: Locale }) {
       <JsonLd data={jsonLd} />
       <section className="section pt-12 md:pt-16">
         <div className="container">
-          <h1 className="text-display font-extrabold">{t("music.heading")}</h1>
+          <h1 className="text-display font-semibold">{t("music.heading")}</h1>
           <p className="measure mt-5 text-h3 text-ink-soft">{t("music.intro")}</p>
           <ul className="mt-14 grid gap-12 md:grid-cols-2 md:gap-x-12 md:gap-y-16">
             {releases.map((release) => (
@@ -41,7 +41,7 @@ export async function MusicPage({ locale }: { locale: Locale }) {
                   <Photo id={release.cover} locale={locale} sizes="(min-width: 768px) 20vw, (min-width: 640px) 40vw, 100vw" className="sleeve-cover" />
                 </Link>
                 <div className="sm:col-span-7">
-                  <h2 className="text-h3 font-extrabold">
+                  <h2 className="text-h3 font-semibold">
                     <Link href={{ pathname: "/music/[slug]", params: { slug: release.slug } }} className="no-underline hover:underline">
                       {release.title}
                     </Link>
@@ -64,7 +64,7 @@ export async function MusicPage({ locale }: { locale: Locale }) {
       </section>
       <section className="section pt-0">
         <div className="container">
-          <h2 className="text-h2 font-extrabold">{t("music.appearsOn")}</h2>
+          <h2 className="text-h2 font-semibold">{t("music.appearsOn")}</h2>
           <ul className="mt-8 max-w-3xl">
             {site.appearsOn.map((item) => (
               <li key={item.url} className="grid gap-1 border-b border-line py-4 sm:grid-cols-[4rem_1fr] sm:gap-6">

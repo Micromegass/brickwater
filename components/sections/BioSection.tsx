@@ -2,12 +2,13 @@ import type { Locale } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
 import { Photo } from "@/components/ui/Photo";
 import { loadBio, loadImages } from "@/lib/content/load";
+import { Stain } from "@/components/ui/Stain";
 
 const STRIP = [
   "brickwater-biergarten-guitar-02",
   "bricky-waters-cat-mural-2020",
   "brickwater-bricky-waters-fence-sitting-01",
-  "brickwater-live-brick-wall-2021",
+  "brickwater-bricky-waters-stage-portrait-01",
 ];
 
 export async function BioSection({ locale }: { locale: Locale }) {
@@ -16,21 +17,22 @@ export async function BioSection({ locale }: { locale: Locale }) {
   const images = loadImages();
   return (
     <section className="section" aria-labelledby="bio-title">
+      <Stain shape="sage" className="left-0 top-12 h-[26rem] w-[22rem]" opacity={0.26} />
       <div className="container">
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
           <figure className="lg:col-span-6">
             <Photo
-              id="brickwater-bricky-waters-stage-portrait-01"
+              id="brickwater-live-brick-wall-2021"
               locale={locale}
               sizes="(min-width: 1024px) 48vw, 100vw"
-              className="sleeve-photo aspect-[4/5] object-cover object-[50%_26%]"
+              className="sleeve-photo aspect-[4/5] object-cover object-center"
             />
             <figcaption className="etch mt-3 text-ink-soft">
-              {images["brickwater-bricky-waters-stage-portrait-01"].credit}
+              {images["brickwater-live-brick-wall-2021"].credit}
             </figcaption>
           </figure>
           <div className="lg:col-span-6 lg:pt-6">
-            <h2 id="bio-title" className="text-h2 font-extrabold">
+            <h2 id="bio-title" className="text-h2 font-semibold">
               {t("heading")}
             </h2>
             <div className="mt-8 space-y-5 text-body">

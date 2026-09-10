@@ -20,28 +20,33 @@
   --color-sage: #5b6a55;
   --color-sage-deep: #47523f;
   --color-sage-wash: #e8ece2;
-  --color-line: #dcdad5;
+  --color-line: #dfddd8;
   --color-ink-deep: #131313;
+  /* Paper the pigments have soaked into, for whole sections. */
+  --color-paper-sage: #eef0ea;
+  --color-paper-clay: #f7efea;
 
   --font-sans: var(--font-bricolage), "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
 
-  --text-body: 1.0625rem;
-  --text-body--line-height: 1.6;
-  --text-small: 0.9375rem;
-  --text-small--line-height: 1.5;
-  --text-caption: 0.8125rem;
+  --text-body: 1rem;
+  --text-body--line-height: 1.68;
+  --text-small: 0.9rem;
+  --text-small--line-height: 1.55;
+  --text-caption: 0.78rem;
   --text-caption--line-height: 1.45;
-  --text-h3: 1.5rem;
-  --text-h3--line-height: 1.2;
-  --text-h2: clamp(2.25rem, 1.5rem + 3vw, 3.5rem);
-  --text-h2--line-height: 1.02;
-  --text-display: clamp(3rem, 2rem + 6vw, 6rem);
-  --text-display--line-height: 0.95;
+  --text-lead: clamp(1.02rem, 0.94rem + 0.4vw, 1.2rem);
+  --text-lead--line-height: 1.5;
+  --text-h3: 1.2rem;
+  --text-h3--line-height: 1.25;
+  --text-h2: clamp(1.55rem, 1.25rem + 1.2vw, 2.1rem);
+  --text-h2--line-height: 1.12;
+  --text-display: clamp(2rem, 1.5rem + 2.2vw, 3.25rem);
+  --text-display--line-height: 1.05;
 
   --radius-sticker: 999px;
 
-  --shadow-sticker: 0 1px 2px rgb(34 34 34 / 0.12), 0 8px 24px -12px rgb(34 34 34 / 0.35);
-  --shadow-sleeve: 0 2px 4px rgb(34 34 34 / 0.08), 0 18px 40px -24px rgb(34 34 34 / 0.45);
+  --shadow-sticker: 0 1px 2px rgb(34 34 34 / 0.09), 0 6px 18px -12px rgb(34 34 34 / 0.28);
+  --shadow-sleeve: 0 1px 3px rgb(34 34 34 / 0.06), 0 14px 34px -22px rgb(34 34 34 / 0.35);
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -71,8 +76,9 @@
   }
 
   h1, h2, h3, .display {
-    font-variation-settings: "opsz" 96, "wdth" 100;
-    letter-spacing: -0.02em;
+    font-variation-settings: "opsz" 72, "wdth" 100;
+    font-weight: 600;
+    letter-spacing: -0.012em;
     text-wrap: balance;
   }
 
@@ -103,7 +109,8 @@
     align-items: center;
     gap: 0.5rem;
     border-radius: var(--radius-sticker);
-    padding: 0.8rem 1.35rem;
+    padding: 0.66rem 1.15rem;
+    font-size: var(--text-small);
     font-weight: 600;
     font-variation-settings: "opsz" 14, "wdth" 100;
     line-height: 1;
@@ -130,20 +137,12 @@
     background: var(--color-ink-deep);
   }
   .sticker-paper {
-    background: var(--color-paper);
+    background: transparent;
     color: var(--color-ink);
-    box-shadow: inset 0 0 0 1.5px var(--color-ink);
+    box-shadow: inset 0 0 0 1px var(--color-ink);
   }
   .sticker-paper:hover {
     background: var(--color-paper-deep);
-  }
-  .sticker-outline-paper {
-    background: transparent;
-    color: var(--color-paper);
-    box-shadow: inset 0 0 0 1.5px currentColor;
-  }
-  .sticker-outline-paper:hover {
-    background: color-mix(in srgb, var(--color-paper) 12%, transparent);
   }
 
   /* Runout etching: the tiny lettering pressed into the vinyl. */
@@ -182,28 +181,56 @@
 @layer components {
   .container {
     width: 100%;
-    max-width: 1400px;
+    max-width: 1160px;
     margin-inline: auto;
     padding-inline: clamp(1.1rem, 4vw, 3rem);
   }
   .section {
-    padding-block: clamp(4rem, 8vw, 7.5rem);
+    position: relative;
+    overflow: clip;
+    padding-block: clamp(3.25rem, 5vw, 5.5rem);
   }
+  .section > .container,
+  .section > * {
+    position: relative;
+    z-index: 1;
+  }
+  /* Whole sections sit on paper the pigment has soaked into, never on a slab of it. */
   .section-sage {
-    background: var(--color-sage);
-    color: var(--color-paper);
+    background: var(--color-paper-sage);
   }
-  .section-sage ::selection {
-    background: var(--color-paper);
-    color: var(--color-sage);
+  .section-clay {
+    background: var(--color-paper-clay);
   }
-  .section-sage :focus-visible {
-    outline-color: var(--color-paper);
+
+  /*
+    Manchas: the artist's own brush marks, lifted off the sleeve with the paper
+    dissolved away. The image carries only the shape; the colour is a token, so
+    a release page can stain the page in its own record's pigment.
+  */
+  .stain {
+    display: none;
   }
-  .section-sage .tracklist-n,
-  .section-sage .tracklist-dur {
-    color: var(--color-sage-wash);
-    opacity: 1;
+  @supports (mask-image: url("/images/stain-clay.webp")) or (-webkit-mask-image: url("/images/stain-clay.webp")) {
+    .stain {
+      display: block;
+      position: absolute;
+      z-index: 0;
+      pointer-events: none;
+      background-color: var(--stain-color, var(--color-clay));
+      -webkit-mask-image: var(--stain-shape);
+      mask-image: var(--stain-shape);
+      -webkit-mask-size: 100% 100%;
+      mask-size: 100% 100%;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      opacity: var(--stain-opacity, 0.16);
+    }
+  }
+  @media (forced-colors: active) {
+    .stain {
+      display: none;
+    }
   }
 
   .skip-link {
@@ -241,9 +268,9 @@
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    height: 4rem;
+    height: 3.5rem;
     width: 100%;
-    max-width: 1400px;
+    max-width: 1160px;
     margin-inline: auto;
     padding-inline: clamp(1.1rem, 4vw, 3rem);
   }
@@ -254,15 +281,16 @@
     letter-spacing: 0.16em;
     text-indent: 0.16em;
     text-transform: uppercase;
-    font-size: 1.05rem;
+    font-size: 0.95rem;
     text-decoration: none;
     color: var(--color-ink);
   }
   .site-nav {
     display: flex;
     align-items: center;
-    gap: clamp(0.9rem, 2vw, 1.6rem);
-    font-weight: 600;
+    gap: clamp(0.85rem, 1.8vw, 1.45rem);
+    font-size: var(--text-small);
+    font-weight: 500;
   }
   .site-nav a:not(.sticker) {
     text-decoration: none;
@@ -282,7 +310,7 @@
   }
   .site-footer-inner {
     width: 100%;
-    max-width: 1400px;
+    max-width: 1160px;
     margin-inline: auto;
     padding-inline: clamp(1.1rem, 4vw, 3rem);
     display: flex;
@@ -307,11 +335,17 @@
 
   /* ---------- hero ---------- */
   .hero {
-    padding-block: clamp(1rem, 3vw, 2.5rem) clamp(3rem, 6vw, 5rem);
+    position: relative;
+    overflow: clip;
+    padding-block: clamp(1.5rem, 3vw, 3rem) clamp(2rem, 3vw, 3.25rem);
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 1;
   }
   .hero-inner {
     width: 100%;
-    max-width: 1400px;
+    max-width: 1160px;
     margin-inline: auto;
     padding-inline: clamp(1.1rem, 4vw, 3rem);
   }
@@ -323,11 +357,11 @@
   .wordmark-stage {
     position: relative;
     container-type: inline-size;
-    margin-block: 2.5rem 2rem;
+    margin-block: 1.75rem 1.5rem;
   }
   .wordmark {
     margin: 0;
-    font-size: 11.1cqw;
+    font-size: 7.2cqw;
     font-weight: 300;
     font-variation-settings: "opsz" 96, "wdth" 100;
     line-height: 1;
@@ -380,8 +414,8 @@
       margin-block: 1.75rem 1.5rem;
     }
     .wordmark {
-      font-size: 24cqw;
-      line-height: 1.14;
+      font-size: 16.5cqw;
+      line-height: 1.16;
       letter-spacing: 0.1em;
       text-indent: 0.1em;
     }
@@ -392,9 +426,9 @@
   .hype {
     position: absolute;
     right: -0.25rem;
-    top: -2.25rem;
+    top: -1.5rem;
     z-index: 2;
-    width: clamp(6.75rem, 9vw, 8.5rem);
+    width: clamp(5.25rem, 6.5vw, 6.5rem);
     aspect-ratio: 1;
     border-radius: 999px;
     background: var(--color-ink);
@@ -415,19 +449,19 @@
     transform: rotate(-4deg) scale(1.04);
   }
   .hype-label {
-    font-size: 0.72rem;
+    font-size: 0.62rem;
     letter-spacing: 0.04em;
     text-transform: uppercase;
     opacity: 0.8;
   }
   .hype-value {
-    font-size: clamp(0.95rem, 1.2vw, 1.15rem);
-    font-weight: 800;
-    line-height: 1.05;
+    font-size: clamp(0.82rem, 1vw, 0.95rem);
+    font-weight: 600;
+    line-height: 1.08;
     font-variation-settings: "opsz" 32, "wdth" 100;
   }
   .hype-meta {
-    font-size: 0.78rem;
+    font-size: 0.68rem;
     opacity: 0.85;
   }
   @media (max-width: 640px) {
@@ -440,17 +474,17 @@
   }
   .hero-copy {
     display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 1.5rem 3rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.35rem;
   }
   .hero-claim {
     margin: 0;
-    max-width: 30ch;
-    font-size: clamp(1.25rem, 1rem + 1.1vw, 1.7rem);
-    line-height: 1.25;
-    font-weight: 500;
+    max-width: 34ch;
+    font-size: var(--text-lead);
+    line-height: var(--text-lead--line-height);
+    font-weight: 400;
+    color: var(--color-ink-soft);
     font-variation-settings: "opsz" 32, "wdth" 100;
     text-wrap: balance;
   }
@@ -530,10 +564,10 @@
     line-height: 1;
   }
   .show-day {
-    font-size: 2.4rem;
-    font-weight: 800;
-    font-variation-settings: "opsz" 96, "wdth" 100;
-    letter-spacing: -0.03em;
+    font-size: 1.7rem;
+    font-weight: 600;
+    font-variation-settings: "opsz" 48, "wdth" 100;
+    letter-spacing: -0.02em;
   }
   .show-month {
     margin-top: 0.3rem;
@@ -544,8 +578,8 @@
     color: var(--color-ink-soft);
   }
   .show-venue {
-    font-size: 1.35rem;
-    font-weight: 700;
+    font-size: 1.05rem;
+    font-weight: 600;
     line-height: 1.15;
     display: flex;
     flex-wrap: wrap;
@@ -600,13 +634,10 @@
     border-bottom: 1px solid color-mix(in srgb, currentColor 22%, transparent);
     break-inside: avoid;
   }
-  .tracklist-n {
-    font-variant-numeric: tabular-nums;
-    opacity: 0.7;
-  }
+  .tracklist-n,
   .tracklist-dur {
     font-variant-numeric: tabular-nums;
-    opacity: 0.7;
+    color: var(--color-ink-soft);
   }
   .release-row {
     display: grid;
@@ -706,12 +737,12 @@
   /* ---------- contact ---------- */
   .contact-email {
     display: block;
-    margin-top: 2rem;
-    font-size: clamp(1.5rem, 1rem + 2.6vw, 3rem);
-    font-weight: 800;
-    font-variation-settings: "opsz" 96, "wdth" 90;
-    letter-spacing: -0.02em;
-    line-height: 1.05;
+    margin-top: 1.5rem;
+    font-size: clamp(1.15rem, 0.9rem + 1.1vw, 1.75rem);
+    font-weight: 500;
+    font-variation-settings: "opsz" 48, "wdth" 95;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
     overflow-wrap: anywhere;
     color: var(--color-ink);
     text-decoration: none;
@@ -735,13 +766,13 @@
   .lyric-track summary,
   .lyric-track-static {
     display: grid;
-    grid-template-columns: 2rem 1fr auto 1.25rem;
+    grid-template-columns: 1.75rem 1fr auto 1.25rem;
     gap: 0.75rem;
     align-items: baseline;
-    padding-block: 0.9rem;
+    padding-block: 0.75rem;
     border-bottom: 1px solid var(--color-line);
-    font-weight: 600;
-    font-size: 1.05rem;
+    font-weight: 500;
+    font-size: var(--text-body);
   }
   .lyric-track summary {
     cursor: pointer;
@@ -820,5 +851,37 @@
   }
   .legal-highlight h2 {
     margin-top: 0;
+  }
+}
+
+/* ---------- a release page wears its own record ---------- */
+@layer components {
+  .release-head {
+    background: var(--release-wash);
+  }
+  .release .sticker-clay {
+    background: var(--release-accent);
+  }
+  .release .sticker-clay:hover {
+    background: var(--release-accent-deep);
+  }
+  .release .tracklist-n,
+  .release .lyric-track summary::after {
+    color: var(--release-accent);
+    opacity: 1;
+  }
+  .release .lyric-track summary:hover .lyric-title,
+  .release .lyric-track[open] .lyric-title {
+    color: var(--release-accent);
+  }
+  .release .lyric-track[open] summary {
+    border-bottom-color: color-mix(in srgb, var(--release-accent) 35%, transparent);
+  }
+  .release .release-tile:hover .sleeve-cover {
+    outline: 2px solid var(--release-accent);
+    outline-offset: 4px;
+  }
+  .release :focus-visible {
+    outline-color: var(--release-accent);
   }
 }

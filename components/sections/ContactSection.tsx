@@ -4,6 +4,7 @@ import { CopyEmail } from "@/components/ui/CopyEmail";
 import { Photo } from "@/components/ui/Photo";
 import { SocialIcon, type SocialKey } from "@/components/ui/SocialIcon";
 import { loadSite } from "@/lib/content/load";
+import { Stain } from "@/components/ui/Stain";
 
 const SOCIAL_ORDER: SocialKey[] = ["instagram", "bandcamp", "spotify", "appleMusic", "youtube", "deezer"];
 
@@ -12,9 +13,10 @@ export async function ContactSection({ locale }: { locale: Locale }) {
   const site = loadSite();
   return (
     <section className="section" id="kontakt" aria-labelledby="contact-title">
+      <Stain shape="sage" className="left-0 bottom-0 h-[24rem] w-[22rem]" opacity={0.26} />
       <div className="container grid gap-12 lg:grid-cols-12">
         <div className="lg:col-span-7">
-          <h2 id="contact-title" className="text-h2 font-extrabold">
+          <h2 id="contact-title" className="text-h2 font-semibold">
             {t("contact.heading")}
           </h2>
           <p className="measure mt-4 text-ink-soft">{t("contact.text")}</p>
@@ -39,7 +41,7 @@ export async function ContactSection({ locale }: { locale: Locale }) {
           </ul>
         </div>
         <figure className="lg:col-span-5">
-          <Photo id="brickwater-bricky-waters-stage-portrait-02" locale={locale} sizes="(min-width: 1024px) 38vw, 100vw" className="sleeve-photo" />
+          <Photo id="bricky-waters-portrait-bw-2019" locale={locale} sizes="(min-width: 1024px) 38vw, 100vw" className="sleeve-photo" />
         </figure>
       </div>
     </section>

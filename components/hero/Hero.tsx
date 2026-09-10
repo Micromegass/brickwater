@@ -4,6 +4,7 @@ import { Link } from "@/i18n/navigation";
 import { loadReleases, loadShows } from "@/lib/content/load";
 import { berlinDateTime } from "@/lib/dates";
 import { splitShows } from "@/lib/shows";
+import { Stain } from "@/components/ui/Stain";
 
 export async function Hero({ locale }: { locale: Locale }) {
   const t = await getTranslations({ locale });
@@ -36,6 +37,7 @@ export async function Hero({ locale }: { locale: Locale }) {
 
   return (
     <section className="hero" aria-labelledby="hero-title">
+      <Stain shape="clay" className="right-0 top-0 h-[20rem] w-[26rem] sm:h-[24rem] sm:w-[34rem]" opacity={0.22} />
       <div className="hero-inner">
         <div className="wordmark-stage">
           <h1 id="hero-title" className="wordmark" aria-label="Brickwater">

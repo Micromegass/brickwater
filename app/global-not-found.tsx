@@ -15,7 +15,7 @@ export default function GlobalNotFound() {
         <main id="main" className="section">
           <div className="container">
             <p className="brand">Brickwater</p>
-            <h1 className="mt-10 text-display font-extrabold">Seite nicht gefunden</h1>
+            <h1 className="mt-10 text-display font-semibold">Seite nicht gefunden</h1>
             <p className="measure mt-5 text-h3 text-ink-soft">Diese Seite gibt es nicht oder nicht mehr.</p>
             <p className="mt-8">
               <Link href="/" className="sticker sticker-clay">
@@ -23,7 +23,7 @@ export default function GlobalNotFound() {
               </Link>
             </p>
             <section lang="en" className="mt-16 rule pt-10">
-              <h2 className="text-h2 font-extrabold">Page not found</h2>
+              <h2 className="text-h2 font-semibold">Page not found</h2>
               <p className="measure mt-4 text-ink-soft">This page does not exist, or not any more.</p>
               <p className="mt-6">
                 <Link href="/en/" className="sticker sticker-paper">

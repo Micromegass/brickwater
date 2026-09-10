@@ -3,8 +3,8 @@
   "source": "app/globals.css",
   "paletteOrigin": "assets/source/old-site/cover2.png (Season One sleeve, watercolour by Julia Feisleben)",
   "shadows": {
-    "sleeve": "0 2px 4px rgb(34 34 34 / 0.08), 0 18px 40px -24px rgb(34 34 34 / 0.45)",
-    "sticker": "0 1px 2px rgb(34 34 34 / 0.12), 0 8px 24px -12px rgb(34 34 34 / 0.35)"
+    "sleeve": "0 1px 3px rgb(34 34 34 / 0.06), 0 14px 34px -22px rgb(34 34 34 / 0.35)",
+    "sticker": "0 1px 2px rgb(34 34 34 / 0.09), 0 6px 18px -12px rgb(34 34 34 / 0.28)"
   },
   "motion": {
     "easeOutExpo": "cubic-bezier(0.16, 1, 0.3, 1)",
@@ -19,7 +19,10 @@
     "ring": "3px solid #a8563c, outline-offset 3px",
     "ringOnSage": "3px solid #f3f2f0"
   },
-  "selection": { "background": "#a8563c", "color": "#f3f2f0" },
+  "selection": {
+    "background": "#a8563c",
+    "color": "#f3f2f0"
+  },
   "header": {
     "backdropFilter": "blur(10px)",
     "background": "color-mix(in srgb, #f3f2f0 90%, transparent)"
@@ -32,5 +35,25 @@
       "forcedColors": "CanvasText, no background, no animation"
     },
     "contrastGuard": "the generator fails if any part of the wash drops under 3:1 against #f3f2f0"
+  },
+  "stains": {
+    "generator": "scripts/pigments.mjs",
+    "files": [
+      "/images/stain-clay.webp",
+      "/images/stain-sage.webp",
+      "/images/stain-ink.webp"
+    ],
+    "technique": "the paint's own density becomes an alpha channel, edges and corners faded so no crop leaves a rectangle; the file carries shape only",
+    "usage": "mask-image over a token colour, 0.12-0.26 opacity, decorative, inside the section, hidden under forced colours and where masks are unsupported"
+  },
+  "releaseTheming": {
+    "source": "lib/releases/palette.json",
+    "properties": [
+      "--release-accent",
+      "--release-accent-deep",
+      "--release-wash",
+      "--release-stain"
+    ],
+    "guard": "the generator refuses an accent under 4.5:1 on paper or a wash under 12:1 with ink; tests/unit/release-palette.test.ts asserts it"
   }
 }
