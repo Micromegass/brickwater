@@ -19,12 +19,9 @@
     "homeLink": "Brickwater, zur Startseite"
   },
   "hero": {
-    "eyebrow": "Solo oder mit Folk's Worst Nightmare",
-    "claim": "Lieder mit Tief- und Leichtsinn.",
     "ctaShows": "Konzerte",
     "ctaListen": "Musik hören",
-    "nextShow": "Nächstes Konzert",
-    "wordmarkHint": "Bewege den Zeiger über die Steine"
+    "nextShow": "Nächstes Konzert"
   },
   "about": {
     "heading": "Schön, dass du da bist",

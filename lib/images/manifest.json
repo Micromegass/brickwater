@@ -119,16 +119,28 @@
     ],
     "blurDataURL": "data:image/webp;base64,UklGRpwAAABXRUJQVlA4IJAAAACwAwCdASoQABwAPu1iqk2ppaQiMAgBMB2JQAAJR3BKYkgJ1Ej9YAD+8N93aYhMALdAPvji33AS0kpR6nBCPW97P7ZGftfiFnB7m5b0Q5IrC3nepey65Gs/8v+4abnD6gHg4KFan/vN1hb1AhXfQP3bqXoMu/0YgJC09gCxpvRVSyzCtvSBf68861Pc/bVgAAA="
   },
-  "folks-worst-nightmare-bricky-waters-and-friend": {
-    "hash": "34dc2786",
-    "width": 1146,
-    "height": 2048,
+  "folks-worst-nightmare-illustration": {
+    "hash": "823308b4",
+    "width": 1200,
+    "height": 1200,
     "widths": [
       640,
       1024,
-      1146
+      1200
     ],
-    "blurDataURL": "data:image/webp;base64,UklGRvoAAABXRUJQVlA4IO4AAACQBACdASoQAB0APu1iqU2ppaOiMAgBMB2JaACdB3gGxmNU71U32VMrf88arAAA+PK14EK8xUPOEMy1DV5ArG/B8vaWypUHHJTUrmSVEX+KxZFsIpNzNWPOG2eYCPtsnocYT8dLXZ+sVFNGI2PI2eelvurECg2FyhQL3ESKctiGo/vr33tLgP1CO3hM1cfle4sNy04QkG/SH/n/9Roo9Pe3pWHvXvalb6f8oJnPpfJnu9R2CqQSPHfrgesNGXWreAM7ISXyLK3yic2wN2d1jOP6+X17GYavjyG2N3I34roP8yby6WQpT0azbiIBdAAA"
+    "blurDataURL": "data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAADwAQCdASoQABAAA4BaJZwAIEC6DkWXfsgA/mA+5FBsdGWTqCGkc5T0YGBhe7LogTFxmflRKV/KVt8AXZUwC3neN6t6TTg62uQ+AfAsG07911cMilhqL5iAXigR7xcAAAA="
+  },
+  "folks-worst-nightmare-collective": {
+    "hash": "0a3b4baf",
+    "width": 1920,
+    "height": 800,
+    "widths": [
+      640,
+      1024,
+      1600,
+      1920
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAACwAQCdASoQAAcAA4BaJZACdACyZlgAAP7mwlRltaHSrVtk5lTirkxQ2s5LPcB6bqzHubSuSK1Qfj04qoDZXHyigpAZ2AwKGAAAAA=="
   },
   "folks-worst-nightmare-logo": {
     "hash": "179b1464",
@@ -298,17 +310,8 @@
     ],
     "blurDataURL": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAADQAQCdASoQAAkAA4BaJQAAS7ixjCMfAAD+6R8R5ndxe26LBSkLJogzwsW4QGZ/TZss9K2jyJFphEL69d7dh37AAAA="
   },
-  "video-medicine-acoustic-poster": {
-    "hash": "701fe084",
-    "width": 480,
-    "height": 360,
-    "widths": [
-      480
-    ],
-    "blurDataURL": "data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAADwAQCdASoQAAwAA4BaJaQAApOwJpwcBcAA/op7s5vut+6nPzFViraB9fD0kCbYt7ntKPBAX/nqsduWkxjZvP/8zz2jX1U2Pg85uBtiwKxTwVtkD3C3NOL1Ipej1IYfmpZdXVhQTMvpLBhRfwMegykxZC0eKvSO0AA="
-  },
-  "video-lower-the-blinds-poster": {
-    "hash": "99764dc0",
+  "video-loft-lo-fi-poster": {
+    "hash": "b074d527",
     "width": 1280,
     "height": 720,
     "widths": [
@@ -316,28 +319,6 @@
       1024,
       1280
     ],
-    "blurDataURL": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAADwAQCdASoQAAkAA4BaJQBOgCB2Pq3cZMAA/uiOVj8AutDV1jByu55euxyGwa56QvIS5NHAn+ZHyzrWy68tXPCmAm+hYAAA"
-  },
-  "video-one-more-night-of-heavy-drinking-poster": {
-    "hash": "5fa2d81b",
-    "width": 1280,
-    "height": 720,
-    "widths": [
-      640,
-      1024,
-      1280
-    ],
-    "blurDataURL": "data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAADQAQCdASoQAAkAA4BaJZgCdADvduZYAAD9/F+RvDOjyVXM3lkCAK2omb8bhDtG5K1/O793WsZSbo7lWEuws0Pi7BU4wQYjkVf6UxcP4AA="
-  },
-  "video-stuck-in-the-rocknroll-office-poster": {
-    "hash": "fb843823",
-    "width": 1280,
-    "height": 720,
-    "widths": [
-      640,
-      1024,
-      1280
-    ],
-    "blurDataURL": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAADQAQCdASoQAAkAA4BaJZwAAZZlk2eugAD+Z0uUkzcmpygzerRCUiK3jd2Uo4/xE0ScTRRRUqlbrijHfbAXrmuBpwDFyRxPJjR6jgAA"
+    "blurDataURL": "data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAADwAQCdASoQAAkAA4BaJbACdADJ2fR1VzAA/kEV43XNZPk5CggCw0Puq5aIYhnUg4yhv9ZIrraB3U1WJ8rNmxUo6lJKkkltaJ1qrfG8btE4YILA51bNMLSAAAA="
   }
 }

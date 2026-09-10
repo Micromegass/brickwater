@@ -2,9 +2,11 @@
 
 Relaunch of the site of Brickwater, indie/folk/punk solo project of Bricky Waters (Roman Deska), Nürnberg. Built 2026-09-10 for Axel's friend; replaces a 2018 single-page Bootstrap site (Axel's repo github.com/Micromegass/Brickwater-Responsive). Old site reference: https://www.brickwater.de/.
 
-## Status (2026-09-10)
+## Status (2026-09-10, after the client's first review)
 
-Feature-complete and running locally; all quality gates green (47 unit tests, 130 Playwright/axe checks, lint, typecheck, impeccable detector, Lighthouse CI). Not yet pushed to GitHub or deployed. See "Next steps".
+Feature-complete and running locally; all quality gates green (54 unit tests, 134 Playwright/axe checks, lint, typecheck, impeccable detector clean, Lighthouse SEO 100 / a11y 100 / best practices 100 / perf 98-100). Not yet pushed to GitHub or deployed. See "Next steps".
+
+Round 2 acted on the client's feedback: the palette is now sampled from the Season One sleeve, the 3D brick hero was replaced by a painted wordmark, three.js and every animation library were removed, the home page runs in his order, only three videos remain, the collective section shows two artworks he supplied, and every photo of him shows his face.
 
 ## Stack and architecture
 
@@ -12,10 +14,10 @@ Feature-complete and running locally; all quality gates green (47 unit tests, 13
 - **i18n**: next-intl 4 without middleware. German at the root, English under `/en`, localized slugs (`/konzerte` ↔ `/en/shows`, `/musik/[slug]` ↔ `/en/music/[slug]`, `/impressum` ↔ `/en/legal-notice`, `/datenschutz` ↔ `/en/privacy`). Two root layouts via route groups `app/(de)` and `app/(en)/en`; every layout and page calls `setRequestLocale`. Route files are thin wrappers around `components/pages/*`. `i18n/routing.ts` is the single source of the URL map; `lib/i18n/paths.ts` derives hreflang/sitemap/switcher URLs from it. The language switcher uses `getPathname` + a plain `<a>` (never `<Link locale>`; that needs middleware).
 - **Content** in `content/`: `shows.json`, `releases/*.json` (tracklists, lyrics, links), `bio/{de,en}.json`, `images.json` (alt texts + credits), `site.json` (links, videos, appears-on). Validated with zod (`lib/content/schema.ts`) at build (`npm run validate:content`). Editing guide for the artist: `content/README.md`.
 - **Images**: originals in `assets/source/` (gitignored, on Axel's Mac; includes the old-site photos, Bandcamp covers and YouTube posters). `scripts/images.mjs` (sharp) writes hashed WebP variants to `public/images/` (committed) and `lib/images/manifest.json`; `next/image` uses the custom loader `lib/images/loader.ts`. The FWN logo BMP was converted with `sips` first (sharp cannot read BMP).
-- **Hero**: `components/hero/*`. `scripts/wordmark.ts` rasterizes BRICKWATER (desktop) and BRICK/WATER (mobile) into running-bond brick grids (`lib/hero/wordmark-*.json`, budgets ≤1500/≤600). `BrickWall.tsx` renders one `instancedMesh` with a `MeshStandardMaterial` extended via `onBeforeCompile`: per-instance assembly (easeOutExpo from scattered start positions) and up to 8 pointer ripples in the vertex shader; `frameloop="demand"`. `HeroClient.tsx` loads the chunk only after idle and only without reduced motion / with WebGL / without save-data; the typeset `<h1>` stays in the DOM (LCP element) and fades when the canvas signals ready (`data-canvas="ready"`).
+- **Hero**: `components/hero/Hero.tsx`, a server component with no client JavaScript. The h1 is real text in thin, widely spaced caps (the way the sleeve sets the name) filled with `background-clip: text` from `/images/wash-wordmark.webp`. `scripts/wash.mjs` builds that wash from the Season One painting: it averages the painted band to a 9x6 grid, snaps every hue onto the two pigment families, holds saturation and lightness in a band, and exits non-zero if any part of the wash falls under 3:1 against the paper. The paint soaks in once on load (CSS keyframes, 1.9s) and never loops; reduced motion, forced colours and browsers without background-clip all have explicit fallbacks.
 - **Embeds**: YouTube (`youtube-nocookie.com`) and Bandcamp load only after a click; nothing is stored (each click is a consent). Fonts self-hosted (Bricolage Grotesque variable, OFL, `app/fonts/`).
 - **SEO**: `lib/seo/metadata.ts` (titles, canonical, hreflang, OG), `lib/seo/jsonld.ts` (MusicGroup, MusicAlbum/MusicRecording with lyrics, MusicEvent, VideoObject, BreadcrumbList), `app/sitemap.ts` (alternates), `app/robots.ts`, `app/manifest.ts`, `public/llms.txt`, OG PNGs pre-rendered by `scripts/og.tsx` into `public/og/` (committed; Next's `opengraph-image` route emits extension-less files that Cloudflare would mis-type).
-- **Design**: world = the LP record package (sleeve, inner sleeve, hype sticker, sticker sheet, label roundel). Tokens in `app/globals.css` (`@theme`): paper, ink, brick (single accent, hero material), water (inner-sleeve field for the music section). Direction contract is the HTML comment at the top of `<body>` in `components/layout/SiteShell.tsx`. Product truth: `PRODUCT.md`; visual system: `DESIGN.md`; impeccable surface brief: `.impeccable/surfaces/`.
+- **Design**: world = the LP record package (sleeve, inner sleeve, hype sticker, sticker sheet, runout etching). Every colour in `app/globals.css` (`@theme`) is sampled from the Season One sleeve: paper #f3f2f0, ink #222222, clay #a8563c (the salmon wolf, the single accent), sage #5b6a55 (the green wolf, the one colour field, behind the music section). Direction contract is the HTML comment at the top of `<body>` in `components/layout/SiteShell.tsx`. Product truth: `PRODUCT.md`; visual system: `DESIGN.md`; impeccable surface brief: `.impeccable/surfaces/`.
 - **Hosting**: Cloudflare Pages. `public/_headers` (CSP with `'unsafe-inline'` scripts because static export inlines RSC payloads; HSTS; caching), `public/_redirects`. Weekly rebuild via deploy hook (`.github/workflows/weekly-rebuild.yml`, secret `CF_PAGES_DEPLOY_HOOK_URL`) so past shows retire. Runbook: `GO-LIVE.md`.
 
 ## Commands
@@ -25,7 +27,7 @@ npm run dev            # http://localhost:3100 (port 4321 is taken on this Mac)
 npm run build          # prebuild: validate content + generate ics; postbuild: link check, 404 fallback
 npm run preview        # serve out/ on :4173
 npm run images         # regenerate WebP variants + manifest from assets/source
-npm run gen:wordmark   # regenerate brick layouts (after changing the display font)
+npm run gen:wash       # regenerate the wordmark wash from the sleeve painting
 npm run gen:og         # regenerate OG PNGs (needs assets/source/covers); --force to overwrite
 npm run gen:icons      # apple-icon.png + favicon.ico from app/icon.svg
 npm run check          # validate:content + typecheck + lint + unit tests
@@ -37,6 +39,8 @@ node scripts/screenshots.mjs [dir] [routes…]   # desktop + mobile screenshots 
 ## Decisions and why
 
 - Next.js static export instead of Astro (Axel's choice from three options), Cloudflare Pages hosting, no analytics, no cookies, no consent banner.
+- Round 2: the client rejected the 3D brick hero as too much for a singer-songwriter and asked for the sleeve's colours. three.js, @react-three/fiber, drei, @napi-rs/canvas and motion were removed with it (58 packages); the site now ships no animation library and no canvas. The home page order (hero, bio, videos, music, collective, shows, booking) is his and is asserted by an end-to-end test.
+- Videos are exactly the three he chose: Starving, Jumping just to fall, and the Loft Lo-Fi session on Franken Fernsehen's channel. VideoObject JSON-LD stays on the two official Brickwater videos only, because the third is another publisher's.
 - Shows are self-managed in `content/shows.json`; the Songkick widget (artist 8613194) listed zero shows and is gone. Facebook link dropped. Old Raptor Records shop links are dead (404), purchases point to Bandcamp.
 - Only the two B&W full-band stage photos from the old site are kept (Arne Marenda Fotografie, Barham Ismail; credits must stay). The photo-filled old wordmark is retired.
 - OG images are pre-rendered PNGs (see above). ICS files are generated at build into `public/ics/` (gitignored) rather than by route handlers (which emit extension-less files).
@@ -45,6 +49,7 @@ node scripts/screenshots.mjs [dir] [routes…]   # desktop + mobile screenshots 
 ## Known gaps / open questions
 
 - No upcoming shows were supplied; the shows section shows an honest empty state.
+- The Folk's Worst Nightmare collective photo has no known photographer; it is uncredited until the client says otherwise.
 - Spotify album ID for the "Jumping just to fall" single unresolved (Bandcamp/Apple/YouTube linked instead).
 - Client to confirm: English bio wording, USt-IdNr. (Impressum), photo credits for the 2026 shoot, any remaining physical merch.
 - Impeccable reports a newer version (v4.3.1 vs installed 4.0.4); update with `npx impeccable update` if wanted.

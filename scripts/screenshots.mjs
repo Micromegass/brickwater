@@ -37,12 +37,10 @@ try {
       const slug = route === "/" ? "home" : route.replace(/^\/|\/$/g, "").replace(/\//g, "-");
       const res = await page.goto(`http://localhost:${PORT}${route}`, { waitUntil: "networkidle" });
       if (route === "/" || route === "/en/") {
-        await page.waitForSelector('[data-hero-stage][data-canvas="ready"]', { timeout: 8000 }).catch(() => errors.push(`${route}: hero canvas never became ready`));
-        await page.waitForTimeout(450);
-        await page.screenshot({ path: path.join(outDir, `${slug}-${name}-hero-assembling.png`) });
-        await page.waitForTimeout(3000);
-        await page.mouse.move(viewport.width * 0.4, 260);
-        await page.waitForTimeout(350);
+        await page.waitForSelector(".wordmark", { timeout: 8000 }).catch(() => errors.push(`${route}: wordmark missing`));
+        await page.waitForTimeout(650);
+        await page.screenshot({ path: path.join(outDir, `${slug}-${name}-hero-soaking.png`) });
+        await page.waitForTimeout(2600);
         await page.screenshot({ path: path.join(outDir, `${slug}-${name}-hero.png`) });
       }
       // trigger lazy images before the full-page capture

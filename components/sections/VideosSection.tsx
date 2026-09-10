@@ -8,19 +8,6 @@ import { localizedPath } from "@/lib/i18n/paths";
 export async function VideosSection({ locale }: { locale: Locale }) {
   const t = await getTranslations({ locale });
   const site = loadSite();
-  const official = site.videos.filter((v) => v.kind === "official");
-  const sessions = site.videos.filter((v) => v.kind !== "official");
-  const facade = (video: (typeof site.videos)[number], large: boolean) => (
-    <YouTubeFacade
-      key={video.id}
-      id={video.id}
-      title={`${video.title} (${video.year})`}
-      poster={photoProps(video.poster, locale)}
-      playLabel={t("videos.play", { title: video.title })}
-      iframeTitle={t("embeds.iframeTitle", { title: video.title, provider: "YouTube" })}
-      large={large}
-    />
-  );
   return (
     <section className="section" id="videos" aria-labelledby="videos-title">
       <div className="container">
@@ -28,8 +15,18 @@ export async function VideosSection({ locale }: { locale: Locale }) {
           {t("videos.heading")}
         </h2>
         <p className="measure mt-4 text-ink-soft">{t("videos.intro")}</p>
-        <div className="mt-10 grid gap-6 md:grid-cols-2">{official.map((v) => facade(v, true))}</div>
-        <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">{sessions.map((v) => facade(v, false))}</div>
+        <div className="mt-10 grid gap-6 lg:grid-cols-3">
+          {site.videos.map((video) => (
+            <YouTubeFacade
+              key={video.id}
+              id={video.id}
+              title={`${video.title} (${video.year})`}
+              poster={photoProps(video.poster, locale)}
+              playLabel={t("videos.play", { title: video.title })}
+              iframeTitle={t("embeds.iframeTitle", { title: video.title, provider: "YouTube" })}
+            />
+          ))}
+        </div>
         <p className="mt-6 text-caption text-ink-soft">
           {t("embeds.youtubeHint")}{" "}
           <a href={localizedPath(locale, "/privacy")} className="underline">

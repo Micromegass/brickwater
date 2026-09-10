@@ -1,19 +1,26 @@
 ---
 name: Brickwater
-description: The record package as a website. Paper, ink, brick, water.
+description: The record package as a website, in the sleeve's own colours.
 colors:
-  paper: "#fbfaf8"
-  paper-deep: "#f1ede6"
-  ink: "#1f1d1b"
-  ink-soft: "#5c4a42"
-  brick: "#c2472b"
-  brick-deep: "#8f3018"
-  brick-wash: "#f5e3dc"
-  water: "#1d5c6a"
-  water-deep: "#123f4a"
-  water-wash: "#dcebee"
-  mortar: "#e6dfd6"
+  paper: "#f3f2f0"
+  paper-deep: "#e9e8e5"
+  ink: "#222222"
+  ink-deep: "#131313"
+  ink-soft: "#5a534c"
+  clay: "#a8563c"
+  clay-deep: "#8c422c"
+  clay-wash: "#f0dcd2"
+  sage: "#5b6a55"
+  sage-deep: "#47523f"
+  sage-wash: "#e8ece2"
+  line: "#dcdad5"
 typography:
+  wordmark:
+    fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "11.1cqw"
+    fontWeight: 300
+    lineHeight: 1
+    letterSpacing: "0.135em"
   display:
     fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
     fontSize: "clamp(3rem, 2rem + 6vw, 6rem)"
@@ -26,17 +33,53 @@ typography:
     fontWeight: 800
     lineHeight: 1.02
     letterSpacing: "-0.02em"
+  lead:
+    fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(1.25rem, 1rem + 1.1vw, 1.7rem)"
+    fontWeight: 500
+    lineHeight: 1.25
+    letterSpacing: "normal"
   title:
     fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
     fontSize: "1.5rem"
     fontWeight: 700
     lineHeight: 1.2
     letterSpacing: "-0.02em"
+  day:
+    fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "2.4rem"
+    fontWeight: 800
+    lineHeight: 1
+    letterSpacing: "-0.03em"
+  venue:
+    fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "1.35rem"
+    fontWeight: 700
+    lineHeight: 1.15
+    letterSpacing: "normal"
+  brand:
+    fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "1.05rem"
+    fontWeight: 400
+    lineHeight: 1.2
+    letterSpacing: "0.16em"
   body:
     fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
     fontSize: "1.0625rem"
     fontWeight: 400
     lineHeight: 1.6
+    letterSpacing: "normal"
+  small:
+    fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "0.9375rem"
+    fontWeight: 400
+    lineHeight: 1.5
+    letterSpacing: "normal"
+  hype:
+    fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(0.95rem, 1.2vw, 1.15rem)"
+    fontWeight: 800
+    lineHeight: 1.05
     letterSpacing: "normal"
   etch:
     fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
@@ -44,6 +87,18 @@ typography:
     fontWeight: 500
     lineHeight: 1.45
     letterSpacing: "0.08em"
+  micro:
+    fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "0.72rem"
+    fontWeight: 400
+    lineHeight: 1.2
+    letterSpacing: "0.04em"
+  meta:
+    fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "0.78rem"
+    fontWeight: 400
+    lineHeight: 1.3
+    letterSpacing: "normal"
 rounded:
   none: "0px"
   sticker: "999px"
@@ -55,18 +110,20 @@ spacing:
   section: "clamp(4rem, 8vw, 7.5rem)"
   gutter: "clamp(1.1rem, 4vw, 3rem)"
 components:
-  sticker-brick:
-    backgroundColor: "{colors.brick}"
+  sticker-clay:
+    backgroundColor: "{colors.clay}"
     textColor: "{colors.paper}"
     rounded: "{rounded.sticker}"
     padding: "0.8rem 1.35rem"
-  sticker-brick-hover:
-    backgroundColor: "{colors.brick-deep}"
+  sticker-clay-hover:
+    backgroundColor: "{colors.clay-deep}"
   sticker-ink:
     backgroundColor: "{colors.ink}"
     textColor: "{colors.paper}"
     rounded: "{rounded.sticker}"
     padding: "0.8rem 1.35rem"
+  sticker-ink-hover:
+    backgroundColor: "{colors.ink-deep}"
   sticker-paper:
     backgroundColor: "{colors.paper}"
     textColor: "{colors.ink}"
@@ -78,9 +135,9 @@ components:
     backgroundColor: "{colors.ink}"
     textColor: "{colors.paper}"
     rounded: "{rounded.sticker}"
-    size: "clamp(7.5rem, 11vw, 10rem)"
-  section-water:
-    backgroundColor: "{colors.water}"
+    size: "clamp(6.75rem, 9vw, 8.5rem)"
+  section-sage:
+    backgroundColor: "{colors.sage}"
     textColor: "{colors.paper}"
   header:
     backgroundColor: "{colors.paper}"
@@ -91,130 +148,136 @@ components:
 
 ## Overview
 
-**Creative North Star: "The record package"**
+**Creative North Star: "The record package, in the sleeve's own colours"**
 
-The site behaves like the physical object a Brickwater fan already owns: a sleeve on uncoated stock, the printed inner sleeve with the lyrics, a round hype sticker slapped on the front, a sheet of die-cut stickers, the label roundel, the tiny lettering pressed into the runout. The ground is paper, the print is ink, and the one saturated material is brick: it builds the wordmark out of actual 3D bricks in the hero and returns only where something is pressable or important. Water (a deep river teal) is the single inner-sleeve field, owned by the music section and by nothing else.
+The site behaves like the physical object a Brickwater fan already owns: a sleeve on uncoated stock, the printed inner sleeve with the lyrics, a round hype sticker, a sheet of die-cut stickers, the tiny lettering pressed into the runout. Nothing here was colour-picked by taste. Every value is sampled from the Season One sleeve, the watercolour wolves Julia Feisleben painted: the paper is the sleeve's neutral gray, the ink is the black it was printed in, clay is the salmon animal, sage is the green one. The wordmark is not typeset in a colour at all, it is filled with a wash mixed from that same painting, which is what the artist's first logo did.
 
-The rejected default was the dark full-bleed band poster with white uppercase type and a row of streaming badges. The scene is daylight (a fan checking the next show on a phone at a Biergarten table), so the theme is light and locked: no section inverts to dark, no second accent appears, no gradients, no glass.
+The rejected default was the dark full-bleed band poster with white uppercase type and a row of streaming badges. The scene is daylight, a fan checking the next show on a phone at a beer garden table, so the theme is light and locked: no section inverts to dark, no second accent appears, no gradients, no glass, and no WebGL.
 
 **Key Characteristics:**
 - Two materials only: square paper for anything printed, pill stickers for anything pressable.
-- One display family (Bricolage Grotesque, variable) carrying every size from etching to wordmark via its optical-size axis.
-- One authored motion moment: the brick wordmark assembling, then rippling under the pointer. Everything else is still, except the label roundel turning at 40 s per revolution.
-- Photographs sit on the paper with a soft, offset sleeve shadow; no overlays, no pills on images, credits as small etch captions beneath.
+- One display family, Bricolage Grotesque variable, from the runout etching to the wordmark, carried by its optical-size axis.
+- One authored motion moment: the paint soaking into the wordmark on load. After that the page holds still; everything else moves only in answer to a hover or a press.
+- Photographs sit on the paper with a soft, offset sleeve shadow. No overlays, no pills on images, credits set as small etch captions beneath.
 
 ## Colors
 
-Warm paper and soft ink with a single brick accent and one teal field; everything else is tint of those.
+The sleeve's own palette: neutral gray paper, printed black, and the two pigments the painter used.
 
 ### Primary
-- **Brick** (#c2472b): the accent and the hero material. Primary CTAs, the play button on video posters, link color on legal pages, the selection color, focus rings. On paper it holds 4.8:1, with paper text on it 4.9:1.
-- **Brick deep** (#8f3018): hover state of brick stickers and the darker "clinker" bricks in the wall.
-- **Brick wash** (#f5e3dc): the only tinted surface on paper, used for the highlighted right-to-object block on the privacy page.
+- **Clay** (#a8563c): the salmon wolf, and the single accent. Primary buttons, links on legal pages, the play disc on video posters, selection, focus rings. 4.6:1 on paper, 5.2:1 for paper text on it.
+- **Clay deep** (#8c422c): hover of clay stickers, and the solid fallback colour of the wordmark where a browser cannot clip a background to text.
+- **Clay wash** (#f0dcd2): the only tinted surface on paper, behind the right-to-object block on the privacy page.
 
 ### Secondary
-- **Water** (#1d5c6a): the inner-sleeve field behind the music section. Paper text on water reads at 7.5:1.
-- **Water wash** (#dcebee): secondary text and track numbers on the water field (never grey on a colored surface); also the cool fill light in the hero.
+- **Sage** (#5b6a55): the green wolf, and the one colour field, filling the music section edge to edge. Paper text on it reads at 5.2:1.
+- **Sage wash** (#e8ece2): secondary text, track numbers and durations on the sage field, never gray. 4.8:1 on sage.
+- **Sage deep** (#47523f): borders and dividers inside the field.
 
 ### Neutral
-- **Paper** (#fbfaf8): page ground, header, paper stickers.
-- **Paper deep** (#f1ede6): hover of paper stickers, image loading ground.
-- **Ink** (#1f1d1b): text, ink stickers, the hype sticker, the roundel, video poster ground.
-- **Ink soft** (#5c4a42): secondary text, intros, captions, footer etching. 7:1 on paper.
-- **Mortar** (#e6dfd6): hairlines between show rows and lyric rows, header and footer borders.
+- **Paper** (#f3f2f0): page ground, header, paper stickers.
+- **Paper deep** (#e9e8e5): hover of paper stickers, image loading ground.
+- **Ink** (#222222): text, ink stickers, the hype sticker, video poster ground.
+- **Ink deep** (#131313): hover of ink stickers, and the tint of the one text shadow on a photographic poster.
+- **Ink soft** (#5a534c): secondary text, intros, captions, footer etching. 6.7:1 on paper.
+- **Line** (#dcdad5): hairlines between show rows and lyric rows, header and footer borders.
 
 ### Named Rules
-**The One Brick Rule.** Brick is the only accent. It appears on at most one primary action per section and never as a large field; the bricks in the hero are the exception because there it is a material, not a highlight.
-**The Water Field Rule.** Water is a region, not an accent: it fills the whole music section edge to edge and is never used for text, borders or buttons on paper.
+**The One Clay Rule.** Clay is the only accent. At most one primary action per section carries it, and it is never a large field.
+**The Sage Field Rule.** Sage is a region, not an accent: it fills the whole music section and is never used for text, borders or buttons on paper.
+**The Sampled Palette Rule.** New colours are not invented. They are sampled from the sleeve, and a value that cannot be traced to it does not belong in the system.
 
 ## Typography
 
-**Display Font:** Bricolage Grotesque (variable opsz 12–96, wdth 75–100, wght 200–800; self-hosted woff2; fallback ui-sans-serif, system-ui)
-**Body Font:** Bricolage Grotesque at optical size 14
+**Display Font:** Bricolage Grotesque (variable opsz 12-96, wdth 75-100, wght 200-800; self-hosted woff2; fallback ui-sans-serif, system-ui)
+**Body Font:** the same family at optical size 14
 **Label/Mono Font:** none. No monospace anywhere.
 
-**Character:** One family doing every job. At optical size 96 and weight 800 it is chunky, slightly eccentric and poster-like; at optical size 14 it is a quiet, readable text face. Emphasis comes from weight and size, never from a second family, italics in headlines, or color on single words.
+**Character:** One family doing every job. The wordmark takes it thin and widely spaced, the way the record sets the band's name; headings take it at weight 800 and optical size 96, where it is chunky and poster-like; body text takes it at optical size 14, where it is a quiet text face. Emphasis comes from weight and size, never from a second family, italics in headlines, or colour on single words.
 
 ### Hierarchy
-- **Wordmark** (800, 14.3cqw of its stage, line-height 0.86, uppercase): the h1 on the home page only, rendered as bricks when WebGL is available and as type otherwise.
+- **Wordmark** (300, 11.1cqw of the hero container, tracking 0.135em, uppercase): the h1 on the home page only. Filled with the wash, never with a flat colour.
 - **Display** (800, clamp(3rem, 2rem + 6vw, 6rem), 0.95): page titles on subpages. Never above 6rem.
-- **Headline** (800, clamp(2.25rem, 1.5rem + 3vw, 3.5rem), 1.02): section headings on the home page, the inlay quote on the shows page.
-- **Title** (700, 1.5rem, 1.2): release titles in lists, past-shows heading, legal subheadings, empty-state statement.
-- **Body** (400, 1.0625rem, 1.6, optical size 14): all running text, measure 66ch.
-- **Small** (400, 0.9375rem): descriptions in lists, credits.
-- **Etch** (500, 0.8125rem, letter-spacing 0.08em, width 90, uppercase in the footer): photo credits, footer, quote attribution. The only tracked-out text in the system; it never sits above a heading.
+- **Headline** (800, clamp(2.25rem, 1.5rem + 3vw, 3.5rem), 1.02): section headings, the inlay quote on the shows page.
+- **Lead** (500, clamp(1.25rem, 1rem + 1.1vw, 1.7rem)): the hero tagline and page intros.
+- **Title** (700, 1.5rem): release titles in lists, legal subheadings, the empty-state statement.
+- **Day** (800, 2.4rem) and **Venue** (700, 1.35rem): the date and the room in a show row.
+- **Brand** (400, 1.05rem, tracking 0.16em, uppercase): the header wordmark, the same lettering as the hero at reading size.
+- **Body** (400, 1.0625rem, 1.6, optical size 14): all running text, measure 66ch. **Small** (400, 0.9375rem) for list descriptions and credits.
+- **Hype** (800, clamp(0.95rem, 1.2vw, 1.15rem)), **micro** (0.72rem, tracking 0.04em, uppercase) and **meta** (0.78rem): the three lines inside the hype sticker.
+- **Etch** (500, 0.8125rem, tracking 0.08em, width 90, uppercase in the footer): photo credits, footer, quote attribution. The only tracked-out text besides the wordmark and the brand, and it never sits above a heading.
 
 ### Named Rules
-**The No Kicker Rule.** Nothing small sits above a heading. Category information goes into the sentence below the heading ("Aktuelles Release: Album, 2018. 8 Songs.").
-**The One Voice Rule.** Bricolage Grotesque only; the display voice is set by weight 800 and optical size 96, not by a different face.
+**The No Kicker Rule.** Nothing small sits above a heading. Category information goes into the sentence below it.
+**The One Voice Rule.** Bricolage Grotesque only. The display voice comes from weight and optical size, not from a second face.
 
 ## Layout
 
-A single container of max-width 1400px with a fluid gutter of clamp(1.1rem, 4vw, 3rem). Sections breathe with clamp(4rem, 8vw, 7.5rem) of vertical padding; the music field runs edge to edge behind its container. A twelve-column grid at lg splits photo and text sections 7/5 or 5/7 (bio, FWN, contact, release detail); lists (shows, lyrics, appears-on) are single-column with mortar hairlines between rows and never both top and bottom borders. Release rows are four columns at md, two below. The photo strip is a snap-scrolling row on small screens and a four-up grid at lg. The header is 4rem, sticky, one line at every width (Konzerte, Musik, plus Videos and Kontakt from sm, then the language sticker). Spacing rhythm: more space above a heading (2.5rem) than below it (0.75–1rem).
+A single container of max-width 1400px with a fluid gutter of clamp(1.1rem, 4vw, 3rem). Sections breathe with clamp(4rem, 8vw, 7.5rem) of vertical padding; the sage field runs edge to edge behind its container. A twelve-column grid at lg splits photo and text sections 6/6 or 5/7 (bio, Folk's Worst Nightmare, contact, release detail); lists (shows, lyrics, appears-on) are single-column with hairlines between rows and never both top and bottom borders. Videos are three equal 16:9 frames in one row at lg and stack below. Release rows are four columns at md, two below. The photo strip is a snap-scrolling row on small screens and a four-up grid at lg. The header is 4rem, sticky, one line at every width. Spacing rhythm: more space above a heading (2.5rem) than below it (0.75-1rem).
 
-Responsive: the hero stage keeps an aspect of 85/18 and switches to 28/23 at ≤640px, where the wordmark stacks BRICK over WATER and the hype sticker moves to the top right. Track lists collapse from two columns to one below sm.
+The home page runs hero, bio and photographs, videos, music, the collective, shows, booking. That order is the artist's and is asserted by an end-to-end test.
+
+Responsive: the wordmark is one line and stacks to BRICK over WATER below 640px, where the hype sticker leaves the wordmark and sits beneath it, aligned right.
 
 ## Elevation & Depth
 
-Depth is physical, not tonal: photographs and covers carry a sleeve shadow with a real offset and soft blur, stickers a smaller one, and flat print (text, hairlines, fields) has none. No halos, no zero-offset glows, no glass. The hero's depth is real lighting on real geometry (a hemisphere light plus one warm key and one cool fill).
+Depth is physical, not tonal: photographs, covers and video frames carry a sleeve shadow with a real offset and soft blur, stickers a smaller one, and flat print (text, hairlines, fields) has none. No halos, no zero-offset glows, no glass.
 
 ### Shadow Vocabulary
-- **Sleeve** (`box-shadow: 0 2px 4px rgb(31 29 27 / 0.08), 0 18px 40px -24px rgb(31 29 27 / 0.45)`): photos, covers, video posters.
-- **Sticker** (`box-shadow: 0 1px 2px rgb(31 29 27 / 0.12), 0 8px 24px -12px rgb(31 29 27 / 0.35)`): brick stickers, the hype sticker, the video play disc.
+- **Sleeve** (`box-shadow: 0 2px 4px rgb(34 34 34 / 0.08), 0 18px 40px -24px rgb(34 34 34 / 0.45)`): photos, covers, video posters.
+- **Sticker** (`box-shadow: 0 1px 2px rgb(34 34 34 / 0.12), 0 8px 24px -12px rgb(34 34 34 / 0.35)`): clay stickers, the hype sticker, the play disc.
 
 ### Named Rules
 **The Paper Lies Flat Rule.** Text, fields and hairlines never cast shadows. Only objects placed on the paper (prints, stickers) do.
 
 ## Shapes
 
-Two silhouettes. Paper is square: photos, covers, video frames, the water field, legal highlight box and all hairlines have radius 0. Stickers are die-cut: buttons, chips, the language toggle, the hype sticker, the play disc and the roundel are fully round (999px). Nothing in between; no 8px or 16px corners anywhere. The wordmark bricks themselves are rounded boxes (radius ≈ 14% of the short side) so they catch light.
+Two silhouettes. Paper is square: photos, covers, video frames, the sage field, the legal highlight box and all hairlines have radius 0. Stickers are die-cut: buttons, chips, the language toggle, the hype sticker and the play disc are fully round (999px). Nothing in between; no 8px or 16px corners anywhere.
 
 ## Components
 
 ### Buttons ("stickers")
 - **Shape:** pill (999px), padding 0.8rem 1.35rem, weight 600, optical size 14, icon 18px before the label, gap 0.5rem.
-- **Brick:** brick background, paper text, sticker shadow. One per section at most. Hover: brick deep.
-- **Ink:** ink background, paper text. Used for the strongest secondary action (follow on Instagram, load player, collective link).
-- **Paper:** paper background, ink text, 1.5px inset ink ring. The default chip for links out (streaming services, socials, calendar, map).
-- **Outline on water:** transparent, paper text and 1.5px ring; hover paper at 12%.
-- **Active:** translate down 1px and scale 0.985 (a physical press). Focus: 3px brick outline offset 3px (paper outline on the water field).
+- **Clay:** clay background, paper text, sticker shadow. One per section at most. Hover: clay deep.
+- **Ink:** ink background, paper text, for the strongest secondary action (follow on Instagram, load a player, the collective's channel). Hover: ink deep.
+- **Paper:** paper background, ink text, 1.5px inset ink ring. The default chip for links out.
+- **Outline on sage:** transparent, paper text and a 1.5px ring; hover paper at 12%.
+- **Active:** translate down 1px and scale 0.985. Focus: 3px clay outline offset 3px, paper outline on the sage field.
 
 ### Chips
-Same component as buttons; the streaming and social chips are paper stickers with the brand glyph from Simple Icons at 18px. There is no selected state; chips are always links out.
+The same component as buttons; streaming and social chips are paper stickers with the brand glyph from Simple Icons at 18px. There is no selected state; chips are always links out.
 
 ### Cards / Containers
-There are no cards. Grouping is done by spacing and mortar hairlines. The only bordered containers are the Bandcamp placeholder (1px mortar) and the privacy highlight (brick wash with a 30% brick border).
+There are no cards. Grouping is done by spacing and hairlines. The only bordered containers are the Bandcamp placeholder (1px line) and the privacy highlight (clay wash with a 30% clay border).
 
 ### Inputs / Fields
 None. Contact is a mailto link plus a copy button.
 
 ### Navigation
-Sticky 4rem header on 90% paper with a 10px backdrop blur and a mortar hairline. Brand at the left as uppercase 800 wordmark type (1.2rem); links weight 600 with a 2px brick underline on hover; the language switcher is a small paper sticker reading EN or DE. The skip link is a fixed ink sticker revealed on focus. Footer: uppercase etch text in ink soft with copyright, photo credits and legal links.
+Sticky 4rem header on 90% paper with a 10px backdrop blur and a hairline. The brand sits left in the sleeve's lettering; links are weight 600 with a 2px clay underline on hover; the language switcher is a small paper sticker reading EN or DE. The skip link is a clipped ink sticker revealed on focus. The footer is uppercase etch text in ink soft: copyright, photo credits, legal links.
 
-### Hero wordmark (signature)
-A stage with aspect 85/18 (28/23 on phones) holding the typeset h1; when the client allows motion and WebGL, a React Three Fiber canvas fades in over it with the same word built from 797 (desktop) or 338 (mobile) instanced bricks in brick with hue and lightness jitter and 8% clinkers. Bricks fly in from scattered positions with an exponential ease-out over about 2.5 s, left to right; afterwards pointer movement and taps push up to eight ripples through the wall. Reduced motion, save-data and missing WebGL keep the typeset wordmark.
+### Wordmark (signature)
+BRICKWATER in thin, widely spaced caps, filled by `background-clip: text` with `/images/wash-wordmark.webp`, a wash built by `scripts/wash.mjs` from the sleeve painting. The script averages the painted band down to a nine by six grid, snaps every hue onto one of the two pigment families, holds saturation and lightness inside a band, and fails the build if any part of the wash drops under 3:1 against the paper. On load the paint soaks in once: opacity 0 to 1, background-size 150% 260% to 100% 100%, saturation 0.3 to 1, 1.9s on the expo curve. It never loops. Reduced motion and forced colours get the finished mark with no animation; a browser without background-clip gets clay deep.
 
 ### Hype sticker (signature)
-A round ink sticker, clamp(7.5rem, 11vw, 10rem), rotated -8°, overlapping the top right of the wordmark stage, carrying the next show (date and city) or, without dates, the latest release. Hover straightens it to -4° and scales it 1.04.
-
-### Label roundel (signature)
-An ink disc with a paper center holding the Folk's Worst Nightmare woodcut logo and a ring of uppercase 700 text (letter-spacing 0.2em) on an SVG textPath, turning once every 40 s; static under reduced motion.
+A round ink sticker, clamp(6.75rem, 9vw, 8.5rem), rotated -8°, beside the wordmark, carrying the next show (date and city) or, when no date is announced, the latest release. Hover straightens it to -4° and scales it 1.04. Below 640px it leaves the wordmark and sits beneath it, aligned right.
 
 ### Video and player facades
-Video posters sit in a 16:9 ink frame with the sleeve shadow, the title bottom-left in paper with a soft text shadow and a brick play disc (4.25rem) centered; a click replaces the poster with the youtube-nocookie iframe. The Bandcamp placeholder is a mortar-bordered paper box with title, an ink "load" sticker and a caption.
+Video posters sit in a 16:9 ink frame with the sleeve shadow, the title bottom-left in paper over a soft ink shadow, and a clay play disc (4.25rem) centred. A click replaces the poster with the youtube-nocookie iframe. The Bandcamp placeholder is a hairline-bordered paper box with a title, an ink "load" sticker and a caption.
 
 ## Do's and Don'ts
 
 ### Do:
-- Keep the whole page light; the water field is a printed region, not a dark mode.
-- Use brick for exactly one action per section and let the bricks in the hero be the only large brick area.
+- Sample new colours from the sleeve, and keep the whole page light; the sage field is a printed region, not a dark mode.
+- Use clay for exactly one action per section, and let the wordmark be the only place the painting itself appears as material.
 - Set every heading in Bricolage Grotesque at weight 800 and optical size 96; put category words in the sentence below, not above.
-- Show real photographs with their credits in etch type beneath; keep covers square with the sleeve shadow.
-- Add motion only as a response to the visitor (hover, press, open) beyond the hero's single assembly moment.
+- Show real photographs and real artwork with their credits in etch type beneath; keep covers square with the sleeve shadow.
+- Add motion only in answer to the visitor, beyond the single soak-in of the wordmark.
 
 ### Don't:
-- No kickers, eyebrows or section numbers above headings; no tracked uppercase labels except etch captions and the footer.
+- No kickers, eyebrows or section numbers above headings; no tracked uppercase labels except the wordmark, the brand, and etch captions.
 - No cards, no nested containers, no rounded corners other than pills, no gradients, no gradient text, no glass, no glows.
-- No second accent color, no grey text on the water field, no pure black.
-- No overlays, badges or pills on photographs; no icons drawn by hand; no emoji as icons.
+- No second accent colour, no gray text on the sage field, no pure black.
+- No WebGL, no scroll-driven effects, no looping animation.
+- No overlays, badges or pills on photographs; no hand-drawn icons; no emoji as icons.
 - No em dashes anywhere in copy; ranges and separators use a plain hyphen or a full stop.

@@ -4,10 +4,10 @@ import { Photo } from "@/components/ui/Photo";
 import { loadBio, loadImages } from "@/lib/content/load";
 
 const STRIP = [
-  "brickwater-biergarten-guitar-01",
-  "brickwater-harmonica-live-2020",
-  "brickwater-bricky-waters-fence-standing-02",
-  "brickwater-live-red-light-2019",
+  "brickwater-biergarten-guitar-02",
+  "bricky-waters-cat-mural-2020",
+  "brickwater-bricky-waters-fence-sitting-01",
+  "brickwater-live-brick-wall-2021",
 ];
 
 export async function BioSection({ locale }: { locale: Locale }) {
@@ -18,25 +18,25 @@ export async function BioSection({ locale }: { locale: Locale }) {
     <section className="section" aria-labelledby="bio-title">
       <div className="container">
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
-          <figure className="lg:col-span-7">
+          <figure className="lg:col-span-6">
             <Photo
-              id="brickwater-bricky-waters-park-stairs"
+              id="brickwater-bricky-waters-stage-portrait-01"
               locale={locale}
-              sizes="(min-width: 1024px) 58vw, 100vw"
-              className="sleeve-photo"
+              sizes="(min-width: 1024px) 48vw, 100vw"
+              className="sleeve-photo aspect-[4/5] object-cover object-[50%_26%]"
             />
             <figcaption className="etch mt-3 text-ink-soft">
-              {images["brickwater-bricky-waters-park-stairs"].credit}
+              {images["brickwater-bricky-waters-stage-portrait-01"].credit}
             </figcaption>
           </figure>
-          <div className="lg:col-span-5 lg:pt-6">
+          <div className="lg:col-span-6 lg:pt-6">
             <h2 id="bio-title" className="text-h2 font-extrabold">
               {t("heading")}
             </h2>
             <div className="mt-8 space-y-5 text-body">
               {bio.paragraphs.map((paragraph, i) =>
                 paragraph === "♡" ? (
-                  <p key={i} className="text-brick text-2xl" aria-hidden="true">
+                  <p key={i} className="text-clay text-2xl" aria-hidden="true">
                     ♡
                   </p>
                 ) : (

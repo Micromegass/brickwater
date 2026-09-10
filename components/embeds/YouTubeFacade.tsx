@@ -11,10 +11,9 @@ interface Props {
   poster: PhotoProps;
   playLabel: string;
   iframeTitle: string;
-  large?: boolean;
 }
 
-export function YouTubeFacade({ id, title, poster, playLabel, iframeTitle, large }: Props) {
+export function YouTubeFacade({ id, title, poster, playLabel, iframeTitle }: Props) {
   const [active, setActive] = useState(false);
   return (
     <div className="video-facade">
@@ -33,13 +32,13 @@ export function YouTubeFacade({ id, title, poster, playLabel, iframeTitle, large
             src={poster.src}
             alt=""
             fill
-            sizes={large ? "(min-width: 1024px) 50vw, 100vw" : "(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"}
+            sizes="(min-width: 1024px) 33vw, 100vw"
             placeholder="blur"
             blurDataURL={poster.blurDataURL}
             className="video-poster-img"
           />
           <span className="video-play" aria-hidden="true">
-            <Play weight="fill" size={large ? 28 : 22} />
+            <Play weight="fill" size={26} />
           </span>
           <span className="video-title">{title}</span>
         </button>

@@ -2,23 +2,26 @@
 
 /*
   Brickwater design tokens. World: the record package (sleeve, inner sleeve,
-  hype sticker, sticker sheet, label roundel, runout etching).
-  Paper is the sleeve stock, ink the print, brick the wordmark material and the
-  single accent, water the inner-sleeve field. Shapes: paper and print are
-  square; stickers and buttons are die-cut pills.
+  hype sticker, sticker sheet, runout etching).
+  Every colour is sampled from the Season One sleeve, the watercolour wolves
+  painted by Julia Feisleben: paper is the sleeve stock in its own neutral gray,
+  ink is the black it was printed in, clay is the salmon animal and the single
+  accent, sage is the green one and the one colour field. Shapes: paper and
+  print are square; stickers and buttons are die-cut pills.
 */
 @theme {
-  --color-paper: #fbfaf8;
-  --color-paper-deep: #f1ede6;
-  --color-ink: #1f1d1b;
-  --color-ink-soft: #5c4a42;
-  --color-brick: #c2472b;
-  --color-brick-deep: #8f3018;
-  --color-brick-wash: #f5e3dc;
-  --color-water: #1d5c6a;
-  --color-water-deep: #123f4a;
-  --color-water-wash: #dcebee;
-  --color-mortar: #e6dfd6;
+  --color-paper: #f3f2f0;
+  --color-paper-deep: #e9e8e5;
+  --color-ink: #222222;
+  --color-ink-soft: #5a534c;
+  --color-clay: #a8563c;
+  --color-clay-deep: #8c422c;
+  --color-clay-wash: #f0dcd2;
+  --color-sage: #5b6a55;
+  --color-sage-deep: #47523f;
+  --color-sage-wash: #e8ece2;
+  --color-line: #dcdad5;
+  --color-ink-deep: #131313;
 
   --font-sans: var(--font-bricolage), "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
 
@@ -37,8 +40,8 @@
 
   --radius-sticker: 999px;
 
-  --shadow-sticker: 0 1px 2px rgb(31 29 27 / 0.12), 0 8px 24px -12px rgb(31 29 27 / 0.35);
-  --shadow-sleeve: 0 2px 4px rgb(31 29 27 / 0.08), 0 18px 40px -24px rgb(31 29 27 / 0.45);
+  --shadow-sticker: 0 1px 2px rgb(34 34 34 / 0.12), 0 8px 24px -12px rgb(34 34 34 / 0.35);
+  --shadow-sleeve: 0 2px 4px rgb(34 34 34 / 0.08), 0 18px 40px -24px rgb(34 34 34 / 0.45);
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -78,12 +81,12 @@
   }
 
   ::selection {
-    background: var(--color-brick);
+    background: var(--color-clay);
     color: var(--color-paper);
   }
 
   :focus-visible {
-    outline: 3px solid var(--color-brick);
+    outline: 3px solid var(--color-clay);
     outline-offset: 3px;
   }
 
@@ -111,20 +114,20 @@
   .sticker:active {
     transform: translateY(1px) scale(0.985);
   }
-  .sticker-brick {
-    background: var(--color-brick);
+  .sticker-clay {
+    background: var(--color-clay);
     color: var(--color-paper);
     box-shadow: var(--shadow-sticker);
   }
-  .sticker-brick:hover {
-    background: var(--color-brick-deep);
+  .sticker-clay:hover {
+    background: var(--color-clay-deep);
   }
   .sticker-ink {
     background: var(--color-ink);
     color: var(--color-paper);
   }
   .sticker-ink:hover {
-    background: #000;
+    background: var(--color-ink-deep);
   }
   .sticker-paper {
     background: var(--color-paper);
@@ -140,7 +143,7 @@
     box-shadow: inset 0 0 0 1.5px currentColor;
   }
   .sticker-outline-paper:hover {
-    background: rgb(251 250 248 / 0.12);
+    background: color-mix(in srgb, var(--color-paper) 12%, transparent);
   }
 
   /* Runout etching: the tiny lettering pressed into the vinyl. */
@@ -153,7 +156,7 @@
 
   /* Ruled lines of the back cover. */
   .rule {
-    border-top: 1px solid var(--color-mortar);
+    border-top: 1px solid var(--color-line);
   }
 
   .measure {
@@ -186,20 +189,20 @@
   .section {
     padding-block: clamp(4rem, 8vw, 7.5rem);
   }
-  .section-water {
-    background: var(--color-water);
+  .section-sage {
+    background: var(--color-sage);
     color: var(--color-paper);
   }
-  .section-water ::selection {
+  .section-sage ::selection {
     background: var(--color-paper);
-    color: var(--color-water);
+    color: var(--color-sage);
   }
-  .section-water :focus-visible {
+  .section-sage :focus-visible {
     outline-color: var(--color-paper);
   }
-  .section-water .tracklist-n,
-  .section-water .tracklist-dur {
-    color: var(--color-water-wash);
+  .section-sage .tracklist-n,
+  .section-sage .tracklist-dur {
+    color: var(--color-sage-wash);
     opacity: 1;
   }
 
@@ -231,7 +234,7 @@
     z-index: 30;
     background: color-mix(in srgb, var(--color-paper) 90%, transparent);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--color-mortar);
+    border-bottom: 1px solid var(--color-line);
   }
   .site-header-inner {
     display: flex;
@@ -244,12 +247,14 @@
     margin-inline: auto;
     padding-inline: clamp(1.1rem, 4vw, 3rem);
   }
+  /* The header carries the sleeve's own lettering at reading size. */
   .brand {
-    font-weight: 800;
-    font-variation-settings: "opsz" 96, "wdth" 100;
-    letter-spacing: -0.02em;
+    font-weight: 400;
+    font-variation-settings: "opsz" 40, "wdth" 100;
+    letter-spacing: 0.16em;
+    text-indent: 0.16em;
     text-transform: uppercase;
-    font-size: 1.2rem;
+    font-size: 1.05rem;
     text-decoration: none;
     color: var(--color-ink);
   }
@@ -267,11 +272,11 @@
     transition: border-color 160ms;
   }
   .site-nav a:not(.sticker):hover {
-    border-bottom-color: var(--color-brick);
+    border-bottom-color: var(--color-clay);
   }
 
   .site-footer {
-    border-top: 1px solid var(--color-mortar);
+    border-top: 1px solid var(--color-line);
     padding-block: 2.5rem 3rem;
     color: var(--color-ink-soft);
   }
@@ -310,41 +315,75 @@
     margin-inline: auto;
     padding-inline: clamp(1.1rem, 4vw, 3rem);
   }
+  /*
+    The wordmark is set the way the sleeve sets it, in thin widely spaced caps,
+    and filled with the wash lifted from the painting itself. The paint soaks in
+    once on load and then the page holds still.
+  */
   .wordmark-stage {
     position: relative;
     container-type: inline-size;
-    aspect-ratio: 85 / 18;
-    margin-block: 1.5rem 1.75rem;
+    margin-block: 2.5rem 2rem;
   }
   .wordmark {
-    position: absolute;
-    inset: 0;
     margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14.3cqw;
-    font-weight: 800;
+    font-size: 11.1cqw;
+    font-weight: 300;
     font-variation-settings: "opsz" 96, "wdth" 100;
-    line-height: 0.86;
-    letter-spacing: -0.02em;
+    line-height: 1;
+    letter-spacing: 0.135em;
+    text-indent: 0.135em;
     text-transform: uppercase;
-    color: var(--color-brick);
-    transition: opacity 900ms var(--ease-out-expo);
     text-wrap: nowrap;
+    color: var(--color-clay-deep);
+    background-image: url("/images/wash-wordmark.webp");
+    background-size: 100% 100%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
   }
-  [data-canvas="ready"] .wordmark {
-    opacity: 0;
+  @supports ((background-clip: text) or (-webkit-background-clip: text)) {
+    .wordmark {
+      color: transparent;
+    }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .wordmark {
+      animation: soak-in 2200ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+    }
+  }
+  @keyframes soak-in {
+    from {
+      opacity: 0.4;
+      background-size: 155% 280%;
+      filter: saturate(0.25) contrast(0.8);
+    }
+    to {
+      opacity: 1;
+      background-size: 100% 100%;
+      filter: saturate(1) contrast(1);
+    }
+  }
+  @media (forced-colors: active) {
+    .wordmark {
+      color: CanvasText;
+      background: none;
+      animation: none;
+    }
   }
   @media (max-width: 640px) {
     .wordmark-stage {
-      aspect-ratio: 28 / 23;
-      margin-block: 1rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-block: 1.75rem 1.5rem;
     }
     .wordmark {
-      font-size: 41cqw;
-      line-height: 0.92;
-      text-align: center;
+      font-size: 24cqw;
+      line-height: 1.14;
+      letter-spacing: 0.1em;
+      text-indent: 0.1em;
     }
     .wordmark-part {
       display: block;
@@ -353,9 +392,9 @@
   .hype {
     position: absolute;
     right: -0.25rem;
-    top: -1.5rem;
+    top: -2.25rem;
     z-index: 2;
-    width: clamp(7.5rem, 11vw, 10rem);
+    width: clamp(6.75rem, 9vw, 8.5rem);
     aspect-ratio: 1;
     border-radius: 999px;
     background: var(--color-ink);
@@ -393,8 +432,9 @@
   }
   @media (max-width: 640px) {
     .hype {
-      top: -0.75rem;
-      right: -0.25rem;
+      position: static;
+      align-self: flex-end;
+      margin-top: 0.75rem;
       width: 7rem;
     }
   }
@@ -470,7 +510,7 @@
     grid-template-columns: 5.5rem 1fr;
     gap: 0.75rem 1.25rem;
     padding-block: 1.4rem;
-    border-bottom: 1px solid var(--color-mortar);
+    border-bottom: 1px solid var(--color-line);
     align-items: start;
   }
   @media (min-width: 900px) {
@@ -482,7 +522,7 @@
   .show-row-cancelled .show-venue,
   .show-row-cancelled .show-day {
     text-decoration: line-through;
-    text-decoration-color: var(--color-brick);
+    text-decoration-color: var(--color-clay);
   }
   .show-date {
     display: flex;
@@ -515,7 +555,7 @@
   .show-status {
     font-size: var(--text-caption);
     font-weight: 700;
-    color: var(--color-brick);
+    color: var(--color-clay);
     text-transform: uppercase;
     letter-spacing: 0.04em;
   }
@@ -633,7 +673,7 @@
     height: 4.25rem;
     transform: translate(-50%, -50%);
     border-radius: 999px;
-    background: var(--color-brick);
+    background: var(--color-clay);
     color: var(--color-paper);
     display: grid;
     place-items: center;
@@ -649,11 +689,11 @@
     right: 1rem;
     bottom: 0.9rem;
     font-weight: 700;
-    text-shadow: 0 1px 12px rgb(0 0 0 / 0.55);
+    text-shadow: 0 1px 12px color-mix(in srgb, var(--color-ink-deep) 65%, transparent);
   }
   .bandcamp-facade {
     background: var(--color-paper);
-    border: 1px solid var(--color-mortar);
+    border: 1px solid var(--color-line);
   }
   .bandcamp-placeholder {
     display: flex;
@@ -661,55 +701,6 @@
     align-items: flex-start;
     gap: 0.9rem;
     padding: 1.5rem;
-  }
-
-  /* ---------- FWN roundel ---------- */
-  .roundel {
-    position: relative;
-    width: min(100%, 22rem);
-    aspect-ratio: 1;
-    margin-inline: auto;
-    border-radius: 999px;
-    background: var(--color-ink);
-    color: var(--color-paper);
-    box-shadow: var(--shadow-sleeve);
-  }
-  .roundel-ring {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    animation: roundel-spin 40s linear infinite;
-  }
-  .roundel-text {
-    fill: currentColor;
-    font-size: 13.5px;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    font-family: var(--font-sans);
-  }
-  .roundel-center {
-    position: absolute;
-    inset: 22%;
-    border-radius: 999px;
-    background: var(--color-paper);
-    display: grid;
-    place-items: center;
-    overflow: hidden;
-  }
-  .roundel-logo {
-    width: 84%;
-    height: auto;
-  }
-  @keyframes roundel-spin {
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .roundel-ring {
-      animation: none;
-    }
   }
 
   /* ---------- contact ---------- */
@@ -726,7 +717,7 @@
     text-decoration: none;
   }
   .contact-email:hover {
-    color: var(--color-brick);
+    color: var(--color-clay);
   }
   .sticker-sheet {
     display: flex;
@@ -739,7 +730,7 @@
 @layer components {
   .lyric-sheet {
     max-width: 44rem;
-    border-top: 1px solid var(--color-mortar);
+    border-top: 1px solid var(--color-line);
   }
   .lyric-track summary,
   .lyric-track-static {
@@ -748,7 +739,7 @@
     gap: 0.75rem;
     align-items: baseline;
     padding-block: 0.9rem;
-    border-bottom: 1px solid var(--color-mortar);
+    border-bottom: 1px solid var(--color-line);
     font-weight: 600;
     font-size: 1.05rem;
   }
@@ -760,7 +751,7 @@
     display: none;
   }
   .lyric-track summary:hover .lyric-title {
-    color: var(--color-brick);
+    color: var(--color-clay);
   }
   .lyric-track summary::after {
     content: "+";
@@ -775,7 +766,7 @@
   }
   .lyric-body {
     padding: 1.25rem 0 1.75rem 2.75rem;
-    border-bottom: 1px solid var(--color-mortar);
+    border-bottom: 1px solid var(--color-line);
     max-width: 62ch;
     font-variation-settings: "opsz" 16, "wdth" 100;
     color: var(--color-ink);
@@ -814,7 +805,7 @@
     padding-left: 1.4rem;
   }
   .legal a {
-    color: var(--color-brick);
+    color: var(--color-clay);
     font-weight: 600;
   }
   .legal-note {
@@ -824,8 +815,8 @@
   .legal-highlight {
     margin-top: 2rem;
     padding: 1.25rem 1.5rem;
-    background: var(--color-brick-wash);
-    border: 1px solid color-mix(in srgb, var(--color-brick) 30%, transparent);
+    background: var(--color-clay-wash);
+    border: 1px solid color-mix(in srgb, var(--color-clay) 30%, transparent);
   }
   .legal-highlight h2 {
     margin-top: 0;

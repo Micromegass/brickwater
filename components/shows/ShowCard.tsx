@@ -45,7 +45,7 @@ export function ShowCard({ show, locale, labels, past }: { show: Show; locale: L
       {!past ? (
         <div className="show-actions">
           {show.ticketUrl && !cancelled ? (
-            <a href={show.ticketUrl} className="sticker sticker-brick" rel="noopener">
+            <a href={show.ticketUrl} className="sticker sticker-clay" rel="noopener">
               <Ticket size={18} weight="bold" aria-hidden="true" />
               {labels.tickets}
             </a>

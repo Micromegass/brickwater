@@ -22,7 +22,7 @@ export async function ContactSection({ locale }: { locale: Locale }) {
             {site.email}
           </a>
           <div className="mt-6 flex flex-wrap gap-3">
-            <a href={`mailto:${site.email}`} className="sticker sticker-brick">
+            <a href={`mailto:${site.email}`} className="sticker sticker-clay">
               {t("contact.email")}
             </a>
             <CopyEmail email={site.email} label={t("contact.copy")} done={t("contact.copied")} />

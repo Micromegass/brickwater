@@ -27,10 +27,10 @@ export async function HomePage({ locale }: { locale: Locale }) {
       <JsonLd data={jsonLd} />
       <Hero locale={locale} />
       <BioSection locale={locale} />
-      <ShowsSection locale={locale} />
-      <MusicSection locale={locale} />
       <VideosSection locale={locale} />
+      <MusicSection locale={locale} />
       <FwnSection locale={locale} />
+      <ShowsSection locale={locale} />
       <ContactSection locale={locale} />
     </main>
   );

@@ -18,7 +18,7 @@ export default function GlobalNotFound() {
             <h1 className="mt-10 text-display font-extrabold">Seite nicht gefunden</h1>
             <p className="measure mt-5 text-h3 text-ink-soft">Diese Seite gibt es nicht oder nicht mehr.</p>
             <p className="mt-8">
-              <Link href="/" className="sticker sticker-brick">
+              <Link href="/" className="sticker sticker-clay">
                 Zur Startseite
               </Link>
             </p>

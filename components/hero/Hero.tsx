@@ -4,7 +4,6 @@ import { Link } from "@/i18n/navigation";
 import { loadReleases, loadShows } from "@/lib/content/load";
 import { berlinDateTime } from "@/lib/dates";
 import { splitShows } from "@/lib/shows";
-import { HeroClient } from "./HeroClient";
 
 export async function Hero({ locale }: { locale: Locale }) {
   const t = await getTranslations({ locale });
@@ -29,29 +28,28 @@ export async function Hero({ locale }: { locale: Locale }) {
     <Link href={{ pathname: "/music/[slug]", params: { slug: latest.slug } }} className="hype">
       <span className="hype-label">{t("music.latest")}</span>
       <span className="hype-value">{latest.title}</span>
-      <span className="hype-meta">{t(`music.types.${latest.type}`)}, {latest.year}</span>
+      <span className="hype-meta">
+        {t(`music.types.${latest.type}`)}, {latest.year}
+      </span>
     </Link>
   );
 
   return (
     <section className="hero" aria-labelledby="hero-title">
       <div className="hero-inner">
-        <div className="wordmark-stage" data-hero-stage>
+        <div className="wordmark-stage">
           <h1 id="hero-title" className="wordmark" aria-label="Brickwater">
             <span aria-hidden="true">
               <span className="wordmark-part">Brick</span>
               <span className="wordmark-part">water</span>
             </span>
           </h1>
-          <HeroClient />
           {sticker}
         </div>
         <div className="hero-copy">
-          <p className="hero-claim">
-            {t("site.tagline")}. {t("hero.claim")}
-          </p>
+          <p className="hero-claim">{t("site.tagline")}</p>
           <div className="hero-actions">
-            <Link href="/shows" className="sticker sticker-brick">
+            <Link href="/shows" className="sticker sticker-clay">
               {t("hero.ctaShows")}
             </Link>
             <Link href="/music" className="sticker sticker-paper">

@@ -24,7 +24,8 @@ const SOURCES = [
   ["20260908_143126.jpg", "brickwater-biergarten-guitar-02"],
   ["20260908_144549.jpg", "brickwater-bricky-waters-stage-portrait-01"],
   ["20260908_145018.jpg", "brickwater-bricky-waters-stage-portrait-02"],
-  ["signal-2026-08-03-08-09-41-001.jpg", "folks-worst-nightmare-bricky-waters-and-friend"],
+  ["fwn/cover-illustration.jpeg", "folks-worst-nightmare-illustration"],
+  ["fwn/collective-photo.jpg", "folks-worst-nightmare-collective"],
   ["folks-worst-nightmare-logo.png", "folks-worst-nightmare-logo"],
   ["fwn_logo-invert.jpg", "folks-worst-nightmare-logo-inverted"],
   ["InShot_20191205_123750774.jpg", "brickwater-live-red-light-2019", { trim: true }],
@@ -40,10 +41,7 @@ const SOURCES = [
   ["covers/jumping-just-to-fall.jpg", "brickwater-jumping-just-to-fall-single-cover"],
   ["video/ugmcmAWwCs8.jpg", "video-starving-poster"],
   ["video/fHqmfA3HigQ.jpg", "video-jumping-just-to-fall-poster"],
-  ["video/xkvlwDs2us8.jpg", "video-medicine-acoustic-poster"],
-  ["video/XdVo2prR4Iw.jpg", "video-lower-the-blinds-poster"],
-  ["video/mS8wLzoCRVE.jpg", "video-one-more-night-of-heavy-drinking-poster"],
-  ["video/MR0gtfG36Vc.jpg", "video-stuck-in-the-rocknroll-office-poster"],
+  ["video/kxn-1omoKU0.jpg", "video-loft-lo-fi-poster"],
 ];
 
 mkdirSync(OUT, { recursive: true });
@@ -96,8 +94,9 @@ for (const [rel, key, options = {}] of SOURCES) {
   };
 }
 
-// remove stale outputs
+// remove stale outputs, except the wash textures, which scripts/wash.mjs owns
 for (const f of readdirSync(OUT)) {
+  if (f.startsWith("wash-")) continue;
   if (f.endsWith(".webp") && !keep.has(f)) {
     unlinkSync(path.join(OUT, f));
     console.log(`removed stale ${f}`);

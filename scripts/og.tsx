@@ -3,6 +3,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { ImageResponse } from "next/og";
+import sharp from "sharp";
 import { loadReleases } from "../lib/content/load";
 
 const OUT = path.join(process.cwd(), "public/og");
@@ -29,35 +30,28 @@ interface Card {
   cover?: string;
 }
 
-function brickRow(offset: boolean, count: number) {
-  return (
-    <div style={{ display: "flex", gap: 6, marginLeft: offset ? 36 : 0 }}>
-      {Array.from({ length: count }, (_, i) => (
-        <div key={i} style={{ width: 66, height: 30, background: i % 7 === 3 ? "#8f3018" : "#c2472b", borderRadius: 4 }} />
-      ))}
-    </div>
-  );
-}
+// satori cannot decode webp, so the wash is handed over as png.
+let wash = "";
 
 async function render(card: Card) {
   const cover = card.cover && existsSync(card.cover) ? `data:image/jpeg;base64,${readFileSync(card.cover).toString("base64")}` : null;
   const response = new ImageResponse(
     (
-      <div style={{ width: "100%", height: "100%", display: "flex", background: "#fbfaf8", color: "#1f1d1b", fontFamily: "Bricolage", position: "relative", overflow: "hidden" }}>
-        <div style={{ position: "absolute", left: -40, bottom: -14, display: "flex", flexDirection: "column", gap: 6, opacity: 0.95 }}>
-          {brickRow(false, 20)}
-          {brickRow(true, 20)}
-          {brickRow(false, 20)}
+      <div style={{ width: "100%", height: "100%", display: "flex", background: "#f3f2f0", color: "#222222", fontFamily: "Bricolage", position: "relative", overflow: "hidden" }}>
+        <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: 96, display: "flex" }}>
+          {/* satori renders plain img elements; next/image has no meaning here */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={wash} width={1200} height={96} style={{ objectFit: "cover" }} alt="" />
         </div>
         <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "64px 72px 150px", width: cover ? 760 : 1200 }}>
-          <div style={{ display: "flex", fontSize: 44, fontWeight: 800, letterSpacing: -1, color: "#c2472b", textTransform: "uppercase" }}>Brickwater</div>
+          <div style={{ display: "flex", fontSize: 34, fontWeight: 400, letterSpacing: 6, color: "#8c422c", textTransform: "uppercase" }}>Brickwater</div>
           <div style={{ display: "flex", flexDirection: "column" }}>
             <div style={{ display: "flex", fontSize: card.title.length > 18 ? 84 : 112, fontWeight: 800, letterSpacing: -4, lineHeight: 0.95 }}>{card.title}</div>
-            <div style={{ display: "flex", marginTop: 26, fontSize: 36, fontWeight: 400, color: "#5c4a42", lineHeight: 1.2 }}>{card.subtitle}</div>
+            <div style={{ display: "flex", marginTop: 26, fontSize: 36, fontWeight: 400, color: "#5a534c", lineHeight: 1.2 }}>{card.subtitle}</div>
           </div>
         </div>
         {cover ? (
-          <div style={{ position: "absolute", right: 72, top: 64, width: 400, height: 400, display: "flex", boxShadow: "0 24px 60px rgba(31,29,27,0.35)" }}>
+          <div style={{ position: "absolute", right: 72, top: 64, width: 400, height: 400, display: "flex", boxShadow: "0 24px 60px rgba(34,34,34,0.35)" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={cover} alt="" width={400} height={400} style={{ objectFit: "cover" }} />
           </div>
@@ -91,6 +85,9 @@ for (const locale of ["de", "en"] as const) {
 }
 
 async function main() {
+  wash = `data:image/png;base64,${(
+    await sharp(path.join(process.cwd(), "public/images/wash-wordmark.webp")).png().toBuffer()
+  ).toString("base64")}`;
   let written = 0;
   for (const card of cards) {
     const file = path.join(OUT, `${card.key}-${card.locale}.png`);

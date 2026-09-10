@@ -19,12 +19,9 @@
     "homeLink": "Brickwater, back to the start page"
   },
   "hero": {
-    "eyebrow": "Solo or with Folk's Worst Nightmare",
-    "claim": "Songs with depth and levity.",
     "ctaShows": "Shows",
     "ctaListen": "Listen",
-    "nextShow": "Next show",
-    "wordmarkHint": "Move your pointer across the bricks"
+    "nextShow": "Next show"
   },
   "about": {
     "heading": "Good to have you here",

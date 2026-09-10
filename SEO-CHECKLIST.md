@@ -12,7 +12,7 @@ Stand 10.09.2026. Abgehakt, was im Build verifiziert ist (Unit-/E2E-Tests, Light
 - [x] Bilder als WebP in vier Breiten mit `srcset`, `sizes`, Blur-Platzhalter, Lazy Loading; Hero-Text als LCP-Element
 - [x] Schriften selbst gehostet, `font-display: swap`, Preload durch next/font
 - [x] Keine Cookies, kein Consent-Banner (Zwei-Klick-Einbettungen)
-- [x] Lighthouse CI: SEO 100, Accessibility ≥ 95 (Fehler), Performance ≥ 90 (Warnung) auf `/`, `/konzerte/`, `/musik/season-one/`, `/en/`
+- [x] Lighthouse CI auf `/`, `/konzerte/`, `/musik/season-one/`, `/en/`: SEO 100, Accessibility 100, Best Practices 100, Performance 98-100, TBT 0 ms (die Seite lädt kein JavaScript für Animationen)
 
 ## On-Page
 - [x] Eindeutige Titel und Beschreibungen je Seite und Sprache (`messages/*.json` → `meta`)
@@ -30,7 +30,7 @@ Stand 10.09.2026. Abgehakt, was im Build verifiziert ist (Unit-/E2E-Tests, Light
 - [ ] Nach Go-live: Rich-Results-Test auf der Live-URL
 
 ## Social / GEO
-- [x] Open-Graph-Bilder pro Seite und Sprache (`public/og/*.png`, 1200×630), `og:locale` + `og:locale:alternate`, Twitter Card
+- [x] Open-Graph-Bilder pro Seite und Sprache (`public/og/*.png`, 1200×630, neu gerendert mit der Aquarell-Lasur), `og:locale` + `og:locale:alternate`, Twitter Card
 - [x] `llms.txt` mit Kernfakten und Links
 - [x] Klare, zitierfähige Absätze (Bio, Release-Beschreibungen) statt Marketing-Floskeln
 

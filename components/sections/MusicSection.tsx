@@ -18,12 +18,12 @@ export async function MusicSection({ locale }: { locale: Locale }) {
     youtube: t("services.youtube"),
   };
   return (
-    <section className="section section-water" id="musik" aria-labelledby="music-title">
+    <section className="section section-sage" id="musik" aria-labelledby="music-title">
       <div className="container">
         <h2 id="music-title" className="text-h2 font-extrabold">
           {t("heading")}
         </h2>
-        <p className="measure mt-4 text-water-wash">{t("intro")}</p>
+        <p className="measure mt-4 text-sage-wash">{t("intro")}</p>
 
         <article className="mt-12 grid gap-8 md:grid-cols-12 md:gap-12">
           <div className="md:col-span-5">
@@ -37,7 +37,7 @@ export async function MusicSection({ locale }: { locale: Locale }) {
                 {latest.title}
               </Link>
             </h3>
-            <p className="mt-3 text-water-wash">
+            <p className="mt-3 text-sage-wash">
               {t("latest")}: {t(`types.${latest.type}`)}, {latest.year}. {t("tracks", { count: latest.tracks.length })}.
             </p>
             <ol className="tracklist mt-6" aria-label={t("tracklist")}>
@@ -61,7 +61,7 @@ export async function MusicSection({ locale }: { locale: Locale }) {
               <Link href={{ pathname: "/music/[slug]", params: { slug: release.slug } }} className="release-tile">
                 <Photo id={release.cover} locale={locale} sizes="(min-width: 768px) 22vw, 45vw" className="sleeve-cover" />
                 <span className="mt-3 block font-semibold leading-tight">{release.title}</span>
-                <span className="block text-caption text-water-wash">
+                <span className="block text-caption text-sage-wash">
                   {t(`types.${release.type}`)}, {release.year}
                 </span>
               </Link>

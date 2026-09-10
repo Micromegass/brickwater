@@ -67,7 +67,7 @@ export async function MusicPage({ locale }: { locale: Locale }) {
           <h2 className="text-h2 font-extrabold">{t("music.appearsOn")}</h2>
           <ul className="mt-8 max-w-3xl">
             {site.appearsOn.map((item) => (
-              <li key={item.url} className="grid gap-1 border-b border-mortar py-4 sm:grid-cols-[4rem_1fr] sm:gap-6">
+              <li key={item.url} className="grid gap-1 border-b border-line py-4 sm:grid-cols-[4rem_1fr] sm:gap-6">
                 <span className="text-ink-soft tabular-nums">{item.year}</span>
                 <span>
                   <a href={item.url} className="font-semibold underline" rel="noopener">
