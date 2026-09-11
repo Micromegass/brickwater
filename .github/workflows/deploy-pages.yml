@@ -1,12 +1,16 @@
 name: Deploy to GitHub Pages
 
+# The Pages site is served from the `gh-pages` branch, which is what enabling it
+# by pushing that branch gives you. So this builds the site and force-pushes the
+# output there; `gh-pages` is output, never source.
+#
 # A project page serves under /<repo>/, so the build is told where it lives and
 # every URL it emits is prefixed. It is also marked noindex: this is a preview,
 # and it must never compete with brickwater.de in search.
 #
-# One manual step before the first run: Settings -> Pages -> Build and
-# deployment -> Source: GitHub Actions. The configure step below tries to set
-# that itself, and is allowed to fail if the account does not permit it.
+# The write token and the dependency install are deliberately in different jobs.
+# `build` runs npm and has read-only contents; `publish` holds the token that can
+# write to the repository and runs nothing from node_modules.
 
 on:
   push:
@@ -23,8 +27,6 @@ jobs:
     timeout-minutes: 20
     permissions:
       contents: read
-      pages: write
-      id-token: write
     steps:
       - uses: actions/checkout@v4
 
@@ -60,24 +62,34 @@ jobs:
           NEXT_PUBLIC_SITE_URL: ${{ steps.where.outputs.site_url }}
           NEXT_PUBLIC_NOINDEX: "1"
 
-      - uses: actions/configure-pages@v5
-        continue-on-error: true
+      - uses: actions/upload-artifact@v4
         with:
-          enablement: true
-
-      - uses: actions/upload-pages-artifact@v3
-        with:
+          name: site
           path: out
+          include-hidden-files: true
+          retention-days: 1
 
-  deploy:
+  publish:
     needs: build
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      contents: write
     steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: site
+
+      - name: Force-push the build onto gh-pages
+        working-directory: site
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          test -f index.html || { echo "no index.html in the artifact"; exit 1; }
+          git init -q
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Built site for ${GITHUB_SHA}"
+          git push -q --force "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:gh-pages
