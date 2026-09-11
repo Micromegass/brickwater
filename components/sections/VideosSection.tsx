@@ -13,6 +13,13 @@ export async function VideosSection({ locale }: { locale: Locale }) {
     <section className="section" id="videos" aria-labelledby="videos-title">
       <Stain shape="ink" drift="b" className="right-0 bottom-0 h-[22rem] w-[28rem]" opacity={0.16} />
       <Stain shape="clay" drift="c" className="left-0 top-0 h-[20rem] w-[24rem]" opacity={0.16} />
+      <Stain
+        shape="sage"
+        drift="a"
+        phase={-7}
+        className="right-1/4 -bottom-10 h-[18rem] w-[24rem]"
+        opacity={0.14}
+      />
       <div className="container">
         <h2 id="videos-title" className="text-h2 font-semibold reveal">
           {t("videos.heading")}

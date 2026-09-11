@@ -15,6 +15,9 @@ interface Props {
   /** Any colour token or a release's own pigment. Defaults to the shape's pigment. */
   color?: string;
   opacity?: number;
+  /** Seconds to offset this mark inside its lane, so two marks sharing a lane
+   *  do not travel as one body. Negative advances it. */
+  phase?: number;
 }
 
 const DEFAULT_COLOR: Record<StainShape, string> = {
@@ -28,10 +31,11 @@ const DEFAULT_COLOR: Record<StainShape, string> = {
  * A mancha: paint lifted off the record sleeve with the paper dissolved away.
  * The file carries only the shape, so the colour stays a token and a release
  * page can stain itself in its own record's pigment. Decorative throughout.
- * Each mark travels one of three slow wave paths, and stands still for anyone
- * who asks for reduced motion.
+ * Each mark travels one of three closed paths while its density breathes on a
+ * different period, so overlapping marks read as smoke rather than as shapes
+ * sliding. Everything stands still for anyone who asks for reduced motion.
  */
-export function Stain({ shape, className, color, opacity, ghost, drift = "a" }: Props) {
+export function Stain({ shape, className, color, opacity, ghost, phase, drift = "a" }: Props) {
   return (
     <span
       aria-hidden="true"
@@ -41,6 +45,7 @@ export function Stain({ shape, className, color, opacity, ghost, drift = "a" }: 
           "--stain-shape": `url(/images/stain-${shape}.webp)`,
           "--stain-color": color ?? DEFAULT_COLOR[shape],
           ...(opacity === undefined ? {} : { "--stain-opacity": String(opacity) }),
+          ...(phase === undefined ? {} : { "--stain-phase": `${phase}s` }),
         } as CSSProperties
       }
     />

@@ -45,6 +45,21 @@ export async function Hero({ locale }: { locale: Locale }) {
         className="-bottom-10 left-0 h-[26rem] w-[30rem] -scale-x-100 sm:h-[32rem] sm:w-[38rem]"
         opacity={0.3}
       />
+      <Stain
+        shape="sage"
+        drift="c"
+        phase={-9}
+        className="-right-10 bottom-0 h-[22rem] w-[28rem] sm:h-[28rem] sm:w-[34rem]"
+        opacity={0.2}
+      />
+      <Stain
+        shape="ink"
+        drift="a"
+        phase={-15}
+        color="var(--color-clay)"
+        className="left-1/4 -top-16 h-[20rem] w-[26rem] sm:h-[26rem] sm:w-[34rem]"
+        opacity={0.14}
+      />
       <div className="hero-inner">
         <div className="wordmark-stage">
           <h1 id="hero-title" className="wordmark" aria-label="Brickwater">
@@ -110,14 +125,15 @@ export async function Hero({ locale }: { locale: Locale }) {
               />
             ) : null}
           </div>
-          <figure className="hero-photo">
+          <figure className="hero-photo sleeve-print">
             <Photo
               id="brickwater-harmonica-live-2020"
               locale={locale}
-              sizes="(min-width: 768px) 50vw, 100vw"
-              className="sleeve-photo"
+              sizes="(min-width: 768px) 46vw, 100vw"
+              className="sleeve-print-img"
               priority
             />
+            <span className="sleeve-print-plate" aria-hidden="true" />
           </figure>
         </div>
       </div>

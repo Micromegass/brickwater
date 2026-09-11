@@ -23,6 +23,14 @@ export async function BioSection({ locale }: { locale: Locale }) {
     <section className="section" aria-labelledby="bio-title">
       <Stain shape="sage" drift="c" className="left-0 top-8 h-[28rem] w-[24rem]" opacity={0.3} />
       <Stain shape="clay" drift="a" className="right-0 bottom-0 h-[24rem] w-[28rem]" opacity={0.18} />
+      <Stain
+        shape="ink"
+        drift="b"
+        phase={-17}
+        color="var(--color-clay)"
+        className="-right-12 top-0 h-[22rem] w-[28rem]"
+        opacity={0.14}
+      />
       <div className="container">
         <div className="max-w-[46rem] reveal">
           <h2 id="bio-title" className="text-h2 font-semibold">

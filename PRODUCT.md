@@ -8,7 +8,7 @@ web
 
 ## Stack
 
-Next.js 16 (App Router, `output: 'export'`, fully static), React 19.2, Tailwind CSS 4, next-intl for German/English, React Three Fiber for the hero, deployed to Cloudflare Pages from GitHub. Chosen by the user (Axel Braunschweiger, building for the artist) from three offered options on 2026-09-10.
+Next.js 16 (App Router, `output: 'export'`, fully static), React 19.2, Tailwind CSS 4, next-intl for German/English, no animation library and no WebGL, deployed to Cloudflare Pages from GitHub. Chosen by the user (Axel Braunschweiger, building for the artist) from three offered options on 2026-09-10.
 
 ## Users
 
@@ -38,7 +38,7 @@ Brickwater is one person with a guitar case and a harmonica, playing "irgendwo i
 
 - Static site, no backend, no forms, no accounts. Contact is a mailto link.
 - Two languages with mirrored, localized URLs (German at the root, English under /en).
-- One authored motion moment in the hero (a 3D brick wordmark that assembles and ripples); everything else is quiet. Reduced motion and no-WebGL clients get a static poster.
+- Motion is the painted background, which moves continuously, plus the wordmark's wash soaking in once on load and a transform-only rise as content enters the viewport. Everything stops under reduced motion.
 - Performance budget: Lighthouse performance 95+, SEO 100, accessibility 95+ on every page.
 - Undecided: whether a USt-IdNr. exists for the Impressum (marked for the client); no upcoming shows were supplied at launch, so the show list ships with an honest empty state.
 
@@ -46,7 +46,7 @@ Brickwater is one person with a guitar case and a harmonica, playing "irgendwo i
 
 - Name: Brickwater. Frontperson: Bricky Waters. Collective: Folk's Worst Nightmare (FWN), with its woodcut guitar-in-flames logo.
 - Voice: warm, self-ironic, direct, mixing German and English in one breath ("Thanks for stopping by. Soundmäßig wie immer 'brickwaterish'"). The pharma metaphor is the artist's own and stays.
-- Hero direction pinned by the user: "Bricks & Water", the wordmark built from 3D bricks that ripple like water.
+- Hero direction: the client rejected the "Bricks & Water" 3D wordmark in round 2 as too much for a singer-songwriter. The hero is now the wordmark filled with a wash lifted from the Season One sleeve, over painted marks that move like smoke.
 - Photography: the September 2026 outdoor and stage shoot is the primary imagery; two black-and-white full-band live photos (Arne Marenda Fotografie, Barham Ismail) represent the band era and must carry their credits.
 - The old photo-filled wordmark logo is retired; Facebook is no longer linked.
 
@@ -68,4 +68,4 @@ Brickwater is one person with a guitar case and a harmonica, playing "irgendwo i
 
 ## Accessibility & Inclusion
 
-WCAG 2.2 AA (European Accessibility Act context): keyboard-operable everything, visible focus, 4.5:1 body contrast, reduced-motion respected including the 3D hero, correct `lang` per page, real alt texts in both languages.
+WCAG 2.2 AA (European Accessibility Act context): keyboard-operable everything, visible focus, 4.5:1 body contrast, reduced-motion respected, correct `lang` per page, real alt texts in both languages.

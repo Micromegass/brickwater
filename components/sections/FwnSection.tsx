@@ -19,6 +19,13 @@ export async function FwnSection({ locale }: { locale: Locale }) {
       />
       <Stain shape="ink" drift="a" className="left-0 top-0 h-[26rem] w-[30rem]" opacity={0.17} />
       <Stain shape="sage" drift="b" className="right-0 bottom-0 h-[22rem] w-[24rem]" opacity={0.2} />
+      <Stain
+        shape="clay"
+        drift="c"
+        phase={-11}
+        className="right-1/3 -top-12 h-[20rem] w-[26rem]"
+        opacity={0.15}
+      />
       <div className="container">
         <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
           <figure className="lg:col-span-5 reveal">

@@ -30,6 +30,14 @@ export async function MusicSection({ locale }: { locale: Locale }) {
       />
       <Stain shape="sage" drift="a" className="right-0 top-0 h-[28rem] w-[26rem]" opacity={0.34} />
       <Stain shape="clay" drift="c" className="left-0 bottom-0 h-[24rem] w-[30rem]" opacity={0.22} />
+      <Stain
+        shape="ink"
+        drift="b"
+        phase={-13}
+        color="var(--color-sage-paint)"
+        className="right-1/4 bottom-0 h-[20rem] w-[26rem]"
+        opacity={0.16}
+      />
       <div className="container">
         <h2 id="music-title" className="text-h2 font-semibold reveal">
           {t("heading")}

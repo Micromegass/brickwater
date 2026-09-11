@@ -28,6 +28,10 @@
   /* The painting's green at brush strength: the soaked grounds are too pale to
      read as green once a mark is spread thin across a section. */
   --color-sage-paint: #6b8159;
+  /* The clay pigment at printing-ink density and at paper lightness: the two
+     ends of the duotone a photograph is printed in. */
+  --color-print-ink: #301b15;
+  --color-print-paper: #f4efed;
 
   --font-sans: var(--font-bricolage), "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
 
@@ -50,6 +54,9 @@
   /* Printed things carry a soft edge; stickers stay pills, grounds stay square. */
   --radius-print: 14px;
   --radius-print-lg: 18px;
+  /* The image inside a mounted print: concentric with the mount's 18px corner
+     across a 0.7rem margin. */
+  --radius-print-inner: 8px;
 
   --shadow-sticker: 0 1px 2px rgb(34 34 34 / 0.09), 0 6px 18px -12px rgb(34 34 34 / 0.28);
   --shadow-sleeve: 0 1px 3px rgb(34 34 34 / 0.06), 0 14px 34px -22px rgb(34 34 34 / 0.35);
@@ -338,78 +345,121 @@
     quickly. Transform and opacity only, so no frame costs a layout.
   */
   @media (prefers-reduced-motion: no-preference) {
+    /*
+      Two animations per mark on incommensurate periods: a path it travels, and
+      a density that breathes. They never line up, so the ground never repeats.
+      `--stain-phase` offsets a mark inside its lane so two marks sharing a lane
+      do not move as one body.
+    */
     .stain-drift-a {
-      animation: wash-a 38s linear infinite;
+      animation: wash-a 22s linear infinite, breathe-a 17s ease-in-out infinite alternate;
+      animation-delay: var(--stain-phase, 0s);
     }
     .stain-drift-b {
-      animation: wash-b 52s linear infinite;
+      animation: wash-b 30s linear infinite, breathe-b 19s ease-in-out infinite alternate;
+      animation-delay: var(--stain-phase, 0s);
     }
     .stain-drift-c {
-      animation: wash-c 44s linear infinite;
+      animation: wash-c 26s linear infinite, breathe-c 23s ease-in-out infinite alternate;
+      animation-delay: var(--stain-phase, 0s);
     }
     /* A ghost gathers out of the haze and comes apart again. */
     .stain-ghost {
       opacity: 0;
       animation: ghost-gather 34s linear infinite;
-      animation-delay: -6s;
+      animation-delay: var(--stain-phase, -6s);
     }
   }
   /*
-    Closed loops, not alternations, and linear timing. An eased alternation
-    stalls at both ends and spends most of a long cycle almost still, which is
-    what made the earlier 96-138s paths read as a static picture. These paths
-    return to where they started, so they can run continuously at a speed you
-    can actually see: roughly fifteen pixels a second on a large mark.
+    Smoke, not sliding shapes. Three things make the difference and all three are
+    compositor work: the paths are closed loops on linear timing, so nothing
+    stalls at an end; the scale is non-uniform, so a mark stretches one way while
+    it compresses the other and its silhouette actually changes; and the marks
+    overlap, so what you read is the moving overlap rather than any one shape.
   */
   @keyframes wash-a {
     0% {
-      transform: translate3d(0, 0, 0) scale(1.02) rotate(0deg);
+      transform: translate3d(0, 0, 0) scale3d(1.02, 1, 1) rotate(0deg);
     }
-    25% {
-      transform: translate3d(5%, -3.5%, 0) scale(1.08) rotate(1.3deg);
+    20% {
+      transform: translate3d(6%, -4.5%, 0) scale3d(1.16, 1.04, 1) rotate(1.8deg);
     }
-    50% {
-      transform: translate3d(2.5%, 4.5%, 0) scale(1.04) rotate(-0.7deg);
+    40% {
+      transform: translate3d(3%, 5.5%, 0) scale3d(1, 1.18, 1) rotate(-1.4deg);
     }
-    75% {
-      transform: translate3d(-4.5%, 1.5%, 0) scale(1.09) rotate(1.6deg);
+    60% {
+      transform: translate3d(-5.5%, 3.5%, 0) scale3d(1.13, 1.02, 1) rotate(2.4deg);
+    }
+    80% {
+      transform: translate3d(-2.5%, -5%, 0) scale3d(1.04, 1.14, 1) rotate(-2deg);
     }
     100% {
-      transform: translate3d(0, 0, 0) scale(1.02) rotate(0deg);
+      transform: translate3d(0, 0, 0) scale3d(1.02, 1, 1) rotate(0deg);
     }
   }
   @keyframes wash-b {
     0% {
-      transform: translate3d(0, 0, 0) scale(1.06) rotate(0.6deg);
+      transform: translate3d(0, 0, 0) scale3d(1.06, 1.02, 1) rotate(0.7deg);
     }
-    25% {
-      transform: translate3d(-5.5%, 3%, 0) scale(1) rotate(-1.4deg);
+    20% {
+      transform: translate3d(-6.5%, 4%, 0) scale3d(1, 1.15, 1) rotate(-2.2deg);
     }
-    50% {
-      transform: translate3d(-1.5%, -5%, 0) scale(1.07) rotate(0.9deg);
+    40% {
+      transform: translate3d(-3%, -6%, 0) scale3d(1.17, 1.03, 1) rotate(1.5deg);
     }
-    75% {
-      transform: translate3d(4.5%, -1%, 0) scale(1.02) rotate(-1.1deg);
+    60% {
+      transform: translate3d(5.5%, -2%, 0) scale3d(1.02, 1.16, 1) rotate(-1.6deg);
+    }
+    80% {
+      transform: translate3d(4%, 5%, 0) scale3d(1.12, 1.05, 1) rotate(2.3deg);
     }
     100% {
-      transform: translate3d(0, 0, 0) scale(1.06) rotate(0.6deg);
+      transform: translate3d(0, 0, 0) scale3d(1.06, 1.02, 1) rotate(0.7deg);
     }
   }
   @keyframes wash-c {
     0% {
-      transform: translate3d(0, 2.5%, 0) scale(1.03) rotate(-0.8deg);
+      transform: translate3d(0, 3%, 0) scale3d(1.03, 1.05, 1) rotate(-1deg);
     }
-    25% {
-      transform: translate3d(5%, -2%, 0) scale(1.1) rotate(1deg);
+    20% {
+      transform: translate3d(6%, -2.5%, 0) scale3d(1.18, 1, 1) rotate(1.4deg);
     }
-    50% {
-      transform: translate3d(-2%, -4.5%, 0) scale(1.05) rotate(-1.5deg);
+    40% {
+      transform: translate3d(-2.5%, -5.5%, 0) scale3d(1.02, 1.17, 1) rotate(-2.4deg);
     }
-    75% {
-      transform: translate3d(-4.5%, 2%, 0) scale(1.01) rotate(0.5deg);
+    60% {
+      transform: translate3d(-6%, 2.5%, 0) scale3d(1.14, 1.03, 1) rotate(1.9deg);
+    }
+    80% {
+      transform: translate3d(1.5%, 6%, 0) scale3d(1, 1.12, 1) rotate(-0.8deg);
     }
     100% {
-      transform: translate3d(0, 2.5%, 0) scale(1.03) rotate(-0.8deg);
+      transform: translate3d(0, 3%, 0) scale3d(1.03, 1.05, 1) rotate(-1deg);
+    }
+  }
+  /* Density: paint thins and gathers as it moves. */
+  @keyframes breathe-a {
+    from {
+      opacity: calc(var(--stain-opacity, 0.16) * 0.58);
+    }
+    to {
+      opacity: calc(var(--stain-opacity, 0.16) * 1.06);
+    }
+  }
+  @keyframes breathe-b {
+    from {
+      opacity: calc(var(--stain-opacity, 0.16) * 1.05);
+    }
+    to {
+      opacity: calc(var(--stain-opacity, 0.16) * 0.6);
+    }
+  }
+  @keyframes breathe-c {
+    from {
+      opacity: calc(var(--stain-opacity, 0.16) * 0.66);
+    }
+    to {
+      opacity: calc(var(--stain-opacity, 0.16) * 1.04);
     }
   }
   /*
@@ -420,7 +470,7 @@
     0%,
     100% {
       opacity: 0;
-      transform: translate3d(-4%, 3%, 0) scale(1.18) rotate(-2.4deg);
+      transform: translate3d(-4%, 3%, 0) scale3d(1.2, 1.14, 1) rotate(-2.6deg);
     }
     14% {
       opacity: calc(var(--stain-opacity, 0.14) * 0.5);
@@ -430,7 +480,7 @@
       opacity: var(--stain-opacity, 0.14);
     }
     44% {
-      transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+      transform: translate3d(0, 0, 0) scale3d(1, 1, 1) rotate(0deg);
     }
     80% {
       opacity: calc(var(--stain-opacity, 0.14) * 0.3);
@@ -742,40 +792,51 @@
   .hero-photo {
     margin: 0;
   }
+  @media (min-width: 768px) {
+    .hero-photo {
+      width: 90%;
+      margin-left: auto;
+    }
+  }
+  /* The frame follows the photograph's own proportion; nothing is cropped twice. */
   .hero-photo img {
-    border-radius: var(--radius-print-lg);
-    aspect-ratio: 1;
-    object-fit: cover;
+    aspect-ratio: auto;
   }
   /*
     The one song the hero plays. A paper label with a clay disc, pressed once to
     bring Bandcamp in; the title stays put afterwards so the player still reads
     as part of the page rather than a pasted-in widget.
   */
+  /* The card is the object; the button is a control inside it. */
   .hero-player {
     width: min(26rem, 100%);
-  }
-  .hero-player-button,
-  .hero-player-card {
-    width: 100%;
-    padding: 0.75rem 1rem 0.75rem 0.75rem;
-    border: 0;
+    padding: 0.7rem 0.9rem 0.75rem;
     border-radius: var(--radius-print);
     background: var(--color-paper);
     box-shadow: inset 0 0 0 1px var(--color-line), var(--shadow-sticker);
     color: var(--color-ink);
-    text-align: left;
+    transition: box-shadow 220ms var(--ease-out-expo);
+  }
+  .hero-player:has(.hero-player-button:hover),
+  .hero-player:has(.hero-player-button:focus-visible) {
+    box-shadow: inset 0 0 0 1px var(--color-clay-wash), var(--shadow-sleeve-lift);
   }
   .hero-player-button {
     display: flex;
     align-items: center;
-    gap: 0.9rem;
+    gap: 0.85rem;
+    width: 100%;
+    padding: 0.15rem 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    text-align: left;
     cursor: pointer;
-    transition: transform 200ms var(--ease-out-expo), box-shadow 200ms var(--ease-out-expo);
   }
-  .hero-player-button:hover {
-    transform: translateY(-2px);
-    box-shadow: inset 0 0 0 1px var(--color-clay-wash), var(--shadow-sleeve-lift);
+  .hero-player-button:focus-visible {
+    outline: 3px solid var(--color-clay);
+    outline-offset: 4px;
+    border-radius: var(--radius-print);
   }
   .hero-player-disc {
     display: grid;
@@ -811,12 +872,15 @@
     display: block;
     width: 100%;
     height: 42px;
-    margin-top: 0.6rem;
+    margin-top: 0.55rem;
     border: 0;
   }
   .hero-player-hint {
-    margin-top: 0.5rem;
+    margin-top: 0.65rem;
+    padding-top: 0.55rem;
+    border-top: 1px solid var(--color-line);
     font-size: var(--text-caption);
+    line-height: 1.45;
     color: var(--color-ink-soft);
   }
 
@@ -851,6 +915,67 @@
     aspect-ratio: 1;
     object-fit: cover;
   }
+  /*
+    A photograph printed rather than pasted: the image is reduced to tone, then
+    a duotone is laid over it by setting the black point to the clay pigment at
+    ink density and capping the white point at the same pigment at paper
+    lightness. Two blend layers do the mapping, so it stays one asset and the
+    gallery keeps the document untouched. The mount around it is the paper the
+    print sits on.
+  */
+  .sleeve-print {
+    position: relative;
+    isolation: isolate;
+    padding: 0.7rem;
+    border-radius: var(--radius-print-lg);
+    background: var(--color-paper);
+    box-shadow: var(--shadow-sleeve);
+  }
+  .sleeve-print-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-print-inner);
+    background: var(--color-paper-deep);
+    filter: grayscale(1) contrast(1.07);
+  }
+  /* The plate line: where the printing plate met the paper. */
+  .sleeve-print-plate {
+    position: absolute;
+    inset: 0.7rem;
+    border-radius: var(--radius-print-inner);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-print-ink) 22%, transparent);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .sleeve-print::before,
+  .sleeve-print::after {
+    content: "";
+    position: absolute;
+    inset: 0.7rem;
+    border-radius: var(--radius-print-inner);
+    pointer-events: none;
+  }
+  /* Raises the black point into warm ink. */
+  .sleeve-print::before {
+    background: var(--color-print-ink);
+    mix-blend-mode: lighten;
+  }
+  /* Caps the white point at the paper the sleeve is printed on. */
+  .sleeve-print::after {
+    background: var(--color-print-paper);
+    mix-blend-mode: darken;
+  }
+  @media (forced-colors: active) {
+    .sleeve-print-img {
+      filter: none;
+    }
+    .sleeve-print::before,
+    .sleeve-print::after {
+      display: none;
+    }
+  }
+
   .sleeve-photo-lg {
     border-radius: var(--radius-print-lg);
   }

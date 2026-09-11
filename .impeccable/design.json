@@ -14,7 +14,7 @@
     "posterHover": "transform 500ms ease-out-expo, scale 1.03",
     "reducedMotion": "the wordmark renders finished with no animation; smooth scrolling off",
     "webgl": "none; the site ships no canvas and no animation library",
-    "backgroundWaves": "three closed paths (38s, 52s, 44s) on linear infinite, about 5% travel with 1-2deg of rotation, transform only, none under reduced motion; closed loops rather than eased alternations, which stall at both ends and read as a still picture",
+    "backgroundWaves": "per mark two animations on periods that never line up: a closed path (22s/30s/26s, linear infinite) with non-uniform scale so the silhouette changes rather than slides, and a density that breathes (17s/19s/23s, ease-in-out alternate); --stain-phase offsets marks sharing a lane; four to five overlapping marks per section, because the moving overlap is what reads as smoke. None under reduced motion.",
     "printHover": "translateY(-3px) with a deeper sleeve shadow, 320ms ease-out-expo",
     "lyricsPanel": "sheet-in 260ms ease-out-expo on open; native dialog handles focus, Escape and return",
     "wolvesGhost": "ghost-gather 34s linear infinite, opacity 0 to the mark's resting strength (0.14-0.16) and back while it drifts; three on the site (hero, music, collective), none under reduced motion",
@@ -68,7 +68,8 @@
     "print": "14px",
     "printLg": "18px",
     "sticker": "999px",
-    "grounds": "0"
+    "grounds": "0",
+    "printInner": "8px"
   },
   "gallery": {
     "layout": "CSS column flow: one column, two from 40rem, three from 64rem, break-inside avoid, no cropping",
@@ -91,5 +92,15 @@
     "source": "content/site.json heroTrack, checked at build against that release's tracklist",
     "embed": "Bandcamp EmbeddedPlayer track=<id> size=small, bgcol paper, linkcol clay, loaded only on click",
     "frame": "paper card with a hairline and the sticker shadow; a 2.6rem clay disc; the title and frame stay after loading"
+  },
+  "print": {
+    "duotone": "grayscale(1) contrast(1.07), then a lighten layer of --color-print-ink to set the black point and a darken layer of --color-print-paper to cap the white point",
+    "tokens": {
+      "ink": "#301b15",
+      "paper": "#f4efed"
+    },
+    "origin": "the clay pigment (#a8563c) at printing-ink density and at paper lightness; the palette stays closed",
+    "mount": "0.7rem of paper, --radius-print-lg outside and --radius-print-inner inside, the sleeve shadow, and a plate line at 22% of the ink",
+    "forcedColors": "filter and both blend layers are dropped"
   }
 }

@@ -30,7 +30,9 @@ const SOURCES = [
   ["fwn_logo-invert.jpg", "folks-worst-nightmare-logo-inverted"],
   ["InShot_20191205_123750774.jpg", "brickwater-live-red-light-2019", { trim: true }],
   ["InShot_20191224_143117271.jpg", "bricky-waters-portrait-bw-2019", { trim: true }],
-  ["InShot_20200221_131538509.jpg", "brickwater-harmonica-live-2020"],
+  // The top of this frame is a blue LED strip that reads as a foreign colour in
+  // an otherwise near-monochrome photograph; it comes off here, once, for every use.
+  ["InShot_20200221_131538509.jpg", "brickwater-harmonica-live-2020", { cropTop: 0.085 }],
   ["InShot_20200305_172149317.jpg", "bricky-waters-cat-mural-2020"],
   ["InShot_20210512_084810614.jpg", "brickwater-live-brick-wall-2021", { trim: true }],
   ["old-site/slider3.jpg", "brickwater-band-live-stage-lights-bw"],
@@ -61,6 +63,13 @@ for (const [rel, key, options = {}] of SOURCES) {
 
   let base = sharp(buffer, { failOn: "none" }).rotate();
   if (options.trim) base = base.trim({ threshold: 40 });
+  // cropTop: take a fraction off the top of the frame, for a source whose upper
+  // band carries something that does not belong in the picture.
+  if (options.cropTop) {
+    const source = await base.clone().metadata();
+    const cut = Math.round(source.height * options.cropTop);
+    base = base.extract({ left: 0, top: cut, width: source.width, height: source.height - cut });
+  }
   const meta = await base.clone().toBuffer({ resolveWithObject: true });
   const { width, height } = meta.info;
   const widths = WIDTHS.filter((w) => w < width);
@@ -95,7 +104,7 @@ for (const [rel, key, options = {}] of SOURCES) {
 }
 
 // Remove stale outputs. Anything scripts/pigments.mjs owns is not ours to delete.
-const PIGMENT_PREFIXES = ["wash-", "stain-"];
+const PIGMENT_PREFIXES = ["wash-", "stain-", "rule-", "edge-"];
 for (const f of readdirSync(OUT)) {
   if (PIGMENT_PREFIXES.some((prefix) => f.startsWith(prefix))) continue;
   if (f.endsWith(".webp") && !keep.has(f)) {
