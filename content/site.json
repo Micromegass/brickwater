@@ -64,6 +64,11 @@
       "poster": "video-loft-lo-fi-poster"
     }
   ],
+  "heroTrack": {
+    "release": "season-one",
+    "title": "Starving",
+    "bandcampTrackId": "429320370"
+  },
   "appearsOn": [
     {
       "title": "Folk's Worst Nightmare (Compilation)",

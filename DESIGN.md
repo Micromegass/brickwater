@@ -283,17 +283,25 @@ Sticky 4rem header on 90% paper with a 10px backdrop blur and a hairline. The br
 
 ### Manchas (signature)
 
-Marks of the artist's own paint, lifted off the sleeve by `scripts/pigments.mjs`: the paper is dissolved away by turning the paint's own density into an alpha channel, and every edge and corner is faded so a crop can never leave a rectangle. The file carries only the shape; the colour is a token, which is what lets a release page stain the page in its own record's pigment. They sit at 0.16 to 0.34 opacity, two or three per section, always inside their section, always behind the content, always `aria-hidden`, and they disappear entirely under forced colours or where masks are unsupported. Each mark travels one of three long wave paths (96s, 138s, 112s, `ease-in-out`, alternating), about six percent of travel with a degree or two of rotation, staggered so the background never repeats and nothing ever moves quickly. Transform only, so no frame costs a layout, and every path stops under reduced motion.
+Marks of the artist's own paint, lifted off the sleeve by `scripts/pigments.mjs`: the paper is dissolved away by turning the paint's own density into an alpha channel, and every edge and corner is faded so a crop can never leave a rectangle. The file carries only the shape; the colour is a token, which is what lets a release page stain the page in its own record's pigment. They sit at 0.16 to 0.34 opacity, two or three per section, always inside their section, always behind the content, always `aria-hidden`, and they disappear entirely under forced colours or where masks are unsupported. Each mark travels one of three closed paths (38s, 52s, 44s, linear, looping), about five percent of travel with a degree or two of rotation, so the background never repeats and nothing ever moves quickly. Closed loops and linear timing are deliberate: an eased alternation stalls at both ends, and at the earlier 96 to 138 second lengths the page measured half a pixel of movement in three seconds, which is a still picture. These read at roughly twelve pixels in three seconds. Transform only, so no frame costs a layout, and every path stops under reduced motion.
 
 Two rules the marks earn the hard way: a mark must sit fully inside its section, because a section's clip turns a faded edge into a rectangle; and the mask must never be scaled past 100%, for the same reason.
 
 ### The wolves, gathering (signature)
 
-A fourth mask, `stain-wolves.webp`, is taken from the whole painted band of the sleeve rather than a single stroke, so it carries both animals. It is used as a ghost: `<Stain shape="wolves" ghost />` fades from nothing up to its resting strength and back over 128 seconds while it drifts, so the smoke gathers into the two wolves and comes apart again. Three on the site and no more, at 0.10 to 0.12: the hero, the music section and the collective. Like every mark it is a shape only, so its colour is a token, and it holds still under reduced motion.
+A fourth mask, `stain-wolves.webp`, is taken from the whole painted band of the sleeve rather than a single stroke, so it carries both animals. It is used as a ghost: `<Stain shape="wolves" ghost />` fades from nothing up to its resting strength and back over 34 seconds while it drifts, so the smoke gathers into the two wolves and comes apart again inside the time somebody actually looks at the page. Three on the site and no more, at 0.14 to 0.16: the hero, the music section and the collective. Like every mark it is a shape only, so its colour is a token, and it holds still under reduced motion.
 
 ### Arriving on scroll (signature)
 
 `.reveal` puts a 14px rise and a hair of scale on a CSS view timeline, so nothing ships to make it work and a browser without view timelines simply shows the content, which is also what reduced motion gets. It is transform only, never opacity, for two reasons learned the hard way: text caught mid-fade renders at a blended colour that fails contrast, and a range ending in `cover` can never complete for the last block on a page, which would leave it faded for good. The range ends inside `entry`, which every element reaches. It is on headings, intros, photographs, tiles and rows, and never in the hero, which must not touch the largest paint.
+
+### Nothing is ruled (signature)
+
+A straight hairline is the one thing on the page no hand drew, so the dividers are painted too. `scripts/pigments.mjs` cuts two more assets from the sleeve: `rule-brush.webp`, one long stroke that thins towards both ends, stretched across whatever it divides; and `edge-deckle.webp` with its mirror, a band that is solid on one side and torn away on the other, made tileable by cross-fading its ends. The tinted grounds move onto a layer of their own so the deckle can tile across their top and bottom with a plain stencil in between, and a section of soaked paper begins and ends on a wandering edge instead of a ruler's. Both fall back to the hairline where masks are unsupported. The row rules inside a tracklist stay hairlines on purpose: a printed table wants a clean line, and painting every row would only be noise.
+
+### The song in the hero (signature)
+
+One song plays from the hero, set like the centre label of a seven inch: a clay disc with a play mark, the title, and the record it came off. It is a facade like every other embed here, so nothing reaches Bandcamp until the label is pressed, and the consent line sits under it with a link to the policy. Afterwards the card keeps its frame and its title and only the disc is replaced by Bandcamp's small player, so the thing still belongs to the page. Which song it is lives in `content/site.json` as `heroTrack` and is checked at build against that record's own tracklist, so the artist can change it without touching code.
 
 ### Gallery and lightbox (signature)
 
@@ -326,9 +334,9 @@ Video posters sit in a 16:9 ink frame with the sleeve shadow, the title bottom-l
 
 ### Don't:
 - No kickers, eyebrows or section numbers above headings; no tracked uppercase labels except the wordmark, the brand, and etch captions.
-- No cards, no nested containers, no radius on grounds or rules, no gradients, no gradient text, no glass, no glows.
+- No cards, no nested containers, no gradients, no gradient text, no glass, no glows. Grounds and rules carry no radius, and no straight edge either: their boundaries are torn.
 - No second accent colour beyond a release's own, no gray text on a tinted ground, no pure black.
 - No mancha behind body copy at an opacity that touches its contrast, and never one that a section's edge cuts into a rectangle.
-- No WebGL, and no scroll-driven effect beyond the one `.reveal` rise, which is transform only and never touches the contrast of the text it moves. The background is the one place that loops, and it loops slowly enough to be felt rather than watched.
+- No WebGL, and no scroll-driven effect beyond the one `.reveal` rise, which is transform only and never touches the contrast of the text it moves. The background is the one place that loops, and it loops slowly enough to be felt rather than watched, which means slowly, not invisibly: measure it, because a path long enough to look tasteful on paper can move half a pixel a second and read as a still image.
 - No overlays, badges or pills on photographs; no hand-drawn icons; no emoji as icons.
 - No em dashes anywhere in copy; ranges and separators use a plain hyphen or a full stop.

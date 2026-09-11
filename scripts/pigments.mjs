@@ -239,6 +239,139 @@ async function buildStains() {
   }
 }
 
+/* ---------- 2b. painted edges: the rules and the ground boundaries ---------- */
+
+// A straight hairline is the one thing on this page that no hand drew. These two
+// assets replace it with paint: a stroke for the rules, and a torn boundary for
+// the tinted grounds so a section does not begin on a ruler's edge.
+const EDGES = {
+  // One long stroke, lifted at both ends, stretched across whatever it divides.
+  rule: { region: { left: 0.1, top: 0.6, width: 0.8, height: 0.045 }, size: { width: 1600, height: 30 } },
+  // A band that is solid on one side and torn away on the other, tiled sideways.
+  deckle: { region: { left: 0.07, top: 0.3, width: 0.86, height: 0.12 }, size: { width: 1200, height: 96 } },
+};
+
+/** Paint density from a raw RGB buffer: white paper is 0, heavy pigment is 1. */
+function densityField(data, info) {
+  const field = new Float32Array(info.width * info.height);
+  for (let i = 0, p = 0; i < data.length; i += info.channels, p += 1) {
+    const luminance = relativeLuminance([data[i], data[i + 1], data[i + 2]]);
+    field[p] = clamp((1 - luminance) ** 1.2 * 1.35, 0, 1);
+  }
+  return field;
+}
+
+/** Cross-fades the right end into the left so the band can repeat without a seam. */
+function makeTileable(alpha, width, height, blend) {
+  for (let y = 0; y < height; y += 1) {
+    for (let i = 0; i < blend; i += 1) {
+      const t = i / blend;
+      const left = y * width + i;
+      const right = y * width + (width - blend + i);
+      const mixed = alpha[right] * (1 - t) + alpha[left] * t;
+      alpha[left] = mixed;
+      alpha[right] = mixed;
+    }
+  }
+}
+
+async function writeMask(name, alpha, width, height) {
+  const bytes = Buffer.from(alpha.map((a) => Math.round(clamp(a, 0, 1) * 255)));
+  const soft = await sharp(bytes, { raw: { width, height, channels: 1 } })
+    .blur(1.4)
+    .toColourspace("b-w")
+    .raw()
+    .toBuffer();
+  await sharp({ create: { width, height, channels: 3, background: { r: 0, g: 0, b: 0 } } })
+    .joinChannel(soft, { raw: { width, height, channels: 1 } })
+    .webp({ quality: 88, effort: 6, alphaQuality: 95 })
+    .toFile(path.join(OUT, `${name}.webp`));
+  console.log(`${name}.webp: ${width}x${height}`);
+}
+
+async function readRegion(spec) {
+  const meta = await sharp(SLEEVE).metadata();
+  const region = {
+    left: Math.round(spec.region.left * meta.width),
+    top: Math.round(spec.region.top * meta.height),
+    width: Math.round(spec.region.width * meta.width),
+    height: Math.round(spec.region.height * meta.height),
+  };
+  return sharp(SLEEVE)
+    .extract(region)
+    .resize(spec.size.width, spec.size.height, { fit: "fill" })
+    .removeAlpha()
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+}
+
+async function buildEdges() {
+  // The stroke: the paint's own body, thinned towards both ends so the rule
+  // starts and stops the way a brush does.
+  {
+    const spec = EDGES.rule;
+    const { data, info } = await readRegion(spec);
+    const density = densityField(data, info);
+    const alpha = new Float32Array(info.width * info.height);
+    for (let p = 0; p < alpha.length; p += 1) {
+      const x = (p % info.width) / info.width;
+      const y = Math.floor(p / info.width) / info.height;
+      const belly = 1 - smoothstep(0.15, 0.62, Math.abs(y - 0.5) * 2);
+      const ends = smoothstep(0, 0.16, x) * smoothstep(0, 0.16, 1 - x);
+      alpha[p] = clamp(0.35 + density[p] * 0.85, 0, 1) * belly * ends;
+    }
+    await writeMask("rule-brush", alpha, info.width, info.height);
+  }
+
+  // The torn boundary: per column the paint decides how deep the ground reaches,
+  // so the edge wanders instead of ruling a line.
+  {
+    const spec = EDGES.deckle;
+    const { data, info } = await readRegion(spec);
+    const density = densityField(data, info);
+    const columns = new Float32Array(info.width);
+    for (let x = 0; x < info.width; x += 1) {
+      let sum = 0;
+      for (let y = 0; y < info.height; y += 1) sum += density[y * info.width + x];
+      columns[x] = sum / info.height;
+    }
+    // Smooth the column profile: a per-pixel edge would read as noise, not a tear.
+    const profile = new Float32Array(info.width);
+    const window = 9;
+    for (let x = 0; x < info.width; x += 1) {
+      let sum = 0;
+      for (let k = -window; k <= window; k += 1) sum += columns[(x + k + info.width) % info.width];
+      profile[x] = sum / (window * 2 + 1);
+    }
+    let min = Infinity;
+    let max = -Infinity;
+    for (const v of profile) {
+      if (v < min) min = v;
+      if (v > max) max = v;
+    }
+    const alpha = new Float32Array(info.width * info.height);
+    for (let p = 0; p < alpha.length; p += 1) {
+      const x = p % info.width;
+      const y = Math.floor(p / info.width) / info.height;
+      const norm = max > min ? (profile[x] - min) / (max - min) : 0.5;
+      // Where this column's edge sits, and how wet it bleeds there.
+      const edge = 0.26 + norm * 0.44;
+      const bleed = 0.1 + (1 - norm) * 0.16;
+      const grain = 0.88 + density[p] * 0.2;
+      alpha[p] = clamp(smoothstep(edge - bleed, edge + bleed, y) * grain, 0, 1);
+    }
+    makeTileable(alpha, info.width, info.height, 90);
+    await writeMask("edge-deckle", alpha, info.width, info.height);
+
+    const flipped = new Float32Array(alpha.length);
+    for (let y = 0; y < info.height; y += 1) {
+      const src = (info.height - 1 - y) * info.width;
+      flipped.set(alpha.subarray(src, src + info.width), y * info.width);
+    }
+    await writeMask("edge-deckle-flip", flipped, info.width, info.height);
+  }
+}
+
 /* ---------- 3. a palette per release ---------- */
 
 /** The most present painted colour on a sleeve, ignoring paper and near-neutrals. */
@@ -320,4 +453,5 @@ mkdirSync(OUT, { recursive: true });
 
 await buildWash();
 await buildStains();
+await buildEdges();
 await buildReleasePalettes();

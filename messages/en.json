@@ -24,7 +24,8 @@
     "ctaListen": "Listen",
     "nextShow": "Next show",
     "badgeEmpty": "coming soon",
-    "ctaFollow": "Follow"
+    "ctaFollow": "Follow",
+    "heroTrackLabel": "Listen to {title}, from {release}"
   },
   "about": {
     "heading": "Thanks for stopping by",
@@ -127,7 +128,8 @@
     "reset": "Reset consent for embedded content",
     "resetDone": "Consent reset",
     "privacyLink": "Privacy policy",
-    "iframeTitle": "{title} on {provider}"
+    "iframeTitle": "{title} on {provider}",
+    "bandcampHintShort": "Loading transfers data to Bandcamp."
   },
   "notFound": {
     "title": "Page not found",

@@ -1,18 +1,24 @@
 import { getFormatter, getTranslations } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
-import { loadShows, loadSite } from "@/lib/content/load";
+import { getRelease, loadShows, loadSite } from "@/lib/content/load";
 import { berlinDateTime } from "@/lib/dates";
+import { localizedPath } from "@/lib/i18n/paths";
 import { splitShows } from "@/lib/shows";
 import { Photo } from "@/components/ui/Photo";
 import { Stain } from "@/components/ui/Stain";
 import { SocialIcon } from "@/components/ui/SocialIcon";
+import { HeroPlayer } from "@/components/music/HeroPlayer";
 
 export async function Hero({ locale }: { locale: Locale }) {
   const t = await getTranslations({ locale });
   const format = await getFormatter({ locale });
   const site = loadSite();
   const { upcoming } = splitShows(loadShows(), new Date());
+  // The song he leads with, named in content/site.json and checked at build
+  // against that record's tracklist.
+  const heroTrack = site.heroTrack;
+  const heroRelease = getRelease(heroTrack.release);
   const next = upcoming[0];
   const nextDate = next
     ? format.dateTime(berlinDateTime(next.date, "12:00"), { day: "numeric", month: "short" })
@@ -24,7 +30,7 @@ export async function Hero({ locale }: { locale: Locale }) {
         shape="wolves"
         ghost
         className="left-1/2 top-1/2 h-[34rem] w-[46rem] -translate-x-1/2 -translate-y-1/2 sm:h-[42rem] sm:w-[58rem]"
-        opacity={0.12}
+        opacity={0.16}
       />
       <Stain
         shape="clay"
@@ -91,12 +97,24 @@ export async function Hero({ locale }: { locale: Locale }) {
                 )}
               </span>
             </Link>
+            {heroRelease ? (
+              <HeroPlayer
+                trackId={heroTrack.bandcampTrackId}
+                title={heroTrack.title}
+                meta={`${t(`music.types.${heroRelease.type}`)}, ${heroRelease.year} · ${heroRelease.title}`}
+                ariaLabel={t("hero.heroTrackLabel", { title: heroTrack.title, release: heroRelease.title })}
+                hint={t("embeds.bandcampHintShort")}
+                privacyHref={localizedPath(locale, "/privacy")}
+                privacyLabel={t("embeds.privacyLink")}
+                iframeTitle={t("embeds.iframeTitle", { title: heroTrack.title, provider: "Bandcamp" })}
+              />
+            ) : null}
           </div>
           <figure className="hero-photo">
             <Photo
-              id="bricky-waters-cat-mural-2020"
+              id="brickwater-harmonica-live-2020"
               locale={locale}
-              sizes="(min-width: 768px) 46vw, 100vw"
+              sizes="(min-width: 768px) 50vw, 100vw"
               className="sleeve-photo"
               priority
             />

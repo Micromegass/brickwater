@@ -149,6 +149,12 @@ export const SiteSchema = z.object({
     bandcamp: httpUrl,
   }),
   videos: z.array(VideoSchema).min(1),
+  /** The one song the hero plays. Checked against that release's tracklist at build. */
+  heroTrack: z.object({
+    release: z.string().regex(/^[a-z0-9-]+$/),
+    title: z.string().min(1),
+    bandcampTrackId: z.string().regex(/^\d+$/),
+  }),
   /** Ordered image keys for the gallery page; every key is checked against the manifest at build. */
   gallery: z.array(z.string().regex(/^[a-z0-9-]+$/)).min(1),
   appearsOn: z.array(

@@ -15,7 +15,7 @@ export async function FwnSection({ locale }: { locale: Locale }) {
         shape="wolves"
         ghost
         className="left-1/2 top-1/2 h-[30rem] w-[42rem] -translate-x-1/2 -translate-y-1/2"
-        opacity={0.11}
+        opacity={0.15}
       />
       <Stain shape="ink" drift="a" className="left-0 top-0 h-[26rem] w-[30rem]" opacity={0.17} />
       <Stain shape="sage" drift="b" className="right-0 bottom-0 h-[22rem] w-[24rem]" opacity={0.2} />

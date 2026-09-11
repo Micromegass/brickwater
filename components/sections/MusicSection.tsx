@@ -26,7 +26,7 @@ export async function MusicSection({ locale }: { locale: Locale }) {
         ghost
         color="var(--color-sage-paint)"
         className="left-1/2 top-1/2 h-[32rem] w-[44rem] -translate-x-1/2 -translate-y-1/2"
-        opacity={0.1}
+        opacity={0.14}
       />
       <Stain shape="sage" drift="a" className="right-0 top-0 h-[28rem] w-[26rem]" opacity={0.34} />
       <Stain shape="clay" drift="c" className="left-0 bottom-0 h-[24rem] w-[30rem]" opacity={0.22} />

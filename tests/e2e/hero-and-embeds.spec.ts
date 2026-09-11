@@ -82,6 +82,33 @@ test("the lyrics panel is reachable from the home page too", async ({ page }) =>
   await expect(page.locator("dialog.lyrics-dialog[open]")).toHaveCount(0);
 });
 
+test("the hero player loads Bandcamp only after a click", async ({ page }) => {
+  await page.goto("/");
+  const player = page.locator(".hero-player");
+  await expect(player).toContainText("Starving");
+  await expect(player).toContainText("Season One");
+  await expect(page.locator("iframe")).toHaveCount(0);
+  await player.locator("button.hero-player-button").click();
+  await expect(player.locator("iframe")).toHaveAttribute(
+    "src",
+    /bandcamp\.com\/EmbeddedPlayer\/track=429320370/,
+  );
+  // The title survives the swap, so the player still belongs to the page.
+  await expect(player).toContainText("Starving");
+});
+
+test("the section grounds are torn rather than ruled", async ({ page }) => {
+  await page.goto("/");
+  const mask = await page
+    .locator("#musik")
+    .evaluate((el) => getComputedStyle(el, "::before").maskImage);
+  expect(mask).toContain("edge-deckle");
+  const rule = await page
+    .locator("#konzerte .rule")
+    .evaluate((el) => getComputedStyle(el, "::before").maskImage);
+  expect(rule).toContain("rule-brush");
+});
+
 test("the hero badge points at the shows page and the header carries the socials", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator(".hero .hype")).toHaveAttribute("href", "/konzerte/");

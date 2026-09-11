@@ -161,9 +161,35 @@
     font-variation-settings: "opsz" 12, "wdth" 90;
   }
 
-  /* Ruled lines of the back cover. */
+  /*
+    Ruled lines of the back cover, drawn with the brush rather than the ruler.
+    The hairline stays as the fallback wherever masks are unsupported, and the
+    row rules inside a tracklist keep it on purpose: a printed table wants a
+    clean line, and painting every row would only be noise.
+  */
   .rule {
     border-top: 1px solid var(--color-line);
+  }
+  @supports (mask-image: url("/images/rule-brush.webp")) or (-webkit-mask-image: url("/images/rule-brush.webp")) {
+    .rule {
+      position: relative;
+      border-top: 0;
+    }
+    .rule::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 0.5rem;
+      background: var(--color-ink-soft);
+      opacity: 0.55;
+      -webkit-mask-image: url("/images/rule-brush.webp");
+      mask-image: url("/images/rule-brush.webp");
+      -webkit-mask-size: 100% 100%;
+      mask-size: 100% 100%;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      pointer-events: none;
+    }
   }
 
   .measure {
@@ -242,6 +268,43 @@
   .section-clay {
     background: var(--color-paper-clay);
   }
+  /*
+    And the soaked paper does not begin on a ruler's edge. The ground moves to a
+    layer of its own so its top and bottom can be torn by the same paint the
+    marks are cut from: a tiled deckle at each end, solid in between. The flat
+    background above stays as the fallback where masks are unsupported.
+  */
+  @supports (mask-image: url("/images/edge-deckle.webp")) or (-webkit-mask-image: url("/images/edge-deckle.webp")) {
+    .section-sage,
+    .section-clay {
+      background: none;
+    }
+    .section-sage::before,
+    .section-clay::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      /* The middle layer is a stencil: only its opacity is read, never its hue. */
+      -webkit-mask-image: url("/images/edge-deckle.webp"),
+        linear-gradient(var(--color-ink), var(--color-ink)), url("/images/edge-deckle-flip.webp");
+      mask-image: url("/images/edge-deckle.webp"),
+        linear-gradient(var(--color-ink), var(--color-ink)), url("/images/edge-deckle-flip.webp");
+      -webkit-mask-size: 30rem 2.6rem, 100% calc(100% - 5.2rem), 30rem 2.6rem;
+      mask-size: 30rem 2.6rem, 100% calc(100% - 5.2rem), 30rem 2.6rem;
+      -webkit-mask-position: top left, center, bottom left;
+      mask-position: top left, center, bottom left;
+      -webkit-mask-repeat: repeat-x, no-repeat, repeat-x;
+      mask-repeat: repeat-x, no-repeat, repeat-x;
+    }
+    .section-sage::before {
+      background: var(--color-paper-sage);
+    }
+    .section-clay::before {
+      background: var(--color-paper-clay);
+    }
+  }
 
   /*
     Manchas: the artist's own brush marks, lifted off the sleeve with the paper
@@ -270,77 +333,107 @@
   }
 
   /*
-    The marks travel like the music does: three long wave paths, staggered, so
-    the background never repeats itself and nothing ever moves quickly. Transform
-    and opacity only, so no frame costs a layout.
+    The marks travel like the music does: three closed paths of different
+    lengths, so the background never repeats itself and nothing ever moves
+    quickly. Transform and opacity only, so no frame costs a layout.
   */
   @media (prefers-reduced-motion: no-preference) {
     .stain-drift-a {
-      animation: wash-a 96s var(--ease-wave) infinite alternate;
+      animation: wash-a 38s linear infinite;
     }
     .stain-drift-b {
-      animation: wash-b 138s var(--ease-wave) infinite alternate;
+      animation: wash-b 52s linear infinite;
     }
     .stain-drift-c {
-      animation: wash-c 112s var(--ease-wave) infinite alternate;
+      animation: wash-c 44s linear infinite;
     }
     /* A ghost gathers out of the haze and comes apart again. */
     .stain-ghost {
       opacity: 0;
-      animation: ghost-gather 128s var(--ease-wave) infinite;
-      animation-delay: -32s;
+      animation: ghost-gather 34s linear infinite;
+      animation-delay: -6s;
     }
   }
+  /*
+    Closed loops, not alternations, and linear timing. An eased alternation
+    stalls at both ends and spends most of a long cycle almost still, which is
+    what made the earlier 96-138s paths read as a static picture. These paths
+    return to where they started, so they can run continuously at a speed you
+    can actually see: roughly fifteen pixels a second on a large mark.
+  */
   @keyframes wash-a {
     0% {
-      transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+      transform: translate3d(0, 0, 0) scale(1.02) rotate(0deg);
+    }
+    25% {
+      transform: translate3d(5%, -3.5%, 0) scale(1.08) rotate(1.3deg);
     }
     50% {
-      transform: translate3d(5%, -6%, 0) scale(1.12) rotate(1.4deg);
+      transform: translate3d(2.5%, 4.5%, 0) scale(1.04) rotate(-0.7deg);
+    }
+    75% {
+      transform: translate3d(-4.5%, 1.5%, 0) scale(1.09) rotate(1.6deg);
     }
     100% {
-      transform: translate3d(-6%, 4%, 0) scale(1.04) rotate(-1.2deg);
+      transform: translate3d(0, 0, 0) scale(1.02) rotate(0deg);
     }
   }
   @keyframes wash-b {
     0% {
-      transform: translate3d(0, 0, 0) scale(1.06) rotate(0.8deg);
+      transform: translate3d(0, 0, 0) scale(1.06) rotate(0.6deg);
     }
-    45% {
-      transform: translate3d(-6.5%, 5%, 0) scale(1) rotate(-1.5deg);
+    25% {
+      transform: translate3d(-5.5%, 3%, 0) scale(1) rotate(-1.4deg);
+    }
+    50% {
+      transform: translate3d(-1.5%, -5%, 0) scale(1.07) rotate(0.9deg);
+    }
+    75% {
+      transform: translate3d(4.5%, -1%, 0) scale(1.02) rotate(-1.1deg);
     }
     100% {
-      transform: translate3d(4%, 6.5%, 0) scale(1.14) rotate(1.6deg);
+      transform: translate3d(0, 0, 0) scale(1.06) rotate(0.6deg);
     }
   }
   @keyframes wash-c {
     0% {
-      transform: translate3d(0, 3%, 0) scale(1.03) rotate(-1deg);
+      transform: translate3d(0, 2.5%, 0) scale(1.03) rotate(-0.8deg);
     }
-    55% {
-      transform: translate3d(6%, -4.5%, 0) scale(1.13) rotate(1.2deg);
+    25% {
+      transform: translate3d(5%, -2%, 0) scale(1.1) rotate(1deg);
+    }
+    50% {
+      transform: translate3d(-2%, -4.5%, 0) scale(1.05) rotate(-1.5deg);
+    }
+    75% {
+      transform: translate3d(-4.5%, 2%, 0) scale(1.01) rotate(0.5deg);
     }
     100% {
-      transform: translate3d(-4%, -5.5%, 0) scale(1) rotate(-0.6deg);
+      transform: translate3d(0, 2.5%, 0) scale(1.03) rotate(-0.8deg);
     }
   }
+  /*
+    The wolves gather, hold, and come apart, all inside half a minute, so a
+    visitor actually sees it happen instead of missing it between two glances.
+  */
   @keyframes ghost-gather {
     0%,
     100% {
       opacity: 0;
-      transform: translate3d(-3%, 3%, 0) scale(1.16) rotate(-2deg);
+      transform: translate3d(-4%, 3%, 0) scale(1.18) rotate(-2.4deg);
     }
-    30% {
-      opacity: var(--stain-opacity, 0.12);
+    14% {
+      opacity: calc(var(--stain-opacity, 0.14) * 0.5);
+    }
+    32%,
+    56% {
+      opacity: var(--stain-opacity, 0.14);
+    }
+    44% {
       transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
     }
-    62% {
-      opacity: var(--stain-opacity, 0.12);
-      transform: translate3d(3%, -2%, 0) scale(1.05) rotate(1.4deg);
-    }
-    85% {
-      opacity: 0.015;
-      transform: translate3d(2%, -3%, 0) scale(1.12) rotate(2deg);
+    80% {
+      opacity: calc(var(--stain-opacity, 0.14) * 0.3);
     }
   }
 
@@ -448,6 +541,7 @@
 
   .site-footer {
     border-top: 1px solid var(--color-line);
+    position: relative;
     padding-block: 2.5rem 3rem;
     color: var(--color-ink-soft);
   }
@@ -650,14 +744,82 @@
   }
   .hero-photo img {
     border-radius: var(--radius-print-lg);
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 1;
     object-fit: cover;
   }
-  @media (min-width: 768px) {
-    .hero-photo img {
-      aspect-ratio: 4 / 3;
-    }
+  /*
+    The one song the hero plays. A paper label with a clay disc, pressed once to
+    bring Bandcamp in; the title stays put afterwards so the player still reads
+    as part of the page rather than a pasted-in widget.
+  */
+  .hero-player {
+    width: min(26rem, 100%);
   }
+  .hero-player-button,
+  .hero-player-card {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 0.75rem;
+    border: 0;
+    border-radius: var(--radius-print);
+    background: var(--color-paper);
+    box-shadow: inset 0 0 0 1px var(--color-line), var(--shadow-sticker);
+    color: var(--color-ink);
+    text-align: left;
+  }
+  .hero-player-button {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    cursor: pointer;
+    transition: transform 200ms var(--ease-out-expo), box-shadow 200ms var(--ease-out-expo);
+  }
+  .hero-player-button:hover {
+    transform: translateY(-2px);
+    box-shadow: inset 0 0 0 1px var(--color-clay-wash), var(--shadow-sleeve-lift);
+  }
+  .hero-player-disc {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: var(--radius-sticker);
+    background: var(--color-clay);
+    color: var(--color-paper);
+    box-shadow: inset 0 0 0 0.32rem var(--color-clay-deep);
+    transition: background-color 200ms;
+  }
+  .hero-player-button:hover .hero-player-disc {
+    background: var(--color-clay-deep);
+  }
+  .hero-player-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    min-width: 0;
+  }
+  .hero-player-title {
+    font-weight: 600;
+    line-height: 1.15;
+    font-variation-settings: "opsz" 32, "wdth" 100;
+  }
+  .hero-player-meta {
+    font-size: var(--text-caption);
+    color: var(--color-ink-soft);
+  }
+  .hero-player-frame {
+    display: block;
+    width: 100%;
+    height: 42px;
+    margin-top: 0.6rem;
+    border: 0;
+  }
+  .hero-player-hint {
+    margin-top: 0.5rem;
+    font-size: var(--text-caption);
+    color: var(--color-ink-soft);
+  }
+
   .hero-claim {
     margin: 0;
     max-width: 34ch;

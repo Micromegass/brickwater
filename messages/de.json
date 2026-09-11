@@ -24,7 +24,8 @@
     "ctaListen": "Musik hören",
     "nextShow": "Nächstes Konzert",
     "badgeEmpty": "folgt bald",
-    "ctaFollow": "Folgen"
+    "ctaFollow": "Folgen",
+    "heroTrackLabel": "{title} anhören, von {release}"
   },
   "about": {
     "heading": "Danke fürs Vorbeischauen",
@@ -127,7 +128,8 @@
     "reset": "Einwilligung für eingebettete Inhalte zurücksetzen",
     "resetDone": "Einwilligung zurückgesetzt",
     "privacyLink": "Datenschutzerklärung",
-    "iframeTitle": "{title} auf {provider}"
+    "iframeTitle": "{title} auf {provider}",
+    "bandcampHintShort": "Beim Laden werden Daten an Bandcamp übertragen."
   },
   "notFound": {
     "title": "Seite nicht gefunden",
