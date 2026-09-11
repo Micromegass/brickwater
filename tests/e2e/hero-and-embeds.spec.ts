@@ -24,6 +24,12 @@ test("reduced motion gets the finished wash and no animation", async ({ browser 
   });
   expect(styles.animation).toBe("none");
   expect(Number(styles.opacity)).toBe(1);
+  // the background marks hold still as well
+  const drifting = await page
+    .locator(".stain")
+    .first()
+    .evaluate((el) => getComputedStyle(el).animationName);
+  expect(drifting).toBe("none");
   await context.close();
 });
 
@@ -56,13 +62,32 @@ test("Bandcamp player loads only after a click", async ({ page }) => {
   );
 });
 
-test("lyrics open as an accordion", async ({ page }) => {
+test("a song opens its lyrics in a panel and Escape closes it", async ({ page }) => {
   await page.goto("/musik/season-one/");
-  const first = page.locator("details.lyric-track").first();
-  await expect(first.locator(".lyric-body")).toBeHidden();
-  await first.locator("summary").click();
-  await expect(first.locator(".lyric-body")).toBeVisible();
-  await expect(first.locator(".lyric-body")).toContainText("forgotten ones");
+  const panel = page.locator("dialog.lyrics-dialog").first();
+  await expect(panel).toBeHidden();
+  await page.locator("button.track-row-open").first().click();
+  await expect(panel).toBeVisible();
+  await expect(panel).toContainText("forgotten ones");
+  await expect(panel.locator(".lyrics-title")).toHaveText("The Coming Up Whatever");
+  await page.keyboard.press("Escape");
+  await expect(panel).toBeHidden();
+});
+
+test("the lyrics panel is reachable from the home page too", async ({ page }) => {
+  await page.goto("/");
+  await page.locator("#musik button.track-row-open").first().click();
+  await expect(page.locator("dialog.lyrics-dialog[open]")).toBeVisible();
+  await page.locator("dialog.lyrics-dialog[open] .lyrics-close").click();
+  await expect(page.locator("dialog.lyrics-dialog[open]")).toHaveCount(0);
+});
+
+test("the hero badge points at the shows page and the header carries the socials", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator(".hero .hype")).toHaveAttribute("href", "/konzerte/");
+  const socials = page.locator(".header-socials a");
+  await expect(socials).toHaveCount(5);
+  await expect(socials.first()).toHaveAttribute("href", /instagram\.com/);
 });
 
 test("the home page runs in the order the artist asked for", async ({ page }) => {

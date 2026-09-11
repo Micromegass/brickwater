@@ -6,7 +6,7 @@ colors:
   paper-deep: "#e9e8e5"
   ink: "#222222"
   ink-deep: "#131313"
-  ink-soft: "#5a534c"
+  ink-soft: "#524b45"
   clay: "#a8563c"
   clay-deep: "#8c422c"
   clay-wash: "#f0dcd2"
@@ -16,6 +16,7 @@ colors:
   line: "#dfddd8"
   paper-sage: "#eef0ea"
   paper-clay: "#f7efea"
+  sage-paint: "#6b8159"
 typography:
   wordmark:
     fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
@@ -109,6 +110,8 @@ typography:
     letterSpacing: "normal"
 rounded:
   none: "0px"
+  print: "14px"
+  print-lg: "18px"
   sticker: "999px"
 spacing:
   xs: "0.5rem"
@@ -191,13 +194,14 @@ The sleeve's own palette: neutral gray paper, printed black, and the two pigment
 ### Soaked grounds
 - **Paper sage** (#eef0ea): the music section. Ink reads at 13.9:1 on it, ink soft at 6.6:1.
 - **Paper clay** (#f7efea): the collective's section. Ink reads at 14:1, ink soft at 6.7:1.
+- **Sage paint** (#6b8159): the painting's green at brush strength, for the marks only. Spread thin across a section, the soaked green reads as gray; this does not.
 
 ### Neutral
 - **Paper** (#f3f2f0): page ground, header, paper stickers.
 - **Paper deep** (#e9e8e5): hover of paper stickers, image loading ground.
 - **Ink** (#222222): text, ink stickers, the hype sticker, video poster ground.
 - **Ink deep** (#131313): hover of ink stickers, and the tint of the one text shadow on a photographic poster.
-- **Ink soft** (#5a534c): secondary text, intros, captions, footer etching. 6.7:1 on paper.
+- **Ink soft** (#524b45): secondary text, intros, captions, footer etching. 7.5:1 on paper, and still over 4.5:1 where a mark passes under it.
 - **Line** (#dfddd8): hairlines between show rows and lyric rows, header and footer borders.
 
 ### Named Rules
@@ -251,7 +255,9 @@ Depth is physical, not tonal: photographs, covers and video frames carry a sleev
 
 ## Shapes
 
-Two silhouettes. Paper is square: photos, covers, video frames, the sage field, the legal highlight box and all hairlines have radius 0. Stickers are die-cut: buttons, chips, the language toggle, the hype sticker and the play disc are fully round (999px). Nothing in between; no 8px or 16px corners anywhere.
+Three silhouettes, in a strict order. **Prints** carry a soft edge: photos, album covers and video frames use `print` (14px), and the hero photo uses `print-lg` (18px). **Stickers** are die-cut: buttons, chips, the language toggle, the show badge and the play disc are fully round. **Grounds and rules stay square**: section backgrounds, hairlines and the legal highlight have no radius at all, so the paper itself never looks like a card.
+
+A print lifts 3px and deepens its shadow on hover, which is the only place the page pretends to be physical.
 
 ## Components
 
@@ -276,16 +282,22 @@ None. Contact is a mailto link plus a copy button.
 Sticky 4rem header on 90% paper with a 10px backdrop blur and a hairline. The brand sits left in the sleeve's lettering; links are weight 600 with a 2px clay underline on hover; the language switcher is a small paper sticker reading EN or DE. The skip link is a clipped ink sticker revealed on focus. The footer is uppercase etch text in ink soft: copyright, photo credits, legal links.
 
 ### Manchas (signature)
-Marks of the artist's own paint, lifted off the sleeve by `scripts/pigments.mjs`: the paper is dissolved away by turning the paint's own density into an alpha channel, and every edge and corner is faded so a crop can never leave a rectangle. The file carries only the shape; the colour is a token, which is what lets a release page stain the page in its own record's pigment. They sit at 0.12 to 0.26 opacity, always inside their section, always behind the content, always `aria-hidden`, and they disappear entirely under forced colours or where masks are unsupported.
+
+Marks of the artist's own paint, lifted off the sleeve by `scripts/pigments.mjs`: the paper is dissolved away by turning the paint's own density into an alpha channel, and every edge and corner is faded so a crop can never leave a rectangle. The file carries only the shape; the colour is a token, which is what lets a release page stain the page in its own record's pigment. They sit at 0.16 to 0.34 opacity, two or three per section, always inside their section, always behind the content, always `aria-hidden`, and they disappear entirely under forced colours or where masks are unsupported. Each mark travels one of three long wave paths (71s, 82s, 104s, `ease-in-out`, alternating), staggered so the background never repeats and nothing ever moves quickly. Transform only, so no frame costs a layout, and every path stops under reduced motion.
+
+Two rules the marks earn the hard way: a mark must sit fully inside its section, because a section's clip turns a faded edge into a rectangle; and the mask must never be scaled past 100%, for the same reason.
 
 ### An album page in its own record (signature)
 `scripts/pigments.mjs` samples each cover's most present painted hue and deepens it until it carries body text on paper, then derives a wash pale enough to sit under ink and a stain at half strength. The page sets those four values as custom properties, so its head band, accent, track numbers, focus ring and mancha all belong to that record while the structure stays identical. The script refuses to emit a palette that fails contrast, and a unit test asserts it for every release.
 
+### Lyrics panel (signature)
+A song opens its lyrics in a native `<dialog>` over the page, typeset like an inner sleeve: the track number in the record's own accent, the title, a rule, then the text at a 46ch measure on paper. The backdrop is ink at 55% with a light blur. The lyrics are rendered on the server inside the dialog, so they stay in the HTML for search engines and for the `MusicRecording` JSON-LD. `components/music/TrackList.tsx` is the one list used on the home page and on every release page; a song without lyrics stays plain text rather than pretending to be pressable.
+
 ### Wordmark (signature)
 BRICKWATER in thin, widely spaced caps, filled by `background-clip: text` with `/images/wash-wordmark.webp`, a wash built by `scripts/wash.mjs` from the sleeve painting. The script averages the painted band down to a nine by six grid, snaps every hue onto one of the two pigment families, holds saturation and lightness inside a band, and fails the build if any part of the wash drops under 3:1 against the paper. On load the paint soaks in once: opacity 0 to 1, background-size 150% 260% to 100% 100%, saturation 0.3 to 1, 1.9s on the expo curve. It never loops. Reduced motion and forced colours get the finished mark with no animation; a browser without background-clip gets clay deep.
 
-### Hype sticker (signature)
-A round ink sticker, clamp(6.75rem, 9vw, 8.5rem), rotated -8°, beside the wordmark, carrying the next show (date and city) or, when no date is announced, the latest release. Hover straightens it to -4° and scales it 1.04. Below 640px it leaves the wordmark and sits beneath it, aligned right.
+### Show badge (signature)
+A pill in ink with a clay dot, sitting in the flow under the hero's buttons. It is always about shows: the next date, its city and venue when one is announced, and "folgt bald" when none is. It links to the shows page either way, so an empty calendar still leads somewhere. It used to float over the wordmark as a round sticker, which read as a second, unrelated layer.
 
 ### Video and player facades
 Video posters sit in a 16:9 ink frame with the sleeve shadow, the title bottom-left in paper over a soft ink shadow, and a clay play disc (4.25rem) centred. A click replaces the poster with the youtube-nocookie iframe. The Bandcamp placeholder is a hairline-bordered paper box with a title, an ink "load" sticker and a caption.
@@ -302,9 +314,9 @@ Video posters sit in a 16:9 ink frame with the sleeve shadow, the title bottom-l
 
 ### Don't:
 - No kickers, eyebrows or section numbers above headings; no tracked uppercase labels except the wordmark, the brand, and etch captions.
-- No cards, no nested containers, no rounded corners other than pills, no gradients, no gradient text, no glass, no glows.
+- No cards, no nested containers, no radius on grounds or rules, no gradients, no gradient text, no glass, no glows.
 - No second accent colour beyond a release's own, no gray text on a tinted ground, no pure black.
 - No mancha behind body copy at an opacity that touches its contrast, and never one that a section's edge cuts into a rectangle.
-- No WebGL, no scroll-driven effects, no looping animation.
+- No WebGL and no scroll-driven effects. The background is the one place that loops, and it loops slowly enough to be felt rather than watched.
 - No overlays, badges or pills on photographs; no hand-drawn icons; no emoji as icons.
 - No em dashes anywhere in copy; ranges and separators use a plain hyphen or a full stop.

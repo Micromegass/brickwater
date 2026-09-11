@@ -13,7 +13,8 @@ export async function ContactSection({ locale }: { locale: Locale }) {
   const site = loadSite();
   return (
     <section className="section" id="kontakt" aria-labelledby="contact-title">
-      <Stain shape="sage" className="left-0 bottom-0 h-[24rem] w-[22rem]" opacity={0.26} />
+      <Stain shape="sage" drift="c" className="left-0 bottom-0 h-[26rem] w-[24rem]" opacity={0.3} />
+      <Stain shape="clay" drift="b" className="right-0 top-0 h-[22rem] w-[26rem]" opacity={0.18} />
       <div className="container grid gap-12 lg:grid-cols-12">
         <div className="lg:col-span-7">
           <h2 id="contact-title" className="text-h2 font-semibold">

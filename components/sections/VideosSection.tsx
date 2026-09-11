@@ -11,7 +11,8 @@ export async function VideosSection({ locale }: { locale: Locale }) {
   const site = loadSite();
   return (
     <section className="section" id="videos" aria-labelledby="videos-title">
-      <Stain shape="ink" className="right-0 bottom-0 h-[20rem] w-[26rem]" opacity={0.12} />
+      <Stain shape="ink" drift="b" className="right-0 bottom-0 h-[22rem] w-[28rem]" opacity={0.16} />
+      <Stain shape="clay" drift="c" className="left-0 top-0 h-[20rem] w-[24rem]" opacity={0.16} />
       <div className="container">
         <h2 id="videos-title" className="text-h2 font-semibold">
           {t("videos.heading")}

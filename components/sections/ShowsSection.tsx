@@ -12,7 +12,8 @@ export async function ShowsSection({ locale }: { locale: Locale }) {
   const { upcoming } = splitShows(loadShows(), new Date());
   return (
     <section className="section" id="konzerte" aria-labelledby="shows-title">
-      <Stain shape="clay" className="right-0 top-4 h-[20rem] w-[28rem]" opacity={0.2} />
+      <Stain shape="clay" drift="b" className="right-0 top-4 h-[22rem] w-[30rem]" opacity={0.26} />
+      <Stain shape="sage" drift="a" className="left-0 bottom-0 h-[18rem] w-[22rem]" opacity={0.18} />
       <div className="container">
         <h2 id="shows-title" className="text-h2 font-semibold">
           {t("heading")}

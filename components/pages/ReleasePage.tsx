@@ -5,6 +5,7 @@ import type { Locale } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
 import { BandcampFacade } from "@/components/embeds/BandcampFacade";
 import { StreamingLinks } from "@/components/music/StreamingLinks";
+import { TrackList } from "@/components/music/TrackList";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Photo } from "@/components/ui/Photo";
 import { getRelease, loadImages, loadReleases } from "@/lib/content/load";
@@ -58,9 +59,17 @@ export async function ReleasePage({ locale, slug }: { locale: Locale; slug: stri
         <section className="section release-head pt-10 md:pt-14">
           <Stain
             shape="clay"
-            className="right-0 top-0 h-[26rem] w-[30rem]"
+            drift="a"
+            className="right-0 top-0 h-[28rem] w-[32rem]"
             color="var(--release-stain)"
-            opacity={0.24}
+            opacity={0.3}
+          />
+          <Stain
+            shape="sage"
+            drift="c"
+            className="bottom-0 left-0 h-[22rem] w-[26rem]"
+            color="var(--release-stain)"
+            opacity={0.18}
           />
           <div className="container grid gap-10 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-5">
@@ -94,32 +103,9 @@ export async function ReleasePage({ locale, slug }: { locale: Locale; slug: stri
               ) : null}
 
               <h2 className="mt-14 text-h2 font-semibold">{hasLyrics ? t("music.lyrics") : t("music.tracklist")}</h2>
-              <ol className="mt-6 lyric-sheet">
-                {release.tracks.map((track) =>
-                  track.lyrics ? (
-                    <li key={track.n}>
-                      <details className="lyric-track" name="lyrics">
-                        <summary>
-                          <span className="tracklist-n">{track.n}</span>
-                          <span className="lyric-title">{track.title}</span>
-                          {track.duration ? <span className="tracklist-dur">{track.duration}</span> : null}
-                        </summary>
-                        <div className="lyric-body prose-lyrics" lang="en">
-                          {track.lyrics.split(/\n{2,}/).map((paragraph, i) => (
-                            <p key={i}>{paragraph}</p>
-                          ))}
-                        </div>
-                      </details>
-                    </li>
-                  ) : (
-                    <li key={track.n} className="lyric-track lyric-track-static">
-                      <span className="tracklist-n">{track.n}</span>
-                      <span className="lyric-title">{track.title}</span>
-                      {track.duration ? <span className="tracklist-dur">{track.duration}</span> : null}
-                    </li>
-                  ),
-                )}
-              </ol>
+              <div className="mt-6">
+                <TrackList locale={locale} tracks={release.tracks} />
+              </div>
 
               {release.credits?.length ? (
                 <>

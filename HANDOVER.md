@@ -10,6 +10,8 @@ Stand: 10. September 2026. Die Seite läuft lokal mit `npm run dev` unter http:/
 - Konzerte aus `content/shows.json` mit Kalenderdatei, Anfahrt, Ticketlink und Google-Rich-Results (MusicEvent). Anleitung: `content/README.md`.
 - Alle vier Releases mit Titelliste, Songtexten (Season One und Jumping just to fall), Credits, Streaming-Links und Bandcamp-Player.
 - Drei Videos: Starving, Jumping just to fall und die Loft-Lo-Fi-Session. YouTube lädt erst nach Klick (youtube-nocookie).
+- Songtexte: Ein Klick auf einen Songtitel öffnet den Text in einem Fenster über der Seite, in der Farbe der jeweiligen Platte. Die Texte von Season One stammen von der alten Seite und liegen dort als ein Block ohne Zeilenumbrüche vor; wer in `content/releases/season-one.json` Leerzeilen einfügt, bekommt daraus Strophen.
+- Socials stehen ab Tablet-Breite oben in der Navigation.
 - Folk's Worst Nightmare mit der gezeichneten Plattenhülle und dem Gruppenfoto.
 - Impressum und Datenschutzerklärung (DE verbindlich, EN als Übersetzung), keine Cookies, kein Tracking, kein Banner.
 - SEO: Titel, Beschreibungen, hreflang, Sitemap, robots.txt, llms.txt, Open-Graph-Bilder, strukturierte Daten (MusicGroup, MusicAlbum mit Songtexten, MusicEvent, VideoObject, Breadcrumbs).

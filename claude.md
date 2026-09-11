@@ -8,6 +8,8 @@ Feature-complete and running locally; all quality gates green (54 unit tests, 13
 
 Round 2 acted on the client's feedback: the palette is now sampled from the Season One sleeve, the 3D brick hero was replaced by a painted wordmark, three.js and every animation library were removed, the home page runs in his order, only three videos remain, the collective section shows two artworks he supplied, and every photo of him shows his face.
 
+Round 4 is the design round: the hero became one full-viewport composition with the cat photo and a show badge in the flow, prints and video frames took a 14px edge, the marks grew and now travel on three slow wave paths, the socials moved into the header, and every song opens its lyrics in a panel over the page.
+
 Round 3 answered "too big, too in your face": every type step came down (display tops out at 3.25rem, headings sit at weight 600, the wordmark at 7.2cqw), the measure narrowed to 1160px and the rhythm tightened. Colour now arrives as paint rather than blocks: the saturated sage field became paper the pigment soaked into, the collective's section took a clay-soaked ground, and the artist's own brush marks (manchas) drift at the edge of every section. Each album page wears its own record, with an accent, wash and stain sampled from that sleeve.
 
 ## Stack and architecture
@@ -20,7 +22,8 @@ Round 3 answered "too big, too in your face": every type step came down (display
 - **Embeds**: YouTube (`youtube-nocookie.com`) and Bandcamp load only after a click; nothing is stored (each click is a consent). Fonts self-hosted (Bricolage Grotesque variable, OFL, `app/fonts/`).
 - **SEO**: `lib/seo/metadata.ts` (titles, canonical, hreflang, OG), `lib/seo/jsonld.ts` (MusicGroup, MusicAlbum/MusicRecording with lyrics, MusicEvent, VideoObject, BreadcrumbList), `app/sitemap.ts` (alternates), `app/robots.ts`, `app/manifest.ts`, `public/llms.txt`, OG PNGs pre-rendered by `scripts/og.tsx` into `public/og/` (committed; Next's `opengraph-image` route emits extension-less files that Cloudflare would mis-type).
 - **Design**: world = the LP record package (sleeve, inner sleeve, hype sticker, sticker sheet, runout etching). Every colour in `app/globals.css` (`@theme`) is sampled from the Season One sleeve: paper #f3f2f0, ink #222222, clay #a8563c (the salmon wolf, the single accent), sage #5b6a55 (the green wolf). Whole sections sit on paper those pigments soaked into (#eef0ea, #f7efea), never on a saturated slab.
-- **Manchas**: `components/ui/Stain.tsx` places brush marks lifted off the sleeve by `scripts/pigments.mjs`, which turns the paint's own density into an alpha channel and fades every edge so a crop cannot leave a rectangle. The file carries the shape; the colour is a token, which is what lets a release page stain itself. They are `aria-hidden`, sit inside their section, and vanish under forced colours.
+- **Manchas**: `components/ui/Stain.tsx` places brush marks lifted off the sleeve by `scripts/pigments.mjs`, two or three per section, each on one of three wave paths (`drift="a" | "b" | "c"`) that stop under reduced motion, which turns the paint's own density into an alpha channel and fades every edge so a crop cannot leave a rectangle. The file carries the shape; the colour is a token, which is what lets a release page stain itself. They are `aria-hidden`, sit inside their section, and vanish under forced colours.
+- **Lyrics**: `components/music/TrackList.tsx` is the one track list on the site; a song with lyrics renders `components/music/LyricsDialog.tsx`, a native `<dialog>` whose content is server-rendered so the words stay in the HTML and in the JSON-LD. The old `<details>` accordion is gone.
 - **Album pages**: `scripts/pigments.mjs` samples each cover's dominant painted hue, deepens it until it carries body text on paper, and writes `lib/releases/palette.json`. `ReleasePage` sets those as `--release-*` custom properties, so the head band, accent, track numbers, focus ring and mancha belong to that record. The generator and `tests/unit/release-palette.test.ts` both refuse a palette that fails contrast. Direction contract is the HTML comment at the top of `<body>` in `components/layout/SiteShell.tsx`. Product truth: `PRODUCT.md`; visual system: `DESIGN.md`; impeccable surface brief: `.impeccable/surfaces/`.
 - **Hosting**: Cloudflare Pages. `public/_headers` (CSP with `'unsafe-inline'` scripts because static export inlines RSC payloads; HSTS; caching), `public/_redirects`. Weekly rebuild via deploy hook (`.github/workflows/weekly-rebuild.yml`, secret `CF_PAGES_DEPLOY_HOOK_URL`) so past shows retire. Runbook: `GO-LIVE.md`.
 
@@ -32,6 +35,7 @@ npm run build          # prebuild: validate content + generate ics; postbuild: l
 npm run preview        # serve out/ on :4173
 npm run images         # regenerate WebP variants + manifest from assets/source
 npm run gen:pigments   # wordmark wash, watercolour stains, and a palette per album
+npm run shot ".sel" out.png [/route/] [click] [width]   # screenshot one element
 npm run gen:og         # regenerate OG PNGs (needs assets/source/covers); --force to overwrite
 npm run gen:icons      # apple-icon.png + favicon.ico from app/icon.svg
 npm run check          # validate:content + typecheck + lint + unit tests
@@ -54,6 +58,8 @@ node scripts/screenshots.mjs [dir] [routes…]   # desktop + mobile screenshots 
 
 - No upcoming shows were supplied; the shows section shows an honest empty state.
 - The Folk's Worst Nightmare collective photo has no known photographer; it is uncredited until the client says otherwise.
+- The Season One lyrics came off the old site as one block per song, with no line breaks, so the panel shows them as prose. Adding blank lines in `content/releases/*.json` splits them into stanzas; the renderer already does that.
+- Two photos the client asked for never arrived: `InShot20200226_221538321.jpg` (fourth in the strip, standing in with the 2021 live shot) and `bild 4.jpg` (third in the strip).
 - Spotify album ID for the "Jumping just to fall" single unresolved (Bandcamp/Apple/YouTube linked instead).
 - Client to confirm: English bio wording, USt-IdNr. (Impressum), photo credits for the 2026 shoot, any remaining physical merch.
 - Impeccable reports a newer version (v4.3.1 vs installed 4.0.4); update with `npx impeccable update` if wanted.

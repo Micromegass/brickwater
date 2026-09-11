@@ -21,7 +21,8 @@
   "hero": {
     "ctaShows": "Shows",
     "ctaListen": "Listen",
-    "nextShow": "Next show"
+    "nextShow": "Next show",
+    "badgeEmpty": "coming soon"
   },
   "about": {
     "heading": "Thanks for stopping by",
@@ -84,7 +85,9 @@
     },
     "player": "Player for {title}",
     "detail": "View release",
-    "moreReleases": "More releases"
+    "moreReleases": "More releases",
+    "closeLyrics": "Close",
+    "lyricsOf": "Lyrics: {title}"
   },
   "videos": {
     "heading": "Videos",

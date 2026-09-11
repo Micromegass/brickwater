@@ -21,7 +21,8 @@
   "hero": {
     "ctaShows": "Konzerte",
     "ctaListen": "Musik hören",
-    "nextShow": "Nächstes Konzert"
+    "nextShow": "Nächstes Konzert",
+    "badgeEmpty": "folgt bald"
   },
   "about": {
     "heading": "Danke fürs Vorbeischauen",
@@ -84,7 +85,9 @@
     },
     "player": "Player für {title}",
     "detail": "Zum Release",
-    "moreReleases": "Weitere Releases"
+    "moreReleases": "Weitere Releases",
+    "closeLyrics": "Schließen",
+    "lyricsOf": "Songtext: {title}"
   },
   "videos": {
     "heading": "Videos",

@@ -1,7 +1,7 @@
 import type { Locale } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
 import { Photo } from "@/components/ui/Photo";
-import { loadBio, loadImages } from "@/lib/content/load";
+import { loadBio } from "@/lib/content/load";
 import { Stain } from "@/components/ui/Stain";
 
 const STRIP: { id: string; position?: string }[] = [
@@ -18,37 +18,24 @@ const STRIP: { id: string; position?: string }[] = [
 export async function BioSection({ locale }: { locale: Locale }) {
   const t = await getTranslations({ locale, namespace: "about" });
   const bio = loadBio(locale);
-  const images = loadImages();
   return (
     <section className="section" aria-labelledby="bio-title">
-      <Stain shape="sage" className="left-0 top-12 h-[26rem] w-[22rem]" opacity={0.26} />
+      <Stain shape="sage" drift="c" className="left-0 top-8 h-[28rem] w-[24rem]" opacity={0.3} />
+      <Stain shape="clay" drift="a" className="right-0 bottom-0 h-[24rem] w-[28rem]" opacity={0.18} />
       <div className="container">
-        <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
-          <figure className="lg:col-span-6">
-            <Photo
-              id="bricky-waters-cat-mural-2020"
-              locale={locale}
-              sizes="(min-width: 1024px) 48vw, 100vw"
-              className="sleeve-photo aspect-[4/5] object-cover object-center"
-            />
-            <figcaption className="etch mt-3 text-ink-soft">
-              {images["bricky-waters-cat-mural-2020"].credit}
-            </figcaption>
-          </figure>
-          <div className="lg:col-span-6 lg:pt-6">
-            <h2 id="bio-title" className="text-h2 font-semibold">
-              {t("heading")}{" "}
-              <span className="bio-heart" aria-hidden="true">
-                ♡
-              </span>
-            </h2>
-            <div className="mt-8 space-y-5 text-body">
-              {bio.paragraphs.map((paragraph) => (
-                <p key={paragraph.slice(0, 24)} className="measure">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
+        <div className="max-w-[46rem]">
+          <h2 id="bio-title" className="text-h2 font-semibold">
+            {t("heading")}{" "}
+            <span className="bio-heart" aria-hidden="true">
+              ♡
+            </span>
+          </h2>
+          <div className="mt-6 space-y-5 text-body">
+            {bio.paragraphs.map((paragraph) => (
+              <p key={paragraph.slice(0, 24)} className="measure">
+                {paragraph}
+              </p>
+            ))}
           </div>
         </div>
         <ul className="photo-strip mt-14 lg:mt-20" aria-label={t("photos")} tabIndex={0}>

@@ -13,7 +13,10 @@
     "hypeSticker": "transform 240ms ease-out-expo, rotate -8deg to -4deg on hover",
     "posterHover": "transform 500ms ease-out-expo, scale 1.03",
     "reducedMotion": "the wordmark renders finished with no animation; smooth scrolling off",
-    "webgl": "none; the site ships no canvas and no animation library"
+    "webgl": "none; the site ships no canvas and no animation library",
+    "backgroundWaves": "three keyframe sets (71s, 82s, 104s) on ease-in-out alternate, transform only, staggered per mark, none under reduced motion",
+    "printHover": "translateY(-3px) with a deeper sleeve shadow, 320ms ease-out-expo",
+    "lyricsPanel": "sheet-in 260ms ease-out-expo on open; native dialog handles focus, Escape and return"
   },
   "focus": {
     "ring": "3px solid #a8563c, outline-offset 3px",
@@ -44,7 +47,7 @@
       "/images/stain-ink.webp"
     ],
     "technique": "the paint's own density becomes an alpha channel, edges and corners faded so no crop leaves a rectangle; the file carries shape only",
-    "usage": "mask-image over a token colour, 0.12-0.26 opacity, decorative, inside the section, hidden under forced colours and where masks are unsupported"
+    "usage": "mask-image over a token colour, 0.16-0.34 opacity, two or three per section, decorative, inside the section, hidden under forced colours and where masks are unsupported; never scale the mask past 100%, which would cut the faded edge into a rectangle"
   },
   "releaseTheming": {
     "source": "lib/releases/palette.json",
@@ -55,5 +58,11 @@
       "--release-stain"
     ],
     "guard": "the generator refuses an accent under 4.5:1 on paper or a wash under 12:1 with ink; tests/unit/release-palette.test.ts asserts it"
+  },
+  "radius": {
+    "print": "14px",
+    "printLg": "18px",
+    "sticker": "999px",
+    "grounds": "0"
   }
 }
