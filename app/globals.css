@@ -28,10 +28,6 @@
   /* The painting's green at brush strength: the soaked grounds are too pale to
      read as green once a mark is spread thin across a section. */
   --color-sage-paint: #6b8159;
-  /* The clay pigment at printing-ink density and at paper lightness: the two
-     ends of the duotone a photograph is printed in. */
-  --color-print-ink: #301b15;
-  --color-print-paper: #f4efed;
 
   --font-sans: var(--font-bricolage), "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
 
@@ -54,9 +50,6 @@
   /* Printed things carry a soft edge; stickers stay pills, grounds stay square. */
   --radius-print: 14px;
   --radius-print-lg: 18px;
-  /* The image inside a mounted print: concentric with the mount's 18px corner
-     across a 0.7rem margin. */
-  --radius-print-inner: 8px;
 
   --shadow-sticker: 0 1px 2px rgb(34 34 34 / 0.09), 0 6px 18px -12px rgb(34 34 34 / 0.28);
   --shadow-sleeve: 0 1px 3px rgb(34 34 34 / 0.06), 0 14px 34px -22px rgb(34 34 34 / 0.35);
@@ -916,63 +909,16 @@
     object-fit: cover;
   }
   /*
-    A photograph printed rather than pasted: the image is reduced to tone, then
-    a duotone is laid over it by setting the black point to the clay pigment at
-    ink density and capping the white point at the same pigment at paper
-    lightness. Two blend layers do the mapping, so it stays one asset and the
-    gallery keeps the document untouched. The mount around it is the paper the
-    print sits on.
+    A monochrome print. No tint and no torn edge: a warm duotone and a frayed
+    border read as antique, and this photograph is already almost colourless, so
+    neutral grey is both the cleanest and the most honest thing to do to it.
   */
-  .sleeve-print {
-    position: relative;
-    isolation: isolate;
-    padding: 0.7rem;
-    border-radius: var(--radius-print-lg);
-    background: var(--color-paper);
-    box-shadow: var(--shadow-sleeve);
-  }
-  .sleeve-print-img {
-    display: block;
-    width: 100%;
-    height: auto;
-    border-radius: var(--radius-print-inner);
-    background: var(--color-paper-deep);
-    filter: grayscale(1) contrast(1.07);
-  }
-  /* The plate line: where the printing plate met the paper. */
-  .sleeve-print-plate {
-    position: absolute;
-    inset: 0.7rem;
-    border-radius: var(--radius-print-inner);
-    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-print-ink) 22%, transparent);
-    pointer-events: none;
-    z-index: 1;
-  }
-  .sleeve-print::before,
-  .sleeve-print::after {
-    content: "";
-    position: absolute;
-    inset: 0.7rem;
-    border-radius: var(--radius-print-inner);
-    pointer-events: none;
-  }
-  /* Raises the black point into warm ink. */
-  .sleeve-print::before {
-    background: var(--color-print-ink);
-    mix-blend-mode: lighten;
-  }
-  /* Caps the white point at the paper the sleeve is printed on. */
-  .sleeve-print::after {
-    background: var(--color-print-paper);
-    mix-blend-mode: darken;
+  .sleeve-photo-mono {
+    filter: grayscale(1);
   }
   @media (forced-colors: active) {
-    .sleeve-print-img {
+    .sleeve-photo-mono {
       filter: none;
-    }
-    .sleeve-print::before,
-    .sleeve-print::after {
-      display: none;
     }
   }
 

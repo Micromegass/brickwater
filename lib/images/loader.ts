@@ -1,5 +1,6 @@
 "use client";
 
+import { withBase } from "@/lib/base-path";
 import manifest from "./manifest.json";
 import { resolveImage, type ImageManifest } from "./resolve";
 
@@ -11,5 +12,5 @@ export default function imageLoader({
   width: number;
   quality?: number;
 }): string {
-  return resolveImage(manifest as ImageManifest, src, width);
+  return withBase(resolveImage(manifest as ImageManifest, src, width));
 }

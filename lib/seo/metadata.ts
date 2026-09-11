@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import type { Locale, Pathname } from "@/i18n/routing";
+import { NOINDEX } from "@/lib/base-path";
 import { pageAlternates } from "@/lib/i18n/paths";
 
 interface PageMetadataInput {
@@ -37,8 +38,11 @@ export async function pageMetadata(input: PageMetadataInput): Promise<Metadata> 
       locale: input.locale === "de" ? "de_DE" : "en_GB",
       alternateLocale: input.locale === "de" ? ["en_GB"] : ["de_DE"],
       type: "website",
+      // No withBase here: metadataBase already carries the base path and Next
+      // joins it onto a relative URL, so prefixing again doubles it.
       images: [{ url: `/og/${input.ogKey ?? input.key ?? "home"}-${input.locale}.png`, width: 1200, height: 630, alt: title }],
     },
     twitter: { card: "summary_large_image", title, description },
+    ...(NOINDEX ? { robots: { index: false, follow: false } } : {}),
   };
 }

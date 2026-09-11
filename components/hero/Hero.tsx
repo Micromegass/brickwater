@@ -3,6 +3,7 @@ import type { Locale } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
 import { getRelease, loadShows, loadSite } from "@/lib/content/load";
 import { berlinDateTime } from "@/lib/dates";
+import { withBase } from "@/lib/base-path";
 import { localizedPath } from "@/lib/i18n/paths";
 import { splitShows } from "@/lib/shows";
 import { Photo } from "@/components/ui/Photo";
@@ -119,21 +120,20 @@ export async function Hero({ locale }: { locale: Locale }) {
                 meta={`${t(`music.types.${heroRelease.type}`)}, ${heroRelease.year} · ${heroRelease.title}`}
                 ariaLabel={t("hero.heroTrackLabel", { title: heroTrack.title, release: heroRelease.title })}
                 hint={t("embeds.bandcampHintShort")}
-                privacyHref={localizedPath(locale, "/privacy")}
+                privacyHref={withBase(localizedPath(locale, "/privacy"))}
                 privacyLabel={t("embeds.privacyLink")}
                 iframeTitle={t("embeds.iframeTitle", { title: heroTrack.title, provider: "Bandcamp" })}
               />
             ) : null}
           </div>
-          <figure className="hero-photo sleeve-print">
+          <figure className="hero-photo">
             <Photo
               id="brickwater-harmonica-live-2020"
               locale={locale}
               sizes="(min-width: 768px) 46vw, 100vw"
-              className="sleeve-print-img"
+              className="sleeve-photo sleeve-photo-lg sleeve-photo-mono"
               priority
             />
-            <span className="sleeve-print-plate" aria-hidden="true" />
           </figure>
         </div>
       </div>

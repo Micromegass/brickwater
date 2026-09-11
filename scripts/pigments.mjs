@@ -275,10 +275,10 @@ function makeTileable(alpha, width, height, blend) {
   }
 }
 
-async function writeMask(name, alpha, width, height) {
+async function writeMask(name, alpha, width, height, blur = 1.4) {
   const bytes = Buffer.from(alpha.map((a) => Math.round(clamp(a, 0, 1) * 255)));
   const soft = await sharp(bytes, { raw: { width, height, channels: 1 } })
-    .blur(1.4)
+    .blur(blur)
     .toColourspace("b-w")
     .raw()
     .toBuffer();
@@ -370,6 +370,7 @@ async function buildEdges() {
     }
     await writeMask("edge-deckle-flip", flipped, info.width, info.height);
   }
+
 }
 
 /* ---------- 3. a palette per release ---------- */

@@ -1,0 +1,76 @@
+name: Deploy to GitHub Pages
+
+# A project page serves under /<repo>/, so the build is told where it lives and
+# every URL it emits is prefixed. It is also marked noindex: this is a preview,
+# and it must never compete with brickwater.de in search.
+#
+# One manual step before the first run: Settings -> Pages -> Build and
+# deployment -> Source: GitHub Actions. The configure step below tries to set
+# that itself, and is allowed to fail if the account does not permit it.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Work out where this page will live
+        run: |
+          repo="${GITHUB_REPOSITORY#*/}"
+          owner="$(echo "${GITHUB_REPOSITORY%%/*}" | tr '[:upper:]' '[:lower:]')"
+          {
+            echo "NEXT_PUBLIC_BASE_PATH=/${repo}"
+            echo "NEXT_PUBLIC_SITE_URL=https://${owner}.github.io/${repo}"
+            echo "NEXT_PUBLIC_NOINDEX=1"
+          } >> "$GITHUB_ENV"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+
+      - run: npm ci
+
+      # Content, types, lint and unit tests. The end-to-end suite runs in ci.yml
+      # against a root build; repeating it here would only pay for it twice.
+      - run: npm run check
+
+      # prebuild validates content, postbuild verifies every internal link,
+      # which is what proves the base path was threaded through everywhere.
+      - run: npm run build
+
+      - uses: actions/configure-pages@v5
+        continue-on-error: true
+        with:
+          enablement: true
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

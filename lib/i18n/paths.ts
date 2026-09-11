@@ -1,6 +1,6 @@
 import { routing, type Locale, type Pathname } from "@/i18n/routing";
 
-export const SITE_URL = "https://www.brickwater.de";
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.brickwater.de";
 
 type Params = Record<string, string>;
 

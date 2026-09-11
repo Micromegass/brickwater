@@ -29,3 +29,36 @@ In Speed → Optimization **ausschalten**: Rocket Loader, Auto Minify, Mirage. I
 - Security-Header prüfen (securityheaders.com): CSP, HSTS, X-Frame-Options sollten grün sein.
 - Im Cloudflare-Konto das Data Processing Addendum bestätigen (Account → Compliance), Basis für Abschnitt 2 der Datenschutzerklärung.
 - Alte Seite: Das bisherige Apache-Hosting kann gekündigt werden, sobald DNS umgestellt ist. Es gibt keine alten Unterseiten, die weitergeleitet werden müssten.
+
+## 6. Vorschau auf GitHub Pages
+
+Die Seite liegt zusätzlich als Vorschau auf GitHub Pages, damit es einen Link
+gibt, bevor die Domain umgezogen ist. Deployt wird bei jedem Push auf `main`
+über `.github/workflows/deploy-pages.yml`.
+
+Einmalig einzustellen: Settings -> Pages -> Build and deployment -> Source:
+GitHub Actions. Der Workflow versucht das selbst, darf dabei aber scheitern.
+
+Adresse: `https://micromegass.github.io/brickwater/`
+
+Was dabei anders ist als auf Cloudflare, und warum die Vorschau nicht die
+Produktion ersetzt:
+
+- GitHub Pages sendet **keine eigenen Header**. `public/_headers` wird dort
+  ignoriert, also gelten CSP, HSTS, `X-Frame-Options` und die Cache-Regeln
+  nicht. Auf Cloudflare gelten sie.
+- Die Vorschau ist bewusst auf **noindex** gestellt (`robots.txt` verbietet
+  alles, jede Seite trägt `robots: noindex`), damit sie brickwater.de in der
+  Suche nicht verdrängt.
+- Die Seite läuft dort unter `/brickwater/`. Der Build bekommt das über
+  `NEXT_PUBLIC_BASE_PATH` und `NEXT_PUBLIC_SITE_URL` gesagt; ohne diese
+  Variablen baut alles genau wie bisher für die Wurzel von brickwater.de.
+- Der wöchentliche Neubau, der vergangene Konzerte ausblendet, hängt am
+  Cloudflare-Deploy-Hook und läuft für die Vorschau nicht.
+
+Soll die Vorschau später doch die echte Seite werden: eine Datei `public/CNAME`
+mit `www.brickwater.de` anlegen, im Workflow `NEXT_PUBLIC_BASE_PATH` leeren,
+`NEXT_PUBLIC_SITE_URL` auf `https://www.brickwater.de` setzen,
+`NEXT_PUBLIC_NOINDEX` entfernen und die DNS-Einträge auf GitHub zeigen lassen.
+Die fehlenden Security-Header bleiben dann trotzdem ein Nachteil gegenüber
+Cloudflare.

@@ -295,9 +295,9 @@ A fourth mask, `stain-wolves.webp`, is taken from the whole painted band of the 
 
 `.reveal` puts a 14px rise and a hair of scale on a CSS view timeline, so nothing ships to make it work and a browser without view timelines simply shows the content, which is also what reduced motion gets. It is transform only, never opacity, for two reasons learned the hard way: text caught mid-fade renders at a blended colour that fails contrast, and a range ending in `cover` can never complete for the last block on a page, which would leave it faded for good. The range ends inside `entry`, which every element reaches. It is on headings, intros, photographs, tiles and rows, and never in the hero, which must not touch the largest paint.
 
-### A photograph is printed, not pasted (signature)
+### A photograph is a photograph (signature)
 
-The hero photograph is mounted and printed rather than dropped in as a rectangle. The image is reduced to tone, then a duotone is laid over it by two blend layers: one raises the black point to the clay pigment at printing-ink density, the other caps the white point at the same pigment at paper lightness. Both ends are the sleeve's own colour taken to new lightness, so the palette stays closed, and the mapping is done in CSS, so it stays one asset and the gallery keeps the document untouched. Around it sits the paper the print is mounted on, with a plate line where the plate met the paper. The frame follows the photograph's own proportion, so nothing is cropped twice.
+The hero photograph is the site's ordinary print: rounded to 18px, the sleeve shadow under it, and a neutral `grayscale(1)` because this frame is already almost colourless and grey is the cleanest thing to do to it. Two richer treatments were tried and rejected by the artist: a warm duotone mounted on paper with a plate line, and then the same duotone dissolving into the page through a painted mask. Both read as antique. The lesson is worth keeping: this world is a printed record sleeve, not an aged one, and a photograph of a living person wants to look like a photograph.
 
 The blue LED strip across the top of that frame was removed at the source instead of hidden with a crop in CSS: `cropTop` in `scripts/images.mjs` takes a fraction off a frame whose upper band carries something that does not belong in the picture, once, for every use of it.
 

@@ -3,6 +3,7 @@ import type { Locale } from "@/i18n/routing";
 import { YouTubeFacade } from "@/components/embeds/YouTubeFacade";
 import { loadSite } from "@/lib/content/load";
 import { photoProps } from "@/lib/images/photo";
+import { withBase } from "@/lib/base-path";
 import { localizedPath } from "@/lib/i18n/paths";
 import { Stain } from "@/components/ui/Stain";
 
@@ -39,7 +40,7 @@ export async function VideosSection({ locale }: { locale: Locale }) {
         </div>
         <p className="mt-6 text-caption text-ink-soft">
           {t("embeds.youtubeHint")}{" "}
-          <a href={localizedPath(locale, "/privacy")} className="underline">
+          <a href={withBase(localizedPath(locale, "/privacy"))} className="underline">
             {t("embeds.privacyLink")}
           </a>
         </p>

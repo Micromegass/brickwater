@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
 import { loadSite } from "@/lib/content/load";
+import { withBase } from "@/lib/base-path";
 import { localizedPath } from "@/lib/i18n/paths";
 import { SocialIcon, type SocialKey } from "@/components/ui/SocialIcon";
 import { LanguageSwitcher } from "./LanguageSwitcher";
@@ -11,7 +12,8 @@ const SOCIALS: SocialKey[] = ["instagram", "bandcamp", "spotify", "appleMusic", 
 export async function SiteHeader({ locale }: { locale: Locale }) {
   const t = await getTranslations({ locale });
   const site = loadSite();
-  const home = localizedPath(locale, "/");
+  // Plain anchors, because they carry a fragment; they need the base path.
+  const home = withBase(localizedPath(locale, "/"));
   return (
     <header className="site-header">
       <a href="#main" className="skip-link">

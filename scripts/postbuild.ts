@@ -2,6 +2,8 @@ import { copyFileSync, existsSync, readdirSync, readFileSync, statSync } from "n
 import path from "node:path";
 
 const OUT = path.join(process.cwd(), "out");
+// A project-page build prefixes every href; the files on disk do not carry it.
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const problems: string[] = [];
 
 function must(file: string) {
@@ -25,7 +27,8 @@ function htmlFiles(dir: string): string[] {
 }
 
 function targetExists(href: string): boolean {
-  const clean = href.split(/[?#]/)[0];
+  let clean = href.split(/[?#]/)[0];
+  if (BASE_PATH && clean.startsWith(BASE_PATH)) clean = clean.slice(BASE_PATH.length) || "/";
   if (clean === "" || clean === "/") return existsSync(path.join(OUT, "index.html"));
   const rel = clean.replace(/^\//, "");
   const asFile = path.join(OUT, rel);

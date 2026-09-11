@@ -1,6 +1,7 @@
 import manifest from "./manifest.json";
 import { loadImages } from "@/lib/content/load";
 import type { Locale } from "@/i18n/routing";
+import { withBase } from "@/lib/base-path";
 import { resolveImage, type ImageManifest } from "./resolve";
 
 export interface PhotoProps {
@@ -29,5 +30,5 @@ export function photoProps(id: string, locale: Locale): PhotoProps {
 
 /** Absolute URL of the largest generated variant, for OG images and JSON-LD. */
 export function photoUrl(id: string, width = 1600): string {
-  return resolveImage(manifest as ImageManifest, id, width);
+  return withBase(resolveImage(manifest as ImageManifest, id, width));
 }

@@ -3,6 +3,7 @@
 import { useLocale } from "next-intl";
 import { useParams } from "next/navigation";
 import { getPathname, usePathname } from "@/i18n/navigation";
+import { withBase } from "@/lib/base-path";
 import { otherLocale } from "@/lib/i18n/paths";
 
 export function LanguageSwitcher({ label, short }: { label: string; short: string }) {
@@ -16,7 +17,8 @@ export function LanguageSwitcher({ label, short }: { label: string; short: strin
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     href: { pathname, params } as any,
   });
-  const href = raw.endsWith("/") ? raw : `${raw}/`;
+  // A plain anchor, so the base path is ours to add; Link would do it itself.
+  const href = withBase(raw.endsWith("/") ? raw : `${raw}/`);
   return (
     <a
       href={href}
