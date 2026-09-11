@@ -24,6 +24,9 @@ export async function SiteHeader({ locale }: { locale: Locale }) {
         <nav aria-label={t("nav.mainNavigation")} className="site-nav">
           <Link href="/shows">{t("nav.shows")}</Link>
           <Link href="/music">{t("nav.music")}</Link>
+          <Link href="/gallery" className="hidden sm:inline">
+            {t("nav.gallery")}
+          </Link>
           <a href={`${home}#videos`} className="hidden sm:inline">
             {t("nav.videos")}
           </a>

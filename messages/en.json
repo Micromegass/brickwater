@@ -16,19 +16,22 @@
     "switchLanguage": "Deutsche Version",
     "switchLanguageShort": "DE",
     "mainNavigation": "Main navigation",
-    "homeLink": "Brickwater, back to the start page"
+    "homeLink": "Brickwater, back to the start page",
+    "gallery": "Gallery"
   },
   "hero": {
     "ctaShows": "Shows",
     "ctaListen": "Listen",
     "nextShow": "Next show",
-    "badgeEmpty": "coming soon"
+    "badgeEmpty": "coming soon",
+    "ctaFollow": "Follow"
   },
   "about": {
     "heading": "Thanks for stopping by",
     "readMore": "Read the full bio",
     "readLess": "Show less",
-    "photos": "Photos"
+    "photos": "Photos",
+    "allPhotos": "All photos"
   },
   "shows": {
     "heading": "Shows",
@@ -155,6 +158,10 @@
     "privacy": {
       "title": "Privacy policy",
       "description": "Privacy policy for brickwater.de: hosting, embedded content, contact and your rights."
+    },
+    "gallery": {
+      "title": "Gallery",
+      "description": "Photographs of Brickwater: stages, beer gardens, living rooms and the collective. Pictures from 2019 to 2026."
     }
   },
   "social": {
@@ -164,5 +171,11 @@
     "appleMusic": "Apple Music",
     "youtube": "YouTube",
     "deezer": "Deezer"
+  },
+  "gallery": {
+    "heading": "Gallery",
+    "intro": "Stages, beer gardens, forest clearings. Pictures from 2019 to 2026.",
+    "open": "View {title} larger",
+    "close": "Close"
   }
 }

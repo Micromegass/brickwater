@@ -5,7 +5,7 @@ import { absoluteUrl, localizedPath } from "@/lib/i18n/paths";
 
 export const dynamic = "force-static";
 
-const STATIC_PATHS: Pathname[] = ["/", "/shows", "/music", "/legal-notice", "/privacy"];
+const STATIC_PATHS: Pathname[] = ["/", "/shows", "/music", "/gallery", "/legal-notice", "/privacy"];
 
 function entry(pathname: Pathname, params?: Record<string, string>, priority = 0.7): MetadataRoute.Sitemap {
   const de = absoluteUrl(localizedPath("de", pathname, params));
@@ -22,6 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/": 1,
     "/shows": 0.9,
     "/music": 0.8,
+    "/gallery": 0.6,
     "/legal-notice": 0.2,
     "/privacy": 0.2,
   };

@@ -16,7 +16,7 @@ export async function ContactSection({ locale }: { locale: Locale }) {
       <Stain shape="sage" drift="c" className="left-0 bottom-0 h-[26rem] w-[24rem]" opacity={0.3} />
       <Stain shape="clay" drift="b" className="right-0 top-0 h-[22rem] w-[26rem]" opacity={0.18} />
       <div className="container grid gap-12 lg:grid-cols-12">
-        <div className="lg:col-span-7">
+        <div className="lg:col-span-7 reveal">
           <h2 id="contact-title" className="text-h2 font-semibold">
             {t("contact.heading")}
           </h2>
@@ -41,7 +41,7 @@ export async function ContactSection({ locale }: { locale: Locale }) {
             ))}
           </ul>
         </div>
-        <figure className="lg:col-span-5">
+        <figure className="lg:col-span-5 reveal">
           <Photo id="bricky-waters-portrait-bw-2019" locale={locale} sizes="(min-width: 1024px) 38vw, 100vw" className="sleeve-photo" />
         </figure>
       </div>

@@ -16,19 +16,22 @@
     "switchLanguage": "English version",
     "switchLanguageShort": "EN",
     "mainNavigation": "Hauptnavigation",
-    "homeLink": "Brickwater, zur Startseite"
+    "homeLink": "Brickwater, zur Startseite",
+    "gallery": "Galerie"
   },
   "hero": {
     "ctaShows": "Konzerte",
     "ctaListen": "Musik hören",
     "nextShow": "Nächstes Konzert",
-    "badgeEmpty": "folgt bald"
+    "badgeEmpty": "folgt bald",
+    "ctaFollow": "Folgen"
   },
   "about": {
     "heading": "Danke fürs Vorbeischauen",
     "readMore": "Ganze Bio lesen",
     "readLess": "Weniger anzeigen",
-    "photos": "Fotos"
+    "photos": "Fotos",
+    "allPhotos": "Alle Fotos"
   },
   "shows": {
     "heading": "Konzerte",
@@ -155,6 +158,10 @@
     "privacy": {
       "title": "Datenschutzerklärung",
       "description": "Datenschutzerklärung der Website brickwater.de: Hosting, eingebettete Inhalte, Kontakt und deine Rechte."
+    },
+    "gallery": {
+      "title": "Galerie",
+      "description": "Fotos von Brickwater: Bühne, Biergarten, Wohnzimmer und Kollektiv. Bilder aus den Jahren 2019 bis 2026."
     }
   },
   "social": {
@@ -164,5 +171,11 @@
     "appleMusic": "Apple Music",
     "youtube": "YouTube",
     "deezer": "Deezer"
+  },
+  "gallery": {
+    "heading": "Galerie",
+    "intro": "Bühne, Biergarten, Waldlichtung. Bilder aus den Jahren 2019 bis 2026.",
+    "open": "{title} groß ansehen",
+    "close": "Schließen"
   }
 }

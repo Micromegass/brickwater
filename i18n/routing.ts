@@ -18,6 +18,7 @@ export const routing = defineRouting({
     "/shows": { de: "/konzerte", en: "/shows" },
     "/music": { de: "/musik", en: "/music" },
     "/music/[slug]": { de: "/musik/[slug]", en: "/music/[slug]" },
+    "/gallery": { de: "/galerie", en: "/gallery" },
     "/legal-notice": { de: "/impressum", en: "/legal-notice" },
     "/privacy": { de: "/datenschutz", en: "/privacy" },
   },

@@ -1,15 +1,17 @@
 import { getFormatter, getTranslations } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
-import { loadShows } from "@/lib/content/load";
+import { loadShows, loadSite } from "@/lib/content/load";
 import { berlinDateTime } from "@/lib/dates";
 import { splitShows } from "@/lib/shows";
 import { Photo } from "@/components/ui/Photo";
 import { Stain } from "@/components/ui/Stain";
+import { SocialIcon } from "@/components/ui/SocialIcon";
 
 export async function Hero({ locale }: { locale: Locale }) {
   const t = await getTranslations({ locale });
   const format = await getFormatter({ locale });
+  const site = loadSite();
   const { upcoming } = splitShows(loadShows(), new Date());
   const next = upcoming[0];
   const nextDate = next
@@ -18,6 +20,12 @@ export async function Hero({ locale }: { locale: Locale }) {
 
   return (
     <section className="hero" aria-labelledby="hero-title">
+      <Stain
+        shape="wolves"
+        ghost
+        className="left-1/2 top-1/2 h-[34rem] w-[46rem] -translate-x-1/2 -translate-y-1/2 sm:h-[42rem] sm:w-[58rem]"
+        opacity={0.12}
+      />
       <Stain
         shape="clay"
         drift="a"
@@ -50,6 +58,15 @@ export async function Hero({ locale }: { locale: Locale }) {
               <Link href="/music" className="sticker sticker-paper">
                 {t("hero.ctaListen")}
               </Link>
+              <a
+                href={site.socials.instagram}
+                className="sticker sticker-ink"
+                rel="me noopener"
+                aria-label={`${t("hero.ctaFollow")}: Instagram`}
+              >
+                <SocialIcon name="instagram" size={17} />
+                {t("hero.ctaFollow")}
+              </a>
             </div>
             <Link
               href="/shows"

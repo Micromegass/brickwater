@@ -70,6 +70,7 @@ for (const locale of ["de", "en"] as const) {
     { key: "home", locale, title: "Indie, Folk & Punk", subtitle: m.site.tagline.replace(/^Indie, [Ff]olk (und|and) [Pp]unk /, "").replace(/^aus |^from /, locale === "de" ? "aus " : "from ") },
     { key: "shows", locale, title: m.shows.heading, subtitle: m.shows.intro },
     { key: "music", locale, title: m.music.heading, subtitle: m.music.intro },
+    { key: "gallery", locale, title: m.gallery.heading, subtitle: m.gallery.intro },
     { key: "legal", locale, title: m.meta.legal.title, subtitle: "brickwater.de" },
     { key: "privacy", locale, title: m.meta.privacy.title, subtitle: "brickwater.de" },
   );

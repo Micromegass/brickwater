@@ -7,6 +7,9 @@ on:
     - cron: "17 3 * * 1"
   workflow_dispatch:
 
+# This workflow only posts to the deploy hook; the token needs nothing.
+permissions: {}
+
 jobs:
   trigger:
     runs-on: ubuntu-latest

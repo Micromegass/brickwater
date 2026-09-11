@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Stain } from "@/components/ui/Stain";
 import { bricolage } from "@/lib/fonts";
 import "./globals.css";
 
@@ -13,6 +14,8 @@ export default function GlobalNotFound() {
     <html lang="de" className={bricolage.variable}>
       <body>
         <main id="main" className="section">
+          <Stain shape="clay" drift="a" className="right-0 top-0 h-[26rem] w-[30rem]" opacity={0.24} />
+          <Stain shape="sage" drift="c" className="bottom-0 left-0 h-[22rem] w-[26rem]" opacity={0.18} />
           <div className="container">
             <p className="brand">Brickwater</p>
             <h1 className="mt-10 text-display font-semibold">Seite nicht gefunden</h1>

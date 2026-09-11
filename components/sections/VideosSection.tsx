@@ -14,11 +14,11 @@ export async function VideosSection({ locale }: { locale: Locale }) {
       <Stain shape="ink" drift="b" className="right-0 bottom-0 h-[22rem] w-[28rem]" opacity={0.16} />
       <Stain shape="clay" drift="c" className="left-0 top-0 h-[20rem] w-[24rem]" opacity={0.16} />
       <div className="container">
-        <h2 id="videos-title" className="text-h2 font-semibold">
+        <h2 id="videos-title" className="text-h2 font-semibold reveal">
           {t("videos.heading")}
         </h2>
-        <p className="measure mt-4 text-ink-soft">{t("videos.intro")}</p>
-        <div className="mt-10 grid gap-6 lg:grid-cols-3">
+        <p className="measure mt-4 text-ink-soft reveal">{t("videos.intro")}</p>
+        <div className="mt-10 grid gap-6 lg:grid-cols-3 reveal">
           {site.videos.map((video) => (
             <YouTubeFacade
               key={video.id}

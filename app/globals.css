@@ -183,6 +183,32 @@
 }
 
 @layer utilities {
+  /*
+    Content settles into place as it enters the viewport. Built on a view
+    timeline, so no JavaScript ships; a browser without them simply shows the
+    content, which is also what reduced motion gets.
+
+    Transform only, never opacity. Two reasons, both learned the hard way: text
+    caught mid-fade renders at a blended colour that fails contrast, and a range
+    that ends in `cover` can never complete for the last block on a page, which
+    would leave it faded for good. The range ends inside `entry`, which every
+    element reaches.
+  */
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal {
+        animation: reveal-in linear both;
+        animation-timeline: view();
+        animation-range: entry 2% entry 55%;
+      }
+    }
+  }
+  @keyframes reveal-in {
+    from {
+      transform: translateY(14px) scale(0.988);
+    }
+  }
+
   .text-balance {
     text-wrap: balance;
   }
@@ -246,52 +272,78 @@
   /*
     The marks travel like the music does: three long wave paths, staggered, so
     the background never repeats itself and nothing ever moves quickly. Transform
-    only, so no frame costs a layout.
+    and opacity only, so no frame costs a layout.
   */
   @media (prefers-reduced-motion: no-preference) {
     .stain-drift-a {
-      animation: wash-a 82s var(--ease-wave) infinite alternate;
+      animation: wash-a 96s var(--ease-wave) infinite alternate;
     }
     .stain-drift-b {
-      animation: wash-b 104s var(--ease-wave) infinite alternate;
+      animation: wash-b 138s var(--ease-wave) infinite alternate;
     }
     .stain-drift-c {
-      animation: wash-c 71s var(--ease-wave) infinite alternate;
+      animation: wash-c 112s var(--ease-wave) infinite alternate;
+    }
+    /* A ghost gathers out of the haze and comes apart again. */
+    .stain-ghost {
+      opacity: 0;
+      animation: ghost-gather 128s var(--ease-wave) infinite;
+      animation-delay: -32s;
     }
   }
   @keyframes wash-a {
     0% {
-      transform: translate3d(0, 0, 0) scale(1);
+      transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
     }
     50% {
-      transform: translate3d(2.5%, -3.5%, 0) scale(1.07);
+      transform: translate3d(5%, -6%, 0) scale(1.12) rotate(1.4deg);
     }
     100% {
-      transform: translate3d(-3%, 2%, 0) scale(1.02);
+      transform: translate3d(-6%, 4%, 0) scale(1.04) rotate(-1.2deg);
     }
   }
   @keyframes wash-b {
     0% {
-      transform: translate3d(0, 0, 0) scale(1.04);
+      transform: translate3d(0, 0, 0) scale(1.06) rotate(0.8deg);
     }
     45% {
-      transform: translate3d(-3.5%, 3%, 0) scale(1);
+      transform: translate3d(-6.5%, 5%, 0) scale(1) rotate(-1.5deg);
     }
     100% {
-      transform: translate3d(2%, 4%, 0) scale(1.09);
+      transform: translate3d(4%, 6.5%, 0) scale(1.14) rotate(1.6deg);
     }
   }
   @keyframes wash-c {
     0% {
-      transform: translate3d(0, 2%, 0) scale(1.02);
+      transform: translate3d(0, 3%, 0) scale(1.03) rotate(-1deg);
     }
     55% {
-      transform: translate3d(3.5%, -2.5%, 0) scale(1.08);
+      transform: translate3d(6%, -4.5%, 0) scale(1.13) rotate(1.2deg);
     }
     100% {
-      transform: translate3d(-2%, -3%, 0) scale(1);
+      transform: translate3d(-4%, -5.5%, 0) scale(1) rotate(-0.6deg);
     }
   }
+  @keyframes ghost-gather {
+    0%,
+    100% {
+      opacity: 0;
+      transform: translate3d(-3%, 3%, 0) scale(1.16) rotate(-2deg);
+    }
+    30% {
+      opacity: var(--stain-opacity, 0.12);
+      transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+    }
+    62% {
+      opacity: var(--stain-opacity, 0.12);
+      transform: translate3d(3%, -2%, 0) scale(1.05) rotate(1.4deg);
+    }
+    85% {
+      opacity: 0.015;
+      transform: translate3d(2%, -3%, 0) scale(1.12) rotate(2deg);
+    }
+  }
+
   @media (forced-colors: active) {
     .stain {
       display: none;
@@ -459,7 +511,7 @@
   .wordmark-stage {
     position: relative;
     container-type: inline-size;
-    margin-block: 0 clamp(1.25rem, 2.5vw, 2rem);
+    margin-block: 0 clamp(1.5rem, 3vw, 2.5rem);
   }
   .wordmark {
     margin: 0;
@@ -468,7 +520,6 @@
     font-variation-settings: "opsz" 96, "wdth" 100;
     line-height: 1;
     letter-spacing: 0.135em;
-    text-indent: 0.135em;
     text-transform: uppercase;
     text-wrap: nowrap;
     color: var(--color-clay-deep);
@@ -519,7 +570,6 @@
       font-size: 16.5cqw;
       line-height: 1.16;
       letter-spacing: 0.1em;
-      text-indent: 0.1em;
     }
     .wordmark-part {
       display: block;
@@ -580,7 +630,13 @@
   }
   @media (min-width: 768px) {
     .hero-body {
-      grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+      /*
+        The photograph takes the larger share, and the copy sits against its
+        middle rather than its foot: bottom-alignment left a void under the
+        wordmark and the frame read as two pieces instead of one.
+      */
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.14fr);
+      align-items: center;
     }
   }
   .hero-copy {
@@ -1002,6 +1058,102 @@
     from {
       opacity: 0;
       transform: translateY(10px);
+    }
+  }
+}
+
+/* ---------- gallery ---------- */
+@layer components {
+  /*
+    A column flow rather than a grid: portrait and landscape photographs sit
+    next to each other at their own proportions, nothing is cropped to fit.
+  */
+  .gallery {
+    columns: 1;
+    column-gap: clamp(0.9rem, 2.4vw, 1.6rem);
+  }
+  @media (min-width: 40rem) {
+    .gallery {
+      columns: 2;
+    }
+  }
+  @media (min-width: 64rem) {
+    .gallery {
+      columns: 3;
+    }
+  }
+  .gallery-cell {
+    break-inside: avoid;
+    margin-bottom: clamp(1.4rem, 3vw, 2.2rem);
+  }
+  .gallery-item {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: zoom-in;
+    border-radius: var(--radius-print);
+  }
+  .gallery-item:hover > .sleeve-photo,
+  .gallery-item:focus-visible > .sleeve-photo {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-sleeve-lift);
+  }
+  .gallery-item:focus-visible {
+    outline: 2px solid var(--color-clay);
+    outline-offset: 4px;
+  }
+
+  /* The print, held up to the light. */
+  .lightbox {
+    width: min(76rem, calc(100vw - 1.5rem));
+    max-height: calc(100dvh - 2rem);
+    margin: auto;
+    padding: 0;
+    border: 0;
+    background: none;
+    overflow: visible;
+  }
+  .lightbox::backdrop {
+    background: color-mix(in srgb, var(--color-ink-deep) 78%, transparent);
+    backdrop-filter: blur(4px);
+  }
+  .lightbox-figure {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+  }
+  .lightbox-photo {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    max-height: calc(100dvh - 8rem);
+    border-radius: var(--radius-print-lg);
+    box-shadow: 0 40px 90px -40px color-mix(in srgb, var(--color-ink-deep) 70%, transparent);
+    background: var(--color-paper-deep);
+  }
+  .lightbox-caption {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.25rem;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-paper);
+  }
+  /* The caption sits on the darkened room, so the close control carries its own paper. */
+  .lightbox-close {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    box-shadow: var(--shadow-sticker);
+  }
+  .lightbox-close:hover {
+    background: var(--color-paper-deep);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .lightbox[open] {
+      animation: sheet-in 240ms var(--ease-out-expo);
     }
   }
 }

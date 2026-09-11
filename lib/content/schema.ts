@@ -125,7 +125,9 @@ export type Video = z.infer<typeof VideoSchema>;
 
 export const SiteSchema = z.object({
   name: z.string().min(1),
-  url: z.url(),
+  // httpUrl, not z.url(): zod accepts any scheme, javascript: included, and this
+  // value reaches canonical tags and JSON-LD.
+  url: httpUrl,
   email: z.email(),
   city: z.string().min(1),
   country: z.string().length(2),
@@ -147,6 +149,8 @@ export const SiteSchema = z.object({
     bandcamp: httpUrl,
   }),
   videos: z.array(VideoSchema).min(1),
+  /** Ordered image keys for the gallery page; every key is checked against the manifest at build. */
+  gallery: z.array(z.string().regex(/^[a-z0-9-]+$/)).min(1),
   appearsOn: z.array(
     z.object({
       title: z.string().min(1),

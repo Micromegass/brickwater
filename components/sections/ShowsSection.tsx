@@ -15,11 +15,11 @@ export async function ShowsSection({ locale }: { locale: Locale }) {
       <Stain shape="clay" drift="b" className="right-0 top-4 h-[22rem] w-[30rem]" opacity={0.26} />
       <Stain shape="sage" drift="a" className="left-0 bottom-0 h-[18rem] w-[22rem]" opacity={0.18} />
       <div className="container">
-        <h2 id="shows-title" className="text-h2 font-semibold">
+        <h2 id="shows-title" className="text-h2 font-semibold reveal">
           {t("heading")}
         </h2>
-        <p className="measure mt-4 text-ink-soft">{t("intro")}</p>
-        <div className="mt-10 rule pt-2">
+        <p className="measure mt-4 text-ink-soft reveal">{t("intro")}</p>
+        <div className="mt-10 rule pt-2 reveal">
           <ShowsList locale={locale} upcoming={upcoming} limit={5} />
         </div>
         <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">

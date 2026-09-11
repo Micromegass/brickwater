@@ -9,14 +9,16 @@ interface Props {
   className?: string;
   priority?: boolean;
   fill?: boolean;
+  /** Overrides the alt text, e.g. "" inside a button that already carries the name. */
+  alt?: string;
 }
 
-export function Photo({ id, locale, sizes, className, priority, fill }: Props) {
+export function Photo({ id, locale, sizes, className, priority, fill, alt }: Props) {
   const photo = photoProps(id, locale);
   return (
     <Image
       src={photo.src}
-      alt={photo.alt}
+      alt={alt ?? photo.alt}
       width={fill ? undefined : photo.width}
       height={fill ? undefined : photo.height}
       fill={fill}

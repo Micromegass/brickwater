@@ -8,7 +8,7 @@ interface PageMetadataInput {
   pathname: Pathname;
   params?: Record<string, string>;
   /** Key under `meta.*` in the message files, or explicit strings. */
-  key?: "home" | "shows" | "music" | "legal" | "privacy";
+  key?: "home" | "shows" | "music" | "gallery" | "legal" | "privacy";
   title?: string;
   description?: string;
   /** Key of the pre-rendered OG image in public/og (defaults to the metadata key). */

@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 
-export type StainShape = "clay" | "sage" | "ink";
+export type StainShape = "clay" | "sage" | "ink" | "wolves";
 /** Which of the three wave paths this mark travels on. */
 export type StainDrift = "a" | "b" | "c";
 
@@ -8,6 +8,8 @@ interface Props {
   /** Which brush mark from the sleeve to use. */
   shape: StainShape;
   drift?: StainDrift;
+  /** A ghost gathers out of the haze and dissolves again instead of only drifting. */
+  ghost?: boolean;
   /** Placement and size, as Tailwind classes on the section's positioning context. */
   className: string;
   /** Any colour token or a release's own pigment. Defaults to the shape's pigment. */
@@ -16,6 +18,7 @@ interface Props {
 }
 
 const DEFAULT_COLOR: Record<StainShape, string> = {
+  wolves: "var(--color-clay)",
   clay: "var(--color-clay)",
   sage: "var(--color-sage-paint)",
   ink: "var(--color-ink-soft)",
@@ -28,11 +31,11 @@ const DEFAULT_COLOR: Record<StainShape, string> = {
  * Each mark travels one of three slow wave paths, and stands still for anyone
  * who asks for reduced motion.
  */
-export function Stain({ shape, className, color, opacity, drift = "a" }: Props) {
+export function Stain({ shape, className, color, opacity, ghost, drift = "a" }: Props) {
   return (
     <span
       aria-hidden="true"
-      className={`stain stain-drift-${drift} ${className}`}
+      className={`stain ${ghost ? "stain-ghost" : `stain-drift-${drift}`} ${className}`}
       style={
         {
           "--stain-shape": `url(/images/stain-${shape}.webp)`,

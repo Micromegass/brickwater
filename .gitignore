@@ -23,6 +23,48 @@ screenshots/
 .env
 .env.*
 !.env.example
+.envrc
+
+# keys, certificates and credential files: never commit, in any directory
+*.pem
+*.key
+*.crt
+*.cer
+*.p12
+*.pfx
+*.jks
+*.keystore
+id_rsa
+id_ed25519
+*_rsa
+*_ed25519
+.npmrc
+.yarnrc
+.netrc
+.htpasswd
+*credential*
+*credentials*
+secrets.json
+service-account*.json
+gha-creds-*.json
+
+# host and deploy tooling (may hold tokens)
+.vercel/
+.wrangler/
+.netlify/
+.cloudflared/
+.firebase/
+.aws/
+.terraform/
+*.tfstate
+*.tfstate.*
+
+# editors and local tooling
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
 
 # impeccable per-developer overrides
 .impeccable/config.local.json
@@ -32,3 +74,6 @@ screenshots/
 
 # os
 .DS_Store
+.AppleDouble
+Thumbs.db
+ehthumbs.db

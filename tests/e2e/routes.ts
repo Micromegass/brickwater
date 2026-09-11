@@ -13,11 +13,13 @@ export const ROUTES: Route[] = [
   { path: "/", lang: "de", counterpart: "/en/" },
   { path: "/konzerte/", lang: "de", counterpart: "/en/shows/" },
   { path: "/musik/", lang: "de", counterpart: "/en/music/" },
+  { path: "/galerie/", lang: "de", counterpart: "/en/gallery/" },
   { path: "/impressum/", lang: "de", counterpart: "/en/legal-notice/" },
   { path: "/datenschutz/", lang: "de", counterpart: "/en/privacy/" },
   { path: "/en/", lang: "en", counterpart: "/" },
   { path: "/en/shows/", lang: "en", counterpart: "/konzerte/" },
   { path: "/en/music/", lang: "en", counterpart: "/musik/" },
+  { path: "/en/gallery/", lang: "en", counterpart: "/galerie/" },
   { path: "/en/legal-notice/", lang: "en", counterpart: "/impressum/" },
   { path: "/en/privacy/", lang: "en", counterpart: "/datenschutz/" },
   ...releases.flatMap((slug): Route[] => [

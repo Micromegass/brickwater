@@ -14,9 +14,12 @@
     "posterHover": "transform 500ms ease-out-expo, scale 1.03",
     "reducedMotion": "the wordmark renders finished with no animation; smooth scrolling off",
     "webgl": "none; the site ships no canvas and no animation library",
-    "backgroundWaves": "three keyframe sets (71s, 82s, 104s) on ease-in-out alternate, transform only, staggered per mark, none under reduced motion",
+    "backgroundWaves": "three keyframe sets (96s, 138s, 112s) on ease-in-out alternate, about 6% travel with 1-2deg of rotation, transform only, staggered per mark, none under reduced motion",
     "printHover": "translateY(-3px) with a deeper sleeve shadow, 320ms ease-out-expo",
-    "lyricsPanel": "sheet-in 260ms ease-out-expo on open; native dialog handles focus, Escape and return"
+    "lyricsPanel": "sheet-in 260ms ease-out-expo on open; native dialog handles focus, Escape and return",
+    "wolvesGhost": "ghost-gather 128s ease-in-out infinite, opacity 0 to the mark's resting strength and back while it drifts; three on the site (hero, music, collective), none under reduced motion",
+    "reveal": "reveal-in on a CSS view timeline, range entry 2% to entry 55%, translateY 14px with scale 0.988, transform only so text never renders at a blended colour; absent without view timelines and under reduced motion",
+    "lightbox": "sheet-in 240ms ease-out-expo on open; native dialog handles focus, Escape and return"
   },
   "focus": {
     "ring": "3px solid #a8563c, outline-offset 3px",
@@ -32,7 +35,7 @@
   },
   "wordmark": {
     "fill": "background-clip: text with /images/wash-wordmark.webp",
-    "generator": "scripts/wash.mjs",
+    "generator": "scripts/pigments.mjs",
     "fallbacks": {
       "noBackgroundClip": "#8c422c",
       "forcedColors": "CanvasText, no background, no animation"
@@ -44,10 +47,11 @@
     "files": [
       "/images/stain-clay.webp",
       "/images/stain-sage.webp",
-      "/images/stain-ink.webp"
+      "/images/stain-ink.webp",
+      "/images/stain-wolves.webp"
     ],
     "technique": "the paint's own density becomes an alpha channel, edges and corners faded so no crop leaves a rectangle; the file carries shape only",
-    "usage": "mask-image over a token colour, 0.16-0.34 opacity, two or three per section, decorative, inside the section, hidden under forced colours and where masks are unsupported; never scale the mask past 100%, which would cut the faded edge into a rectangle"
+    "usage": "mask-image over a token colour, 0.10-0.34 opacity, two or three per section plus at most one wolves ghost, decorative, inside the section, hidden under forced colours and where masks are unsupported; never scale the mask past 100%, which would cut the faded edge into a rectangle"
   },
   "releaseTheming": {
     "source": "lib/releases/palette.json",
@@ -64,5 +68,10 @@
     "printLg": "18px",
     "sticker": "999px",
     "grounds": "0"
+  },
+  "gallery": {
+    "layout": "CSS column flow: one column, two from 40rem, three from 64rem, break-inside avoid, no cropping",
+    "lightbox": "native <dialog>, photograph at max-height 100dvh - 8rem, ink-deep backdrop at 78% with a 4px blur, paper close sticker",
+    "captions": "only third-party credits under the thumbnails; the artist's own photographs are credited in the footer"
   }
 }

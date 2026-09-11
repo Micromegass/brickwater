@@ -21,15 +21,22 @@ export async function MusicSection({ locale }: { locale: Locale }) {
   };
   return (
     <section className="section section-sage" id="musik" aria-labelledby="music-title">
+      <Stain
+        shape="wolves"
+        ghost
+        color="var(--color-sage-paint)"
+        className="left-1/2 top-1/2 h-[32rem] w-[44rem] -translate-x-1/2 -translate-y-1/2"
+        opacity={0.1}
+      />
       <Stain shape="sage" drift="a" className="right-0 top-0 h-[28rem] w-[26rem]" opacity={0.34} />
       <Stain shape="clay" drift="c" className="left-0 bottom-0 h-[24rem] w-[30rem]" opacity={0.22} />
       <div className="container">
-        <h2 id="music-title" className="text-h2 font-semibold">
+        <h2 id="music-title" className="text-h2 font-semibold reveal">
           {t("heading")}
         </h2>
-        <p className="measure mt-4 text-ink-soft">{t("intro")}</p>
+        <p className="measure mt-4 text-ink-soft reveal">{t("intro")}</p>
 
-        <article className="mt-12 grid gap-8 md:grid-cols-12 md:gap-12">
+        <article className="mt-12 grid gap-8 md:grid-cols-12 md:gap-12 reveal">
           <div className="md:col-span-5">
             <Link href={{ pathname: "/music/[slug]", params: { slug: latest.slug } }} className="block">
               <Photo id={latest.cover} locale={locale} sizes="(min-width: 768px) 40vw, 100vw" className="sleeve-cover" priority={false} />
@@ -53,7 +60,7 @@ export async function MusicSection({ locale }: { locale: Locale }) {
           </div>
         </article>
 
-        <ul className="release-row mt-16" aria-label={t("allReleases")}>
+        <ul className="release-row reveal mt-16" aria-label={t("allReleases")}>
           {others.map((release) => (
             <li key={release.slug}>
               <Link href={{ pathname: "/music/[slug]", params: { slug: release.slug } }} className="release-tile">

@@ -178,6 +178,8 @@ const STAINS = [
   { name: "clay", region: { left: 0.42, top: 0.28, width: 0.32, height: 0.24 }, tint: "#a8563c" },
   { name: "sage", region: { left: 0.6, top: 0.13, width: 0.32, height: 0.28 }, tint: "#5b6a55" },
   { name: "ink", region: { left: 0.18, top: 0.5, width: 0.34, height: 0.26 }, tint: "#4a423b" },
+  // Both animals, whole: the mark the page lets gather and dissolve again.
+  { name: "wolves", region: { left: 0.08, top: 0.17, width: 0.84, height: 0.6 }, tint: "#7a5140", softness: 5 },
 ];
 
 async function buildStains() {
@@ -219,7 +221,7 @@ async function buildStains() {
     const softAlpha = await sharp(alpha, {
       raw: { width: info.width, height: info.height, channels: 1 },
     })
-      .blur(9)
+      .blur(stain.softness ?? 9)
       // sharp promotes a single band to sRGB unless told otherwise, and a
       // three-channel buffer read back as one stripes the mask.
       .toColourspace("b-w")

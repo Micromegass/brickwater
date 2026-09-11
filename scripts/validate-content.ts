@@ -14,6 +14,11 @@ try {
     if (!keys.has(release.cover)) errors.push(`release ${release.slug}: cover "${release.cover}" not in image manifest`);
     if (!images[release.cover]) errors.push(`release ${release.slug}: cover "${release.cover}" has no alt text in content/images.json`);
   }
+  for (const key of site.gallery) {
+    if (!keys.has(key)) errors.push(`gallery: "${key}" is not in the image manifest`);
+    if (!images[key]) errors.push(`gallery: "${key}" has no alt text in content/images.json`);
+  }
+  if (new Set(site.gallery).size !== site.gallery.length) errors.push("gallery: duplicate entries");
   for (const video of site.videos) {
     if (!keys.has(video.poster)) errors.push(`video ${video.id}: poster "${video.poster}" not in image manifest`);
   }
@@ -23,7 +28,7 @@ try {
   for (const key of keys) {
     if (!images[key]) errors.push(`image manifest: "${key}" has no alt text in content/images.json`);
   }
-  console.log(`content ok: ${shows.length} shows, ${releases.length} releases, ${Object.keys(images).length} images`);
+  console.log(`content ok: ${shows.length} shows, ${releases.length} releases, ${Object.keys(images).length} images, ${site.gallery.length} in the gallery`);
 } catch (error) {
   errors.push(error instanceof Error ? error.message : String(error));
 }

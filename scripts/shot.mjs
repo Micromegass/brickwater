@@ -10,7 +10,7 @@ const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: Number(width), height: Number(width) < 700 ? 844 : 900 } });
 await page.goto(`http://localhost:4173${route}`, { waitUntil: "networkidle" });
 await page.evaluate(async () => { for (let y = 0; y < document.body.scrollHeight; y += 600) { window.scrollTo(0, y); await new Promise(r => setTimeout(r, 80)); } window.scrollTo(0, 0); });
-await page.waitForTimeout(800);
+await page.waitForTimeout(Number(process.env.WAIT ?? 800));
 if (click) { await page.locator(click).first().click(); await page.waitForTimeout(500); }
 await page.locator(selector).first().screenshot({ path: out });
 console.log("shot", selector, "->", out);

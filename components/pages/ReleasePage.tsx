@@ -125,7 +125,7 @@ export async function ReleasePage({ locale, slug }: { locale: Locale; slug: stri
           <section className="section pt-0">
             <div className="container grid gap-6 md:grid-cols-2">
               {["brickwater-band-live-stage-lights-bw", "brickwater-band-live-stage-banner-bw"].map((id) => (
-                <figure key={id}>
+                <figure key={id} className="reveal">
                   <Photo id={id} locale={locale} sizes="(min-width: 768px) 50vw, 100vw" className="sleeve-photo" />
                   <figcaption className="etch mt-3 text-ink-soft">{images[id].credit}</figcaption>
                 </figure>
@@ -136,8 +136,8 @@ export async function ReleasePage({ locale, slug }: { locale: Locale; slug: stri
 
         <section className="section pt-0">
           <div className="container">
-            <h2 className="text-h2 font-semibold">{t("music.moreReleases")}</h2>
-            <ul className="release-row mt-8">
+            <h2 className="text-h2 font-semibold reveal">{t("music.moreReleases")}</h2>
+            <ul className="release-row reveal mt-8">
               {others.map((other) => (
                 <li key={other.slug}>
                   <Link href={{ pathname: "/music/[slug]", params: { slug: other.slug } }} className="release-tile">

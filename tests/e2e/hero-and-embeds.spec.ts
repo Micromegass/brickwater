@@ -107,3 +107,40 @@ test("the home page runs in the order the artist asked for", async ({ page }) =>
     "contact-title",
   ]);
 });
+
+test("the gallery opens a photograph in a panel and Escape closes it", async ({ page }) => {
+  await page.goto("/galerie/");
+  const items = page.locator("button.gallery-item");
+  await expect(items).toHaveCount(19);
+  const panel = page.locator("dialog.lightbox").first();
+  await expect(panel).toBeHidden();
+  await items.first().click();
+  await expect(panel).toBeVisible();
+  await expect(panel.locator("img")).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(panel).toBeHidden();
+});
+
+test("the home page links into the gallery and the nav carries it", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.getByRole("link", { name: "Alle Fotos" })).toHaveAttribute("href", "/galerie/");
+  await expect(page.locator(".site-nav a[href='/galerie/']")).toHaveCount(1);
+});
+
+test("reduced motion stops the reveal and the ghost as well", async ({ browser }) => {
+  const context = await browser.newContext({ reducedMotion: "reduce" });
+  const page = await context.newPage();
+  await page.goto("/");
+  const reveal = page.locator(".reveal").first();
+  await expect(reveal).toBeVisible();
+  const names = await page.evaluate(() => ({
+    reveal: getComputedStyle(document.querySelector(".reveal")!).animationName,
+    ghost: getComputedStyle(document.querySelector(".stain-ghost")!).animationName,
+    ghostOpacity: getComputedStyle(document.querySelector(".stain-ghost")!).opacity,
+  }));
+  expect(names.reveal).toBe("none");
+  expect(names.ghost).toBe("none");
+  // The ghost holds at its resting strength rather than vanishing.
+  expect(Number(names.ghostOpacity)).toBeGreaterThan(0);
+  await context.close();
+});

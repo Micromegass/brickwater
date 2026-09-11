@@ -1,5 +1,6 @@
 import type { Locale } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { Photo } from "@/components/ui/Photo";
 import { loadBio } from "@/lib/content/load";
 import { Stain } from "@/components/ui/Stain";
@@ -23,7 +24,7 @@ export async function BioSection({ locale }: { locale: Locale }) {
       <Stain shape="sage" drift="c" className="left-0 top-8 h-[28rem] w-[24rem]" opacity={0.3} />
       <Stain shape="clay" drift="a" className="right-0 bottom-0 h-[24rem] w-[28rem]" opacity={0.18} />
       <div className="container">
-        <div className="max-w-[46rem]">
+        <div className="max-w-[46rem] reveal">
           <h2 id="bio-title" className="text-h2 font-semibold">
             {t("heading")}{" "}
             <span className="bio-heart" aria-hidden="true">
@@ -38,7 +39,7 @@ export async function BioSection({ locale }: { locale: Locale }) {
             ))}
           </div>
         </div>
-        <ul className="photo-strip mt-14 lg:mt-20" aria-label={t("photos")} tabIndex={0}>
+        <ul className="photo-strip reveal mt-14 lg:mt-20" aria-label={t("photos")} tabIndex={0}>
           {STRIP.map((item) => (
             <li key={item.id}>
               <Photo
@@ -50,6 +51,11 @@ export async function BioSection({ locale }: { locale: Locale }) {
             </li>
           ))}
         </ul>
+        <p className="mt-8 reveal">
+          <Link href="/gallery" className="sticker sticker-paper">
+            {t("allPhotos")}
+          </Link>
+        </p>
       </div>
     </section>
   );
