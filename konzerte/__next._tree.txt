@@ -1,0 +1,3 @@
+:HL["/brickwater/_next/static/chunks/1hdbhxmweto6b.css","style"]
+:HL["/brickwater/_next/static/media/bricolage_grotesque_variable-s.p.11es42vm211z1.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+0:{"tree":{"name":"","param":null,"prefetchHints":4176,"slots":{"children":{"name":"(de)","param":null,"prefetchHints":4144,"slots":{"children":{"name":"konzerte","param":null,"prefetchHints":4160,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}}}},"staleTime":300,"buildId":"VdJCOqHLlY19wbQegBvFx"}
