@@ -50,7 +50,7 @@ npm run images         # regenerate WebP variants + manifest from assets/source
 npm run gen:pigments   # wordmark wash, watercolour stains, and a palette per album
 npm run shot ".sel" out.png [/route/] [click] [width]   # screenshot one element
 npm run gen:og         # regenerate OG PNGs (needs assets/source/covers); --force to overwrite
-npm run gen:icons      # apple-icon.png + favicon.ico from app/icon.svg
+npm run gen:icons      # the wolf tab icon from the sleeve: icon.png, apple-icon.png, favicon.ico
 npm run check          # validate:content + typecheck + lint + unit tests
 npm run test:e2e       # Playwright + axe against out/ (build first)
 npm run lh:seo         # Lighthouse CI against out/

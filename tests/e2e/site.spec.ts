@@ -16,7 +16,7 @@ test("robots.txt allows crawling and references the sitemap", async ({ request }
 });
 
 test("llms.txt, manifest and icons exist", async ({ request }) => {
-  for (const file of ["/llms.txt", "/manifest.webmanifest", "/icon.svg", "/apple-icon.png", "/favicon.ico", "/og/home-de.png"]) {
+  for (const file of ["/llms.txt", "/manifest.webmanifest", "/icon.png", "/apple-icon.png", "/favicon.ico", "/og/home-de.png"]) {
     expect((await request.get(file)).status(), file).toBe(200);
   }
 });

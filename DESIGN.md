@@ -319,6 +319,10 @@ The gallery is a column flow, two columns from 40rem and three from 64rem, so po
 ### Lyrics panel (signature)
 A song opens its lyrics in a native `<dialog>` over the page, typeset like an inner sleeve: the track number in the record's own accent, the title, a rule, then the text at a 46ch measure on paper. The backdrop is ink at 55% with a light blur. The lyrics are rendered on the server inside the dialog, so they stay in the HTML for search engines and for the `MusicRecording` JSON-LD. `components/music/TrackList.tsx` is the one list used on the home page and on every release page; a song without lyrics stays plain text rather than pretending to be pressable.
 
+### The tab icon (signature)
+
+The wolf from the sleeve, in profile, reduced to one clay mass on the paper ground. `scripts/icons.mjs` crops the standing wolf's head out of the painting, turns the paint's own density into an alpha channel, then softens and re-thresholds it so the dry-brush flecks do not read as noise once a browser scales the mark to sixteen pixels. The outline keeps the brush; the interior is solid. It replaced an abstract two-tone disc that said nothing about the record.
+
 ### Wordmark (signature)
 BRICKWATER in thin, widely spaced caps, filled by `background-clip: text` with `/images/wash-wordmark.webp`, a wash built by `scripts/pigments.mjs` from the sleeve painting. The script averages the painted band down to a nine by six grid, snaps every hue onto one of the two pigment families, holds saturation and lightness inside a band, and fails the build if any part of the wash drops under 3:1 against the paper. On load the paint soaks in once: opacity 0 to 1, background-size 150% 260% to 100% 100%, saturation 0.3 to 1, 1.9s on the expo curve. It never loops. Reduced motion and forced colours get the finished mark with no animation; a browser without background-clip gets clay deep.
 

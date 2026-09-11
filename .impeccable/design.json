@@ -95,5 +95,16 @@
   "photographs": {
     "treatment": "the site's print: 18px radius, sleeve shadow, and grayscale(1) on the hero frame only",
     "rejected": "a warm duotone on a paper mount with a plate line, and a painted dissolve into the page; both read as antique"
+  },
+  "icon": {
+    "source": "the standing wolf's head on the Season One sleeve",
+    "generator": "scripts/icons.mjs",
+    "technique": "paint density becomes alpha, blurred and re-thresholded into a solid silhouette so it survives at 16px",
+    "files": [
+      "app/icon.png (512)",
+      "app/apple-icon.png (180)",
+      "public/favicon.ico (32)"
+    ],
+    "colour": "clay-deep on paper"
   }
 }
