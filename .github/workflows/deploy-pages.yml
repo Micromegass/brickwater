@@ -28,15 +28,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Written to step outputs, not GITHUB_ENV: these belong to the build step
+      # alone. The unit tests assert the production URLs, so exporting them to
+      # the whole job makes `npm run check` fail on its own contract.
       - name: Work out where this page will live
+        id: where
         run: |
           repo="${GITHUB_REPOSITORY#*/}"
           owner="$(echo "${GITHUB_REPOSITORY%%/*}" | tr '[:upper:]' '[:lower:]')"
           {
-            echo "NEXT_PUBLIC_BASE_PATH=/${repo}"
-            echo "NEXT_PUBLIC_SITE_URL=https://${owner}.github.io/${repo}"
-            echo "NEXT_PUBLIC_NOINDEX=1"
-          } >> "$GITHUB_ENV"
+            echo "base_path=/${repo}"
+            echo "site_url=https://${owner}.github.io/${repo}"
+          } >> "$GITHUB_OUTPUT"
 
       - uses: actions/setup-node@v4
         with:
@@ -52,6 +55,10 @@ jobs:
       # prebuild validates content, postbuild verifies every internal link,
       # which is what proves the base path was threaded through everywhere.
       - run: npm run build
+        env:
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.where.outputs.base_path }}
+          NEXT_PUBLIC_SITE_URL: ${{ steps.where.outputs.site_url }}
+          NEXT_PUBLIC_NOINDEX: "1"
 
       - uses: actions/configure-pages@v5
         continue-on-error: true
