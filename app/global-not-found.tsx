@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Stain } from "@/components/ui/Stain";
+import { assetVars } from "@/lib/assets";
 import { bricolage } from "@/lib/fonts";
 import "./globals.css";
 
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function GlobalNotFound() {
   return (
-    <html lang="de" className={bricolage.variable}>
+    <html lang="de" className={bricolage.variable} style={assetVars()}>
       <body>
         <main id="main" className="section">
           <Stain shape="clay" drift="a" className="right-0 top-0 h-[26rem] w-[30rem]" opacity={0.24} />

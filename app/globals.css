@@ -182,8 +182,8 @@
       height: 0.5rem;
       background: var(--color-ink-soft);
       opacity: 0.55;
-      -webkit-mask-image: url("/images/rule-brush.webp");
-      mask-image: url("/images/rule-brush.webp");
+      -webkit-mask-image: var(--asset-rule-brush);
+      mask-image: var(--asset-rule-brush);
       -webkit-mask-size: 100% 100%;
       mask-size: 100% 100%;
       -webkit-mask-repeat: no-repeat;
@@ -287,10 +287,10 @@
       z-index: 0;
       pointer-events: none;
       /* The middle layer is a stencil: only its opacity is read, never its hue. */
-      -webkit-mask-image: url("/images/edge-deckle.webp"),
-        linear-gradient(var(--color-ink), var(--color-ink)), url("/images/edge-deckle-flip.webp");
-      mask-image: url("/images/edge-deckle.webp"),
-        linear-gradient(var(--color-ink), var(--color-ink)), url("/images/edge-deckle-flip.webp");
+      -webkit-mask-image: var(--asset-edge-deckle),
+        linear-gradient(var(--color-ink), var(--color-ink)), var(--asset-edge-deckle-flip);
+      mask-image: var(--asset-edge-deckle),
+        linear-gradient(var(--color-ink), var(--color-ink)), var(--asset-edge-deckle-flip);
       -webkit-mask-size: 30rem 2.6rem, 100% calc(100% - 5.2rem), 30rem 2.6rem;
       mask-size: 30rem 2.6rem, 100% calc(100% - 5.2rem), 30rem 2.6rem;
       -webkit-mask-position: top left, center, bottom left;
@@ -660,7 +660,7 @@
     text-transform: uppercase;
     text-wrap: nowrap;
     color: var(--color-clay-deep);
-    background-image: url("/images/wash-wordmark.webp");
+    background-image: var(--asset-wash-wordmark);
     background-size: 100% 100%;
     background-position: 50% 50%;
     background-repeat: no-repeat;

@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import { withBase } from "@/lib/base-path";
 
 export type StainShape = "clay" | "sage" | "ink" | "wolves";
 /** Which of the three wave paths this mark travels on. */
@@ -42,7 +43,7 @@ export function Stain({ shape, className, color, opacity, ghost, phase, drift = 
       className={`stain ${ghost ? "stain-ghost" : `stain-drift-${drift}`} ${className}`}
       style={
         {
-          "--stain-shape": `url(/images/stain-${shape}.webp)`,
+          "--stain-shape": `url(${withBase(`/images/stain-${shape}.webp`)})`,
           "--stain-color": color ?? DEFAULT_COLOR[shape],
           ...(opacity === undefined ? {} : { "--stain-opacity": String(opacity) }),
           ...(phase === undefined ? {} : { "--stain-phase": `${phase}s` }),

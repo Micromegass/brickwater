@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { NextIntlClientProvider } from "next-intl";
+import { assetVars } from "@/lib/assets";
 import { bricolage } from "@/lib/fonts";
 import type { Locale } from "@/i18n/routing";
 import { SiteFooter } from "./SiteFooter";
@@ -8,7 +9,7 @@ import "@/app/globals.css";
 
 export function SiteShell({ locale, children }: { locale: Locale; children: ReactNode }) {
   return (
-    <html lang={locale} className={bricolage.variable}>
+    <html lang={locale} className={bricolage.variable} style={assetVars()}>
       <body className="flex min-h-[100dvh] flex-col">
         {/*
           THESIS: Brickwater's site is the record package itself, not a dark full-bleed band poster: sleeve, inner sleeve, hype sticker, sticker sheet, runout etching. Its colour is not chosen, it is lifted from the sleeve Julia Feisleben painted.
