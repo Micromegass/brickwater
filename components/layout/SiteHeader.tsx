@@ -37,7 +37,7 @@ export async function SiteHeader({ locale }: { locale: Locale }) {
             height={26}
             className="brand-mark"
           />
-          Brickwater
+          <span className="brand-text">Brickwater</span>
         </Link>
         <nav aria-label={t("nav.mainNavigation")} className="site-nav">
           <Link href="/shows">{t("nav.shows")}</Link>

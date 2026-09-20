@@ -553,6 +553,22 @@
     height: 1.65rem;
     flex: none;
   }
+  /*
+    Adding the mark made the header 38px too wide at 320px, where Konzerte,
+    Musik and the language toggle already used every pixel. Under 380px the
+    word steps aside and the mark grows to carry the name on its own, which it
+    can: it has BRICKWATER written around its ring. The link keeps its label,
+    so nothing is lost to a screen reader.
+  */
+  @media (max-width: 379px) {
+    .brand-text {
+      display: none;
+    }
+    .brand-mark {
+      width: 2.1rem;
+      height: 2.1rem;
+    }
+  }
   .site-nav {
     display: flex;
     align-items: center;
@@ -597,6 +613,11 @@
     background: var(--color-paper-deep);
   }
 
+  .site-footer-nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
   .site-footer {
     border-top: 1px solid var(--color-line);
     position: relative;
@@ -758,7 +779,7 @@
     gap: 0.1rem;
   }
   .hype-label {
-    font-size: 0.62rem;
+    font-size: 0.7rem;
     letter-spacing: 0.09em;
     text-transform: uppercase;
     color: var(--color-sage-wash);
@@ -795,6 +816,45 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 1.5rem;
+  }
+  /*
+    On a phone the photograph belongs directly under the tagline, before the
+    buttons. The copy's box is dissolved so its children become items of the
+    hero grid alongside the figure, and then they are ordered. The DOM is
+    untouched, so the desktop two-column layout is unaffected, and nothing in
+    the reordered run is focusable except in the order it already appears.
+  */
+  @media (max-width: 767px) {
+    .hero-body {
+      gap: 1.1rem;
+      justify-items: start;
+    }
+    .hero-copy {
+      display: contents;
+    }
+    .hero-claim {
+      order: 1;
+    }
+    .hero-photo {
+      order: 2;
+      justify-self: stretch;
+      width: 100%;
+    }
+    /* Capped so the player still lands on the first screen of a phone. 44vh
+       sat above the picture's own height and therefore did nothing. */
+    .hero-photo img {
+      max-height: 36vh;
+      object-fit: cover;
+    }
+    .hero-actions {
+      order: 3;
+    }
+    .hype {
+      order: 4;
+    }
+    .hero-player {
+      order: 5;
+    }
   }
   .hero-photo {
     margin: 0;
