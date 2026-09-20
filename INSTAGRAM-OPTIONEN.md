@@ -1,12 +1,14 @@
-# Instagram auf der Website: drei Wege
+# Instagram auf der Website: die Wege im Vergleich
 
 Du möchtest die letzten Instagram-Posts auf der Seite haben, mit einem "mehr
-laden"-Knopf. Das geht, und es gibt drei Wege dorthin. Sie unterscheiden sich
-weniger im Aussehen als darin, **was im Hintergrund passiert**, wenn jemand
-deine Seite öffnet. Genau daran hängen Datenschutz, Cookie-Banner und Aufwand.
+laden"-Knopf. Das geht. Die Wege dorthin unterscheiden sich weniger im
+Aussehen als darin, **was im Hintergrund passiert**, wenn jemand deine Seite
+öffnet. Genau daran hängen Datenschutz, Cookie-Banner und Aufwand.
 
-Am Ende steht eine Empfehlung. Du musst nur entscheiden, welcher der drei Wege
-dir passt.
+> **Neu:** Es gibt einen Weg, der kostenlos ist, dir die Bastelei mit
+> Meta/Facebook komplett erspart **und** trotzdem ohne Cookie-Banner auskommt.
+> Das ist Weg A. Eine frühere Fassung dieses Textes hat dir noch einen
+> Meta-Entwicklerzugang zugemutet — den brauchst du nicht.
 
 ---
 
@@ -18,118 +20,141 @@ Datenschutzerklärung, und es ist einer der Gründe, warum die Seite rechtlich
 unkompliziert ist. YouTube und Bandcamp laden erst, wenn jemand aktiv auf
 "Abspielen" klickt — vorher geht nichts an Google oder Bandcamp.
 
-Die drei Wege unterscheiden sich vor allem darin, ob dieser Zustand so bleibt.
+Die Wege unterscheiden sich vor allem darin, ob das so bleibt.
 
 ---
 
-## Weg A: Posts werden beim Bauen der Seite geholt
+## Weg A: Über Behold, Posts werden beim Bauen der Seite geholt
 
-**So funktioniert es:** Immer wenn die Seite neu gebaut wird, holt sie sich im
-Hintergrund deine letzten Posts von Instagram, lädt die Bilder herunter und legt
-sie auf deinen eigenen Server. Für den Besucher sind das dann ganz normale
-Bilder deiner Seite — er merkt nicht, dass sie von Instagram stammen, und sein
-Browser spricht **nie** mit Instagram. Ein Klick auf einen Post öffnet ihn
-dann natürlich bei Instagram, aber eben erst nach dem Klick.
+**Empfehlung.** Behold ist ein kleiner Dienst, der genau eine Sache macht: Er
+verbindet sich mit deinem Instagram-Konto und stellt deine letzten Posts als
+schlichte Datenliste bereit. Deine Website holt sich diese Liste **beim Bauen**
+ab, lädt die Bilder herunter und legt sie auf deinen eigenen Server.
+
+Für den Besucher sind das dann ganz normale Bilder deiner Seite. Sein Browser
+spricht **weder mit Instagram noch mit Behold**. Ein Klick auf einen Post
+öffnet ihn natürlich bei Instagram — aber eben erst nach dem Klick.
+
+**Was du dafür tun musst** (einmalig, ca. 5 Minuten)
+
+1. Bei Behold kostenlos registrieren.
+2. Auf "Instagram verbinden" klicken und dich einmal bei Instagram anmelden.
+3. Fertig. Den Rest macht Axel.
+
+Sehr wahrscheinlich muss dein Instagram-Konto dafür ein **professionelles Konto**
+sein ("Business" oder "Creator"). Das ist kostenlos und in der Instagram-App in
+zwei Minuten umgestellt. Eine Facebook-Seite brauchst du **nicht**. Ob es wirklich
+nötig ist, sehen wir beim Verbinden sofort.
+
+**Was es kostet: nichts.** Der Gratis-Tarif von Behold reicht für diesen Fall
+genau aus:
+
+| Gratis-Tarif | reicht das? |
+|---|---|
+| 1 Instagram-Konto, 1 Feed | ja, du hast eins |
+| maximal 6 Posts | ja, geplant sind 2 + "mehr laden" |
+| 1.200 Abrufe pro Monat | ja, siehe unten |
+| Aktualisierung einmal täglich | ja, passt zum täglichen Neubau |
+
+Zu den 1.200 Abrufen: Die zählen nur, wenn jemand die Daten bei Behold abruft.
+Weil **deine Website das nur beim Bauen tut und nicht bei jedem Besucher**,
+sind das etwa 30 Abrufe im Monat statt einer pro Seitenaufruf. Das Limit ist
+also kein Thema. (Würde man Beholds fertigen Kasten einbauen statt der
+Datenliste, zählte jeder einzelne Besucher — dann wären 1.200 schnell voll.)
 
 **Was du davon hast**
 
 - Kein Cookie-Banner, keine Änderung an der Datenschutzerklärung.
+- Kein Meta-Entwicklerkram, kein Schlüssel, der abläuft.
 - Die Bilder laden so schnell wie der Rest der Seite.
 - Funktioniert auch, wenn Instagram gerade spinnt oder jemand einen Blocker nutzt.
-- Sieht genau so aus, wie du es dir vorstellst: zwei Posts, darunter "mehr laden".
-
-**Was du dafür tun musst** (einmalig, ca. 20 Minuten)
-
-1. Dein Instagram-Konto muss ein **professionelles Konto** sein, also "Business"
-   oder "Creator". Das ist kostenlos und in der Instagram-App in zwei Minuten
-   umgestellt. Eine Facebook-Seite brauchst du **nicht** — das war früher so,
-   ist es aber nicht mehr.
-2. Es wird ein kostenloser Meta-Entwicklerzugang angelegt und dort ein Schlüssel
-   erzeugt, mit dem die Seite deine Posts lesen darf. Das macht Axel mit dir
-   zusammen, du musst dich dabei nur einmal bei Instagram anmelden.
-3. Der Schlüssel läuft alle 60 Tage ab. Das erneuert sich danach automatisch,
-   darum musst du dich nicht kümmern.
+- Kein fremdes Logo auf deiner Seite (das gilt nur für Beholds fertigen Kasten,
+  nicht für die Datenliste, die wir nehmen).
 
 **Der einzige Haken:** Die Posts sind nicht in derselben Sekunde auf der Seite,
-in der du sie postest, sondern nach dem nächsten Bauen der Seite. Wie oft das
-passiert, legen wir fest — einmal pro Tag ist problemlos möglich. Dann ist der
-Instagram-Bereich höchstens einen Tag alt.
+in der du sie postest, sondern nach dem nächsten Bauen der Seite. Behold
+aktualisiert im Gratis-Tarif einmal täglich, und die Seite baut sich ebenfalls
+täglich neu. Der Instagram-Bereich ist damit höchstens einen Tag alt.
 
 ---
 
-## Weg B: Fertiges Widget von einem Anbieter
+## Weg A ohne Behold: direkt über Meta
 
-**So funktioniert es:** Man baut ein kleines Programm eines Drittanbieters
-(z. B. Elfsight, Behold, SnapWidget) in die Seite ein. Das lädt die Posts live
-im Browser des Besuchers. Das ist der Weg, den die meisten Musiker-Websites
-gehen, weil er schnell eingerichtet ist.
+Dasselbe Ergebnis, nur ohne den Zwischendienst: Die Website spricht direkt mit
+Instagram. Dafür braucht es einen kostenlosen Meta-Entwicklerzugang und einen
+Schlüssel, der alle 60 Tage erneuert werden muss (automatisierbar).
+
+Sinnvoll, wenn du grundsätzlich keinen weiteren Dienst dazwischen haben willst.
+Für dich ist Weg A über Behold aber schlicht weniger Arbeit bei gleichem
+Ergebnis.
+
+---
+
+## Weg B: Fertiges Widget im Browser des Besuchers
+
+**So funktioniert es:** Man baut ein kleines Programm eines Anbieters
+(Behold, Elfsight, SnapWidget und andere) in die Seite ein, das die Posts live
+im Browser des Besuchers lädt. So machen es die meisten Musiker-Websites.
 
 **Was du davon hast**
 
 - Die Posts sind sofort aktuell, ohne dass die Seite neu gebaut wird.
-- Für dich am wenigsten Aufwand.
 
 **Was es kostet**
 
-- **Ein Cookie-Banner wird nötig.** Das Widget lädt im Browser deines Besuchers
-  Code von der Anbieter-Firma und von Meta und überträgt dabei Daten
-  (IP-Adresse) in die USA, noch bevor der Besucher irgendwas angeklickt hat. In
-  Deutschland braucht das eine Einwilligung. Konkret heißt das: jeder Besucher
-  sieht beim ersten Öffnen ein Banner, und der Instagram-Bereich bleibt leer,
-  solange er nicht zustimmt.
-- Die Datenschutzerklärung muss umgeschrieben werden: der Satz, dass keine Daten
-  an Dritte gehen, stimmt dann nicht mehr.
-- Die Seite wird spürbar langsamer, weil fremder Code nachgeladen wird.
-- Die meisten dieser Anbieter kosten monatlich etwas (grob 5 bis 10 Euro).
-- Du hängst von einer fremden Firma ab: ändert die ihre Preise oder macht zu,
-  ist der Bereich weg.
+- Der Browser deines Besuchers spricht mit einer fremden Firma, bevor er etwas
+  angeklickt hat. Je nach Anbieter werden dabei Cookies gesetzt — dann braucht
+  es in Deutschland eine Einwilligung, also ein Banner, und der
+  Instagram-Bereich bleibt leer, bis jemand zustimmt.
+- Die Datenschutzerklärung muss angepasst werden.
+- Die Seite wird langsamer, weil fremder Code nachgeladen wird.
+- Im Gratis-Tarif zählt jeder Seitenaufruf gegen das Abruf-Limit, und meist
+  klebt ein Anbieter-Logo am Kasten.
+
+Weg A liefert dasselbe Bild ohne all das. Deshalb: nur, wenn dir die
+Sofort-Aktualität wirklich wichtig ist.
 
 ---
 
 ## Weg C: Du pflegst es selbst, wie die Konzerte
 
-**So funktioniert es:** Genau wie du Konzerte einträgst, trägst du einen Post
-ein: Bild, eine Zeile Text, Link zum Post auf Instagram.
+Du trägst einen Post selbst ein: Bild, eine Zeile Text, Link zum Post.
 
-**Was du davon hast**
+Kein fremder Dienst, nichts, was ablaufen kann, volle Kontrolle darüber, was auf
+der Website landet. Aber es passiert nicht von allein — wenn du drei Monate
+nichts einträgst, steht dort drei Monate dasselbe, und das sieht schlechter aus
+als gar kein Instagram-Bereich.
 
-- Kein Instagram-Konto-Umbau, kein Schlüssel, nichts, was ablaufen kann.
-- Kein Cookie-Banner, keine Änderung am Datenschutz.
-- Du entscheidest genau, was auf der Website landet. Nicht jeder Instagram-Post
-  ist ein guter Website-Post.
-
-**Was es kostet**
-
-- Es passiert nicht von allein. Wenn du drei Monate nichts einträgst, steht dort
-  drei Monate lang dasselbe — und das sieht schlechter aus als gar kein
-  Instagram-Bereich.
+Der sichere Rückfall, falls die Umstellung auf ein professionelles Konto für
+dich nicht in Frage kommt.
 
 ---
 
 ## Die Empfehlung
 
-**Weg A.** Er sieht für den Besucher genauso aus wie Weg B, kostet nichts
-monatlich, macht die Seite nicht langsamer und lässt dich vor allem ohne
-Cookie-Banner davonkommen. Der einmalige Aufwand für dich ist eine Umstellung
-in der Instagram-App und ein Login.
-
-Von Weg B würde ich abraten, aber nicht, weil er technisch schlecht wäre: Er
-kostet dich ein Cookie-Banner auf einer Seite, die heute bewusst keines braucht.
-Wenn dir das egal ist, ist er trotzdem in Ordnung — sag einfach Bescheid.
-
-Weg C ist der sichere Rückfall, falls die Umstellung auf ein professionelles
-Konto für dich nicht in Frage kommt.
+**Weg A über Behold.** Kostenlos, fünf Minuten Aufwand für dich, sieht für den
+Besucher genauso aus wie ein Widget, macht die Seite nicht langsamer und lässt
+dich ohne Cookie-Banner davonkommen.
 
 ---
 
-## So wird es aussehen (bei A und B gleich)
+## So wird es aussehen
 
 Ein eigener Abschnitt auf der Startseite mit den letzten zwei Posts
-nebeneinander. Darunter ein Knopf "mehr laden", der weitere Posts aufklappt.
+nebeneinander. Darunter ein Knopf "mehr laden", der die weiteren aufklappt.
 Jedes Bild ist anklickbar und öffnet den Post bei Instagram in einem neuen Tab.
 Bildunterschriften werden auf ein, zwei Zeilen gekürzt.
 
 Offen ist noch, **wo** der Abschnitt hinkommt. Mein Vorschlag: ganz unten, kurz
 vor dem Booking-Kontakt — dann sieht man erst die Musik und die Konzerte, dann
-was zuletzt los war, und danach, wie man dich erreicht. Wenn du ihn lieber weiter
-oben hättest, geht das auch.
+was zuletzt los war, und danach, wie man dich erreicht. Wenn du ihn lieber
+weiter oben hättest, geht das auch.
+
+---
+
+## Und die Konzerte über Bandsintown?
+
+Das ist eine eigene Frage und steht in `KONZERTE-BANDSINTOWN.md`. Kurzfassung:
+Bandsintown lohnt sich für dich, aber eher als Verteiler zu Spotify, Apple Music
+und Shazam als für die Website. Ein Cookie-Banner erzwingt es nicht — deine
+Seite kann also weiterhin ganz ohne auskommen.
