@@ -98,14 +98,16 @@
     "rejected": "a warm duotone on a paper mount with a plate line, and a painted dissolve into the page; both read as antique"
   },
   "icon": {
-    "source": "the standing wolf's head on the Season One sleeve",
+    "source": "assets/source/logo.png, the artist's own circular emblem",
     "generator": "scripts/icons.mjs",
-    "technique": "paint density becomes alpha, blurred and re-thresholded into a solid silhouette so it survives at 16px",
+    "technique": "line-art density becomes alpha so the white square drops out; the circular emblem crops itself",
     "files": [
-      "app/icon.png (512)",
+      "public/images/logo-mark.webp (header, transparent)",
+      "app/icon.png (512, on paper)",
       "app/apple-icon.png (180)",
       "public/favicon.ico (32)"
     ],
-    "colour": "clay-deep on paper"
+    "colour": "ink on transparent for the header, ink on paper for the tab",
+    "why paper behind the tab icon": "a transparent favicon vanishes on a dark tab strip"
   }
 }

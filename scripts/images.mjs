@@ -104,7 +104,8 @@ for (const [rel, key, options = {}] of SOURCES) {
 }
 
 // Remove stale outputs. Anything scripts/pigments.mjs owns is not ours to delete.
-const PIGMENT_PREFIXES = ["wash-", "stain-", "rule-", "edge-"];
+// Anything another generator owns. Forget one and `npm run images` deletes it.
+const PIGMENT_PREFIXES = ["wash-", "stain-", "rule-", "edge-", "logo-"];
 for (const f of readdirSync(OUT)) {
   if (PIGMENT_PREFIXES.some((prefix) => f.startsWith(prefix))) continue;
   if (f.endsWith(".webp") && !keep.has(f)) {

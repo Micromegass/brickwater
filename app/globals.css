@@ -534,14 +534,24 @@
   }
   /* The header carries the sleeve's own lettering at reading size. */
   .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
     font-weight: 400;
     font-variation-settings: "opsz" 40, "wdth" 100;
     letter-spacing: 0.16em;
-    text-indent: 0.16em;
+    /* The indent belonged to the text alone; with the mark beside it the gap does that job. */
     text-transform: uppercase;
     font-size: 0.95rem;
     text-decoration: none;
     color: var(--color-ink);
+  }
+  /* The artist's own emblem, ink on whatever ground it lands on. */
+  .brand-mark {
+    display: block;
+    width: 1.65rem;
+    height: 1.65rem;
+    flex: none;
   }
   .site-nav {
     display: flex;

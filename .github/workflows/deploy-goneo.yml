@@ -11,7 +11,7 @@ name: Deploy to goneo
 # repository variable GONEO_WEEKLY_TARGET to `production`.
 #
 # Repository secrets (Settings -> Secrets and variables -> Actions -> Secrets):
-#   GONEO_HOST       e.g. w11.goneo.de
+#   GONEO_HOST       from Kundencenter -> Servernamen, under "FTP & SSH"
 #   GONEO_USER       the SFTP user
 #   GONEO_PASSWORD   the SFTP password
 #
@@ -21,6 +21,7 @@ name: Deploy to goneo
 #   GONEO_STAGING_BASE      "" for a subdomain, or "/neu" for a subfolder
 #   GONEO_PRODUCTION_PATH   the live document root, e.g. /
 #   GONEO_WEEKLY_TARGET     leave unset, or "production" once the switch is done
+#   GONEO_PORT              optional; goneo speaks SFTP on 2222, which is the default here
 
 on:
   workflow_dispatch:
@@ -165,10 +166,11 @@ jobs:
           LFTP_PASSWORD: ${{ secrets.GONEO_PASSWORD }}
           HOST: ${{ secrets.GONEO_HOST }}
           USER: ${{ secrets.GONEO_USER }}
+          PORT: ${{ vars.GONEO_PORT || '2222' }}
           REMOTE: ${{ steps.remote.outputs.path }}
           TARGET: ${{ needs.build.outputs.target }}
         run: |
-          lftp -u "$USER" --env-password "sftp://$HOST" -e "
+          lftp -u "$USER" --env-password "sftp://$HOST:$PORT" -e "
             set cmd:trace off;
             set sftp:auto-confirm yes;
             set net:max-retries 2;
@@ -189,9 +191,10 @@ jobs:
           LFTP_PASSWORD: ${{ secrets.GONEO_PASSWORD }}
           HOST: ${{ secrets.GONEO_HOST }}
           USER: ${{ secrets.GONEO_USER }}
+          PORT: ${{ vars.GONEO_PORT || '2222' }}
           REMOTE: ${{ steps.remote.outputs.path }}
         run: |
-          lftp -u "$USER" --env-password "sftp://$HOST" -e "
+          lftp -u "$USER" --env-password "sftp://$HOST:$PORT" -e "
             set cmd:trace off;
             set sftp:auto-confirm yes;
             set net:max-retries 2;

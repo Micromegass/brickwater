@@ -21,6 +21,22 @@ export async function SiteHeader({ locale }: { locale: Locale }) {
       </a>
       <div className="site-header-inner">
         <Link href="/" className="brand" aria-label={t("nav.homeLink")}>
+          {/*
+            Decorative: the link already says Brickwater, in text and in its label.
+            A plain img on purpose. next/image here would buy nothing: the mark is
+            a fixed 26px asset that is never the largest paint, and it is generated
+            by scripts/icons.mjs rather than the photo pipeline, so it has no entry
+            in the manifest the custom loader resolves against.
+          */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={withBase("/images/logo-mark.webp")}
+            alt=""
+            aria-hidden="true"
+            width={26}
+            height={26}
+            className="brand-mark"
+          />
           Brickwater
         </Link>
         <nav aria-label={t("nav.mainNavigation")} className="site-nav">

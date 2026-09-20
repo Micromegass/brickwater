@@ -82,7 +82,19 @@ naheliegendsten Adresse für die neue Seite:
 
 Unter Settings → Secrets and variables → Actions:
 
-**Secrets:** `GONEO_HOST` (z. B. `w11.goneo.de`), `GONEO_USER`, `GONEO_PASSWORD`.
+**Secrets:** `GONEO_HOST`, `GONEO_USER`, `GONEO_PASSWORD`.
+
+Wo die herkommen (goneo-Kundencenter):
+
+- **Hostname**: Kundencenter → *Servernamen*, dort der Eintrag unter **FTP & SSH**.
+- **Benutzer und Passwort**: Kundencenter → *Webserver* → **FTP-Zugriff** bzw.
+  **FTP- & SSH-Zugriff**. Dort lassen sich Benutzer auch neu anlegen und
+  Passwörter setzen.
+- **Port 2222.** goneo betreibt SFTP nicht auf dem Standardport 22. Der Workflow
+  nimmt 2222 von sich aus; die Variable `GONEO_PORT` überschreibt das nur, falls
+  goneo das jemals ändert.
+- Unverschlüsseltes FTP unterstützt goneo nicht mehr, SFTP steht auch in
+  Paketen ohne SSH-Zugang zur Verfügung.
 
 **Variables:** `GONEO_STAGING_PATH` (Zielordner der Testkopie),
 `GONEO_STAGING_URL` (wie sie erreichbar ist), `GONEO_STAGING_BASE` (leer bei

@@ -319,9 +319,13 @@ The gallery is a column flow, two columns from 40rem and three from 64rem, so po
 ### Lyrics panel (signature)
 A song opens its lyrics in a native `<dialog>` over the page, typeset like an inner sleeve: the track number in the record's own accent, the title, a rule, then the text at a 46ch measure on paper. The backdrop is ink at 55% with a light blur. The lyrics are rendered on the server inside the dialog, so they stay in the HTML for search engines and for the `MusicRecording` JSON-LD. `components/music/TrackList.tsx` is the one list used on the home page and on every release page; a song without lyrics stays plain text rather than pretending to be pressable.
 
-### The tab icon (signature)
+### The tab icon and the header mark (signature)
 
-The wolf from the sleeve, in profile, reduced to one clay mass on the paper ground. `scripts/icons.mjs` crops the standing wolf's head out of the painting, turns the paint's own density into an alpha channel, then softens and re-thresholds it so the dry-brush flecks do not read as noise once a browser scales the mark to sixteen pixels. The outline keeps the brush; the interior is solid. It replaced an abstract two-tone disc that said nothing about the record.
+The artist's own logo: a circular emblem, his name around the top of the ring, the genres around the bottom, a harmonica and three waves in the middle. It arrives as black line art on a white square, and white is not this site's paper, so pasting it in would show a pale square on a warm ground. `scripts/icons.mjs` turns the line work's own density into an alpha channel instead, the way every other generated asset here is made: the ink survives, the white disappears, and because the emblem is circular the corners crop themselves.
+
+Two outputs from the one source. `logo-mark.webp` is transparent and sits in the header beside the wordmark at 1.65rem, ink directly on the paper. The tab icon keeps an opaque paper ground behind the same ink, because a transparent favicon disappears on a dark tab strip and that is the one background we do not control.
+
+It replaced a wolf's head cut from the Season One sleeve, which in turn replaced an abstract two-tone disc. The wolf is still what the painted marks are made of; the tab now carries the artist's own mark instead.
 
 ### Wordmark (signature)
 BRICKWATER in thin, widely spaced caps, filled by `background-clip: text` with `/images/wash-wordmark.webp`, a wash built by `scripts/pigments.mjs` from the sleeve painting. The script averages the painted band down to a nine by six grid, snaps every hue onto one of the two pigment families, holds saturation and lightness inside a band, and fails the build if any part of the wash drops under 3:1 against the paper. On load the paint soaks in once: opacity 0 to 1, background-size 150% 260% to 100% 100%, saturation 0.3 to 1, 1.9s on the expo curve. It never loops. Reduced motion and forced colours get the finished mark with no animation; a browser without background-clip gets clay deep.
