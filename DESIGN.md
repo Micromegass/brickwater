@@ -240,7 +240,7 @@ A single container of max-width 1400px with a fluid gutter of clamp(1.1rem, 4vw,
 
 The home page runs hero, bio and photographs, videos, music, the collective, shows, booking. That order is the artist's and is asserted by an end-to-end test.
 
-Responsive: the wordmark is one line and stacks to BRICK over WATER below 640px, where the hype sticker leaves the wordmark and sits beneath it, aligned right.
+Responsive: the wordmark is one line at every width. Below 640px it drops from 7.2cqw to 13cqw, which is the size the name fits at: it is 7.39em wide at that tracking, so the threshold is a constant 13.5cqw whatever the viewport, and 13 leaves the slack the fallback face needs while the real one loads. It used to stack to BRICK over WATER; the artist asked for one word.
 
 ## Elevation & Depth
 

@@ -14,10 +14,10 @@
     "posterHover": "transform 500ms ease-out-expo, scale 1.03",
     "reducedMotion": "the wordmark renders finished with no animation; smooth scrolling off",
     "webgl": "none; the site ships no canvas and no animation library",
-    "backgroundWaves": "per mark two animations on periods that never line up: a closed path (22s/30s/26s, linear infinite) with non-uniform scale so the silhouette changes rather than slides, and a density that breathes (17s/19s/23s, ease-in-out alternate); --stain-phase offsets marks sharing a lane; four to five overlapping marks per section, because the moving overlap is what reads as smoke. None under reduced motion.",
+    "backgroundWaves": "per mark two animations on periods that never line up: a closed path (15s/20s/17s, linear infinite) with non-uniform scale so the silhouette changes rather than slides, and a density that breathes (11s/13s/16s, ease-in-out alternate); --stain-phase offsets marks sharing a lane; four to five overlapping marks per section. Measured at 38-50px of travel and 66-107px of billow in three seconds. None under reduced motion.",
     "printHover": "translateY(-3px) with a deeper sleeve shadow, 320ms ease-out-expo",
     "lyricsPanel": "sheet-in 260ms ease-out-expo on open; native dialog handles focus, Escape and return",
-    "wolvesGhost": "ghost-gather 34s linear infinite, opacity 0 to the mark's resting strength (0.14-0.16) and back while it drifts; three on the site (hero, music, collective), none under reduced motion",
+    "wolvesGhost": "ghost-gather 26s linear infinite, opacity 0 to the mark's resting strength (0.14-0.16) and back while it drifts; three on the site (hero, music, collective), none under reduced motion",
     "reveal": "reveal-in on a CSS view timeline, range entry 2% to entry 55%, translateY 14px with scale 0.988, transform only so text never renders at a blended colour; absent without view timelines and under reduced motion",
     "lightbox": "sheet-in 240ms ease-out-expo on open; native dialog handles focus, Escape and return",
     "heroPlayer": "no motion beyond the card's 2px hover lift; the Bandcamp strip appears on click"
@@ -41,7 +41,8 @@
       "noBackgroundClip": "#8c422c",
       "forcedColors": "CanvasText, no background, no animation"
     },
-    "contrastGuard": "the generator fails if any part of the wash drops under 3:1 against #f3f2f0"
+    "contrastGuard": "the generator fails if any part of the wash drops under 3:1 against #f3f2f0",
+    "responsive": "one line at every width: 7.2cqw above 640px, 13cqw below, against a 13.5cqw break-even"
   },
   "stains": {
     "generator": "scripts/pigments.mjs",

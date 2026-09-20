@@ -54,8 +54,6 @@
     },
     "doors": "Starts at {time}",
     "allShows": "All shows",
-    "bookingHint": "Want to book Brickwater?",
-    "bookingCta": "Write an email",
     "count": "{count, plural, =0 {No shows} one {# show} other {# shows}}"
   },
   "music": {

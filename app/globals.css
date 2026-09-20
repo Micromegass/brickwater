@@ -345,21 +345,21 @@
       do not move as one body.
     */
     .stain-drift-a {
-      animation: wash-a 22s linear infinite, breathe-a 17s ease-in-out infinite alternate;
+      animation: wash-a 15s linear infinite, breathe-a 11s ease-in-out infinite alternate;
       animation-delay: var(--stain-phase, 0s);
     }
     .stain-drift-b {
-      animation: wash-b 30s linear infinite, breathe-b 19s ease-in-out infinite alternate;
+      animation: wash-b 20s linear infinite, breathe-b 13s ease-in-out infinite alternate;
       animation-delay: var(--stain-phase, 0s);
     }
     .stain-drift-c {
-      animation: wash-c 26s linear infinite, breathe-c 23s ease-in-out infinite alternate;
+      animation: wash-c 17s linear infinite, breathe-c 16s ease-in-out infinite alternate;
       animation-delay: var(--stain-phase, 0s);
     }
     /* A ghost gathers out of the haze and comes apart again. */
     .stain-ghost {
       opacity: 0;
-      animation: ghost-gather 34s linear infinite;
+      animation: ghost-gather 26s linear infinite;
       animation-delay: var(--stain-phase, -6s);
     }
   }
@@ -369,65 +369,70 @@
     stalls at an end; the scale is non-uniform, so a mark stretches one way while
     it compresses the other and its silhouette actually changes; and the marks
     overlap, so what you read is the moving overlap rather than any one shape.
+
+    The cycles were shortened and the paths widened twice, because the artist
+    could not see the movement at the earlier settings. Read the numbers in the
+    browser rather than trusting the values here: what matters is pixels moved
+    per second on a real mark, not the percentages in these keyframes.
   */
   @keyframes wash-a {
     0% {
-      transform: translate3d(0, 0, 0) scale3d(1.02, 1, 1) rotate(0deg);
+      transform: translate3d(0, 0, 0) scale3d(1.028, 1, 1) rotate(0deg);
     }
     20% {
-      transform: translate3d(6%, -4.5%, 0) scale3d(1.16, 1.04, 1) rotate(1.8deg);
+      transform: translate3d(9.0%, -6.75%, 0) scale3d(1.224, 1.056, 1) rotate(2.43deg);
     }
     40% {
-      transform: translate3d(3%, 5.5%, 0) scale3d(1, 1.18, 1) rotate(-1.4deg);
+      transform: translate3d(4.5%, 8.25%, 0) scale3d(1, 1.252, 1) rotate(-1.89deg);
     }
     60% {
-      transform: translate3d(-5.5%, 3.5%, 0) scale3d(1.13, 1.02, 1) rotate(2.4deg);
+      transform: translate3d(-8.25%, 5.25%, 0) scale3d(1.182, 1.028, 1) rotate(3.24deg);
     }
     80% {
-      transform: translate3d(-2.5%, -5%, 0) scale3d(1.04, 1.14, 1) rotate(-2deg);
+      transform: translate3d(-3.75%, -7.5%, 0) scale3d(1.056, 1.196, 1) rotate(-2.7deg);
     }
     100% {
-      transform: translate3d(0, 0, 0) scale3d(1.02, 1, 1) rotate(0deg);
+      transform: translate3d(0, 0, 0) scale3d(1.028, 1, 1) rotate(0deg);
     }
   }
   @keyframes wash-b {
     0% {
-      transform: translate3d(0, 0, 0) scale3d(1.06, 1.02, 1) rotate(0.7deg);
+      transform: translate3d(0, 0, 0) scale3d(1.084, 1.028, 1) rotate(0.94deg);
     }
     20% {
-      transform: translate3d(-6.5%, 4%, 0) scale3d(1, 1.15, 1) rotate(-2.2deg);
+      transform: translate3d(-9.75%, 6.0%, 0) scale3d(1, 1.21, 1) rotate(-2.97deg);
     }
     40% {
-      transform: translate3d(-3%, -6%, 0) scale3d(1.17, 1.03, 1) rotate(1.5deg);
+      transform: translate3d(-4.5%, -9.0%, 0) scale3d(1.238, 1.042, 1) rotate(2.03deg);
     }
     60% {
-      transform: translate3d(5.5%, -2%, 0) scale3d(1.02, 1.16, 1) rotate(-1.6deg);
+      transform: translate3d(8.25%, -3.0%, 0) scale3d(1.028, 1.224, 1) rotate(-2.16deg);
     }
     80% {
-      transform: translate3d(4%, 5%, 0) scale3d(1.12, 1.05, 1) rotate(2.3deg);
+      transform: translate3d(6.0%, 7.5%, 0) scale3d(1.168, 1.07, 1) rotate(3.1deg);
     }
     100% {
-      transform: translate3d(0, 0, 0) scale3d(1.06, 1.02, 1) rotate(0.7deg);
+      transform: translate3d(0, 0, 0) scale3d(1.084, 1.028, 1) rotate(0.94deg);
     }
   }
   @keyframes wash-c {
     0% {
-      transform: translate3d(0, 3%, 0) scale3d(1.03, 1.05, 1) rotate(-1deg);
+      transform: translate3d(0, 4.5%, 0) scale3d(1.042, 1.07, 1) rotate(-1.35deg);
     }
     20% {
-      transform: translate3d(6%, -2.5%, 0) scale3d(1.18, 1, 1) rotate(1.4deg);
+      transform: translate3d(9.0%, -3.75%, 0) scale3d(1.252, 1, 1) rotate(1.89deg);
     }
     40% {
-      transform: translate3d(-2.5%, -5.5%, 0) scale3d(1.02, 1.17, 1) rotate(-2.4deg);
+      transform: translate3d(-3.75%, -8.25%, 0) scale3d(1.028, 1.238, 1) rotate(-3.24deg);
     }
     60% {
-      transform: translate3d(-6%, 2.5%, 0) scale3d(1.14, 1.03, 1) rotate(1.9deg);
+      transform: translate3d(-9.0%, 3.75%, 0) scale3d(1.196, 1.042, 1) rotate(2.56deg);
     }
     80% {
-      transform: translate3d(1.5%, 6%, 0) scale3d(1, 1.12, 1) rotate(-0.8deg);
+      transform: translate3d(2.25%, 9.0%, 0) scale3d(1, 1.168, 1) rotate(-1.08deg);
     }
     100% {
-      transform: translate3d(0, 3%, 0) scale3d(1.03, 1.05, 1) rotate(-1deg);
+      transform: translate3d(0, 4.5%, 0) scale3d(1.042, 1.07, 1) rotate(-1.35deg);
     }
   }
   /* Density: paint thins and gathers as it moves. */
@@ -698,18 +703,17 @@
   }
   @media (max-width: 640px) {
     .wordmark-stage {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
       margin-block: 1.75rem 1.5rem;
     }
+    /*
+      One word, one line, at every width. The name is set in a container query
+      unit, and the text is 7.39em wide at this tracking, so the size that fits
+      is a constant 13.5cqw whatever the viewport. Sitting at 13 leaves a few
+      pixels of slack, which the fallback face needs while the real one loads.
+    */
     .wordmark {
-      font-size: 16.5cqw;
-      line-height: 1.16;
+      font-size: 13cqw;
       letter-spacing: 0.1em;
-    }
-    .wordmark-part {
-      display: block;
     }
   }
   /* The hype sticker, in the flow beside the copy rather than over the wordmark. */

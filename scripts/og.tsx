@@ -68,6 +68,7 @@ for (const locale of ["de", "en"] as const) {
   const m = messages[locale];
   cards.push(
     { key: "home", locale, title: "Indie, Folk & Punk", subtitle: m.site.tagline.replace(/^Indie, [Ff]olk (und|and) [Pp]unk /, "").replace(/^aus |^from /, locale === "de" ? "aus " : "from ") },
+    // shows.intro no longer appears on the page; it lives on as this card's subtitle.
     { key: "shows", locale, title: m.shows.heading, subtitle: m.shows.intro },
     { key: "music", locale, title: m.music.heading, subtitle: m.music.intro },
     { key: "gallery", locale, title: m.gallery.heading, subtitle: m.gallery.intro },

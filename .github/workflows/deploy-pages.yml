@@ -15,6 +15,12 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  # The site is a static export, so which shows count as upcoming is decided at
+  # build time. Without a scheduled rebuild a concert stays under "Demnächst"
+  # until somebody happens to push. Monday 03:17 UTC, the same slot the
+  # Cloudflare rebuild uses.
+  schedule:
+    - cron: "17 3 * * 1"
   workflow_dispatch:
 
 concurrency:

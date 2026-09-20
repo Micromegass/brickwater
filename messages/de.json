@@ -54,8 +54,6 @@
     },
     "doors": "Beginn {time} Uhr",
     "allShows": "Alle Konzerte",
-    "bookingHint": "Du willst Brickwater buchen?",
-    "bookingCta": "E-Mail schreiben",
     "count": "{count, plural, =0 {Keine Konzerte} one {# Konzert} other {# Konzerte}}"
   },
   "music": {

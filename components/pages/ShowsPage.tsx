@@ -4,7 +4,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { ShowsList } from "@/components/shows/ShowsList";
 import { Photo } from "@/components/ui/Photo";
 import { Stain } from "@/components/ui/Stain";
-import { loadShows, loadSite } from "@/lib/content/load";
+import { loadShows } from "@/lib/content/load";
 import { absoluteUrl, localizedPath } from "@/lib/i18n/paths";
 import { breadcrumbs, graph, musicEvent } from "@/lib/seo/jsonld";
 import { splitShows } from "@/lib/shows";
@@ -16,7 +16,6 @@ const INLAY_QUOTE = {
 
 export async function ShowsPage({ locale }: { locale: Locale }) {
   const t = await getTranslations({ locale });
-  const site = loadSite();
   const { upcoming, past } = splitShows(loadShows(), new Date());
   const jsonLd = graph([
     breadcrumbs([
@@ -33,8 +32,7 @@ export async function ShowsPage({ locale }: { locale: Locale }) {
         <Stain shape="sage" drift="c" className="bottom-0 left-0 h-[22rem] w-[26rem]" opacity={0.2} />
         <div className="container">
           <h1 className="text-display font-semibold reveal">{t("shows.heading")}</h1>
-          <p className="measure mt-5 text-h3 text-ink-soft reveal">{t("shows.intro")}</p>
-          <div className="mt-12 rule pt-2 reveal">
+          <div className="mt-10 rule pt-2 reveal">
             <ShowsList locale={locale} upcoming={upcoming} past={past.slice(0, 12)} />
           </div>
         </div>
@@ -50,12 +48,6 @@ export async function ShowsPage({ locale }: { locale: Locale }) {
             </blockquote>
             <p className="etch mt-4 text-ink-soft uppercase">
               {locale === "de" ? "Aus der Beilage der Season One LP" : "From the Season One LP inlay"}
-            </p>
-            <p className="measure mt-10 text-ink-soft">
-              {t("shows.bookingHint")}{" "}
-              <a href={`mailto:${site.email}`} className="font-semibold text-ink underline">
-                {t("shows.bookingCta")}
-              </a>
             </p>
           </div>
         </div>

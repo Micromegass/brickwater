@@ -64,10 +64,7 @@ export async function Hero({ locale }: { locale: Locale }) {
       <div className="hero-inner">
         <div className="wordmark-stage">
           <h1 id="hero-title" className="wordmark" aria-label="Brickwater">
-            <span aria-hidden="true">
-              <span className="wordmark-part">Brick</span>
-              <span className="wordmark-part">water</span>
-            </span>
+            <span aria-hidden="true">Brickwater</span>
           </h1>
         </div>
         <div className="hero-body">
