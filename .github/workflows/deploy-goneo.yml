@@ -1,0 +1,212 @@
+name: Deploy to goneo
+
+# Uploads the built site to the artist's own German hosting over SFTP.
+#
+# Two jobs on purpose, the same split as the Pages workflow: `build` runs npm
+# and never sees a credential, `publish` holds the SFTP login and runs nothing
+# from node_modules. A compromised dependency therefore cannot reach the server.
+#
+# Nothing here runs automatically against the live domain. `staging` is the
+# default and the only thing a scheduled run will touch until someone sets the
+# repository variable GONEO_WEEKLY_TARGET to `production`.
+#
+# Repository secrets (Settings -> Secrets and variables -> Actions -> Secrets):
+#   GONEO_HOST       e.g. w11.goneo.de
+#   GONEO_USER       the SFTP user
+#   GONEO_PASSWORD   the SFTP password
+#
+# Repository variables (same page, Variables tab):
+#   GONEO_STAGING_PATH      remote directory for the test copy, e.g. /neu
+#   GONEO_STAGING_URL       how it is reached, e.g. https://neu.brickwater.de
+#   GONEO_STAGING_BASE      "" for a subdomain, or "/neu" for a subfolder
+#   GONEO_PRODUCTION_PATH   the live document root, e.g. /
+#   GONEO_WEEKLY_TARGET     leave unset, or "production" once the switch is done
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: "Where to deploy"
+        type: choice
+        options: [staging, production]
+        default: staging
+      confirm:
+        description: "Type deploy to confirm a PRODUCTION upload (ignored for staging)"
+        type: string
+        default: ""
+  # Past concerts retire only when the site is rebuilt. Harmless while
+  # GONEO_WEEKLY_TARGET is unset: the publish job then skips.
+  schedule:
+    - cron: "41 3 * * 1"
+
+concurrency:
+  group: goneo-deploy
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    outputs:
+      target: ${{ steps.plan.outputs.target }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Work out the target and refuse an unconfirmed production upload
+        id: plan
+        env:
+          REQUESTED: ${{ inputs.target }}
+          CONFIRM: ${{ inputs.confirm }}
+          WEEKLY: ${{ vars.GONEO_WEEKLY_TARGET }}
+        run: |
+          if [ "${GITHUB_EVENT_NAME}" = "schedule" ]; then
+            target="${WEEKLY:-none}"
+          else
+            target="${REQUESTED:-staging}"
+          fi
+          if [ "$target" = "production" ] && [ "${GITHUB_EVENT_NAME}" != "schedule" ] && [ "$CONFIRM" != "deploy" ]; then
+            echo "Production upload requires the confirm field to read exactly: deploy" >&2
+            exit 1
+          fi
+          echo "target=${target}" >> "$GITHUB_OUTPUT"
+          echo "Deploying to: ${target}"
+
+      - name: Nothing to do
+        if: steps.plan.outputs.target == 'none'
+        run: echo "GONEO_WEEKLY_TARGET is not set, so the scheduled run stops here."
+
+      - uses: actions/setup-node@v4
+        if: steps.plan.outputs.target != 'none'
+        with:
+          node-version-file: .node-version
+          cache: npm
+
+      - run: npm ci
+        if: steps.plan.outputs.target != 'none'
+
+      - run: npm run check
+        if: steps.plan.outputs.target != 'none'
+
+      # Staging is built noindex and at its own address so it can never compete
+      # with the real domain in search. Production is built for www.brickwater.de.
+      - name: Build
+        if: steps.plan.outputs.target != 'none'
+        env:
+          NEXT_PUBLIC_SITE_URL: ${{ steps.plan.outputs.target == 'production' && 'https://www.brickwater.de' || vars.GONEO_STAGING_URL }}
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.plan.outputs.target == 'production' && '' || vars.GONEO_STAGING_BASE }}
+          NEXT_PUBLIC_NOINDEX: ${{ steps.plan.outputs.target == 'production' && '' || '1' }}
+        run: npm run build
+
+      # .htaccess ships from public/, so its error page path is written for the
+      # site root. A staging copy in a subfolder needs the prefix.
+      - name: Point the error page at the right place
+        if: steps.plan.outputs.target == 'staging' && vars.GONEO_STAGING_BASE != ''
+        env:
+          BASE: ${{ vars.GONEO_STAGING_BASE }}
+        run: |
+          sed -i "s#^ErrorDocument 404 /404.html#ErrorDocument 404 ${BASE}/404.html#" out/.htaccess
+          grep '^ErrorDocument' out/.htaccess
+
+      - uses: actions/upload-artifact@v4
+        if: steps.plan.outputs.target != 'none'
+        with:
+          name: site-goneo
+          path: out
+          include-hidden-files: true
+          retention-days: 1
+
+  publish:
+    needs: build
+    if: needs.build.outputs.target != 'none'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: site-goneo
+          path: site
+
+      - name: Sanity-check the artifact
+        run: |
+          test -f site/index.html || { echo "artifact has no index.html; refusing to upload" >&2; exit 1; }
+          test -f site/.htaccess || { echo "artifact has no .htaccess; refusing to upload" >&2; exit 1; }
+          echo "files to upload: $(find site -type f | wc -l)"
+
+      - name: Install lftp
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
+      - name: Resolve the remote directory
+        id: remote
+        env:
+          TARGET: ${{ needs.build.outputs.target }}
+          STAGING: ${{ vars.GONEO_STAGING_PATH }}
+          PRODUCTION: ${{ vars.GONEO_PRODUCTION_PATH }}
+        run: |
+          if [ "$TARGET" = "production" ]; then path="$PRODUCTION"; else path="$STAGING"; fi
+          if [ -z "$path" ]; then
+            echo "No remote path configured for ${TARGET}. Set the repository variable first." >&2
+            exit 1
+          fi
+          echo "path=${path}" >> "$GITHUB_OUTPUT"
+          echo "Remote directory: ${path}"
+
+      # A mirror deletes whatever is no longer in the build, so look before
+      # leaping: list what is about to be replaced and refuse if the directory
+      # looks nothing like a web root. Deliberately only a listing, never a
+      # downloaded copy kept as an artifact: this repository is public, and
+      # artifacts of a public repository can be downloaded by anyone. Restoring
+      # is goneo's own backup feature, documented in GO-LIVE.md.
+      - name: Look at what is on the server now
+        env:
+          LFTP_PASSWORD: ${{ secrets.GONEO_PASSWORD }}
+          HOST: ${{ secrets.GONEO_HOST }}
+          USER: ${{ secrets.GONEO_USER }}
+          REMOTE: ${{ steps.remote.outputs.path }}
+          TARGET: ${{ needs.build.outputs.target }}
+        run: |
+          lftp -u "$USER" --env-password "sftp://$HOST" -e "
+            set cmd:trace off;
+            set sftp:auto-confirm yes;
+            set net:max-retries 2;
+            cls -1 '$REMOTE';
+            bye
+          " > listing.txt 2>/dev/null || echo "(could not list the remote directory)" > listing.txt
+          echo "Currently in ${REMOTE}:"
+          sed 's/^/    /' listing.txt
+          # A document root holds web files. Mail or account directories mean the
+          # configured path is wrong, and a mirror there would delete them.
+          if grep -qiE '^(mail|logs?|backup|\.ssh|etc)/?$' listing.txt; then
+            echo "That looks like an account root, not a document root. Refusing to mirror into it." >&2
+            exit 1
+          fi
+
+      - name: Upload the site
+        env:
+          LFTP_PASSWORD: ${{ secrets.GONEO_PASSWORD }}
+          HOST: ${{ secrets.GONEO_HOST }}
+          USER: ${{ secrets.GONEO_USER }}
+          REMOTE: ${{ steps.remote.outputs.path }}
+        run: |
+          lftp -u "$USER" --env-password "sftp://$HOST" -e "
+            set cmd:trace off;
+            set sftp:auto-confirm yes;
+            set net:max-retries 2;
+            set mirror:parallel-transfer-count 4;
+            mirror --reverse --delete --verbose=1 site '$REMOTE';
+            bye
+          "
+
+      - name: Where it landed
+        env:
+          TARGET: ${{ needs.build.outputs.target }}
+          STAGING_URL: ${{ vars.GONEO_STAGING_URL }}
+        run: |
+          if [ "$TARGET" = "production" ]; then
+            echo "Live at https://www.brickwater.de/"
+          else
+            echo "Staging at ${STAGING_URL}"
+          fi

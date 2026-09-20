@@ -62,3 +62,66 @@ mit `www.brickwater.de` anlegen, im Workflow `NEXT_PUBLIC_BASE_PATH` leeren,
 `NEXT_PUBLIC_NOINDEX` entfernen und die DNS-Einträge auf GitHub zeigen lassen.
 Die fehlenden Security-Header bleiben dann trotzdem ein Nachteil gegenüber
 Cloudflare.
+
+## 7. Alternative: auf goneo deployen (empfohlen)
+
+Die Domain liegt bereits bei goneo (`w11.goneo.de`), dort läuft Apache, HTTPS
+mit Let's Encrypt ist eingerichtet und gzip ist an. Das macht goneo zur
+naheliegendsten Adresse für die neue Seite:
+
+- **Kein DNS-Umzug.** Die Domain zeigt schon dorthin, also kein Warten, keine
+  Ausfallzeit, kein Risiko durch eine Nameserver-Änderung.
+- **Echte Security-Header.** Apache liest `.htaccess`, deshalb liegt in
+  `public/.htaccess` die vollständige Fassung von CSP, HSTS, X-Frame-Options,
+  Referrer-Policy und Permissions-Policy. GitHub Pages kann das nicht, die alte
+  Seite dort sendet heute **gar keine** dieser Header.
+- **Deutsches Hosting.** Damit fällt die letzte Abhängigkeit von einem
+  US-Anbieter weg, was zur Datenschutz-Linie der Seite passt.
+
+### Einmalig einrichten
+
+Unter Settings → Secrets and variables → Actions:
+
+**Secrets:** `GONEO_HOST` (z. B. `w11.goneo.de`), `GONEO_USER`, `GONEO_PASSWORD`.
+
+**Variables:** `GONEO_STAGING_PATH` (Zielordner der Testkopie),
+`GONEO_STAGING_URL` (wie sie erreichbar ist), `GONEO_STAGING_BASE` (leer bei
+eigener Subdomain, sonst z. B. `/neu`), `GONEO_PRODUCTION_PATH` (das echte
+Document-Root).
+
+`GONEO_WEEKLY_TARGET` bleibt zunächst **leer**. Damit läuft der wöchentliche
+Lauf ins Leere und kann die Live-Seite nicht anfassen.
+
+### Reihenfolge
+
+1. **Testkopie**: Actions → "Deploy to goneo" → Run workflow → Target
+   `staging`. Die Kopie wird mit `noindex` gebaut, kann also nicht in der Suche
+   gegen die echte Domain antreten.
+2. Mit dem Künstler anschauen.
+3. **Umschalten**: derselbe Workflow, Target `production`, und in das Feld
+   `confirm` muss genau `deploy` eingetragen werden. Ohne das bricht der Lauf ab.
+4. Danach `GONEO_WEEKLY_TARGET` auf `production` setzen. Erst dann baut sich die
+   Seite montags neu und vergangene Konzerte verschwinden von allein.
+
+### Was der Workflow absichert
+
+- Anmeldedaten und `npm` laufen in **getrennten Jobs**. Der Job, der baut, hat
+  keine Zugangsdaten; der Job, der hochlädt, führt nichts aus `node_modules` aus.
+- Vor dem Hochladen wird geprüft, dass `index.html` und `.htaccess` überhaupt da
+  sind, und der Zielordner wird aufgelistet. Sieht er nach einem Account-Root
+  aus (Ordner wie `mail`, `logs`), bricht der Lauf ab, statt dort zu spiegeln.
+- Das Passwort wird über eine Umgebungsvariable übergeben und steht nie in einer
+  Kommandozeile.
+
+### Wichtig zum Zurückrollen
+
+Der Upload spiegelt und **löscht dabei serverseitig, was lokal nicht mehr
+existiert**. Beim Umschalten verschwindet also die alte Bootstrap-Seite. Das ist
+gewollt. Der Weg zurück ist goneos eigenes Backup (im Leistungsumfang
+enthalten) — bewusst **keine** Kopie als GitHub-Artefakt, denn dieses
+Repository ist öffentlich und Artefakte öffentlicher Repositories kann jeder
+herunterladen.
+
+Offener Punkt: Der Workflow akzeptiert den SSH-Hostschlüssel von goneo
+ungeprüft (`sftp:auto-confirm`). Sobald der Fingerprint einmal bekannt ist,
+sollte er fest hinterlegt werden.
