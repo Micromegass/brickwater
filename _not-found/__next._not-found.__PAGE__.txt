@@ -1,0 +1,23 @@
+1:"$Sreact.fragment"
+2:I[97367,["/brickwater/_next/static/chunks/3jnihsg-rcdh1.js"],"OutletBoundary"]
+3:"$Sreact.suspense"
+7:I[97367,["/brickwater/_next/static/chunks/3jnihsg-rcdh1.js"],"ViewportBoundary"]
+8:I[97367,["/brickwater/_next/static/chunks/3jnihsg-rcdh1.js"],"MetadataBoundary"]
+9:I[27201,["/brickwater/_next/static/chunks/3jnihsg-rcdh1.js"],"IconMark"]
+b:I[39756,["/brickwater/_next/static/chunks/3jnihsg-rcdh1.js"],"default"]
+c:I[37457,["/brickwater/_next/static/chunks/3jnihsg-rcdh1.js"],"default"]
+f:I[22016,["/brickwater/_next/static/chunks/3jnihsg-rcdh1.js"],""]
+:HL["/brickwater/_next/static/chunks/43wnys36hmh31.css","style"]
+6:X
+e:X
+e:C
+0:{"buildId":"q13VBX9n_ROOKtx9d-BXR","data":[{"rsc":["$","$1","c",{"children":[null,null,["$","$L2",null,{"children":["$","$3",null,{"name":"Next.MetadataOutlet","children":"$@4"}]}]]}],"isPartial":"$@5","staleTime":"$6","varyParams":null},{"rsc":["$","$1","h",{"children":[["$","meta",null,{"name":"robots","content":"noindex"}],["$","$L7",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L8",null,{"children":["$","$3",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Seite nicht gefunden | Brickwater"}],["$","link","1",{"rel":"manifest","href":"/brickwater/manifest.webmanifest"}],["$","meta","2",{"name":"robots","content":"noindex, nofollow"}],["$","link","3",{"rel":"icon","href":"/brickwater/icon.png?icon.156rbw8ercdye.png","sizes":"512x512","type":"image/png"}],["$","link","4",{"rel":"apple-touch-icon","href":"/brickwater/apple-icon.png?apple-icon.3g9y2bur605sd.png","sizes":"180x180","type":"image/png"}],["$","$L9","5",{}]]}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"isPartial":"$@a","staleTime":"$6","varyParams":null},{"rsc":["$","$1","c",{"children":[null,["$","$Lb",null,{"parallelRouterKey":"children","template":["$","$Lc",null,{}]}]]}],"isPartial":"$@d","staleTime":"$6","varyParams":"$e"},{"rsc":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/brickwater/_next/static/chunks/43wnys36hmh31.css","precedence":"next"}],["$","script","script-0",{"src":"/brickwater/_next/static/chunks/3jnihsg-rcdh1.js","async":true}]],["$","html",null,{"lang":"de","className":"bricolage_30cd0a7c-module__PNqn5q__variable","style":{"--asset-wash-wordmark":"url(/brickwater/images/wash-wordmark.webp)","--asset-rule-brush":"url(/brickwater/images/rule-brush.webp)","--asset-edge-deckle":"url(/brickwater/images/edge-deckle.webp)","--asset-edge-deckle-flip":"url(/brickwater/images/edge-deckle-flip.webp)"},"children":["$","body",null,{"children":["$","main",null,{"id":"main","className":"section","children":[["$","span",null,{"aria-hidden":"true","className":"stain stain-drift-a right-0 top-0 h-[26rem] w-[30rem]","style":{"--stain-shape":"url(/brickwater/images/stain-clay.webp)","--stain-color":"var(--color-clay)","--stain-opacity":"0.24"}}],["$","span",null,{"aria-hidden":"true","className":"stain stain-drift-c bottom-0 left-0 h-[22rem] w-[26rem]","style":{"--stain-shape":"url(/brickwater/images/stain-sage.webp)","--stain-color":"var(--color-sage-paint)","--stain-opacity":"0.18"}}],["$","div",null,{"className":"container","children":[["$","p",null,{"className":"brand","children":"Brickwater"}],["$","h1",null,{"className":"mt-10 text-display font-semibold","children":"Seite nicht gefunden"}],["$","p",null,{"className":"measure mt-5 text-h3 text-ink-soft","children":"Diese Seite gibt es nicht oder nicht mehr."}],["$","p",null,{"className":"mt-8","children":["$","$Lf",null,{"href":"/","className":"sticker sticker-clay","children":"Zur Startseite"}]}],["$","section",null,{"lang":"en","className":"mt-16 rule pt-10","children":[["$","h2",null,{"className":"text-h2 font-semibold","children":"Page not found"}],["$","p",null,{"className":"measure mt-4 text-ink-soft","children":"This page does not exist, or not any more."}],["$","p",null,{"className":"mt-6","children":["$","$Lf",null,{"href":"/en/","className":"sticker sticker-paper","children":"Back to the start page"}]}]]}]]}]]}]}]}]]}],"isPartial":"$@10","staleTime":"$6","varyParams":null}],"isUpgradeableISRFallback":false,"a":"$@11","rootVaryParams":null,"needsRuntimeRequest":"$@12"}
+4:null
+6:300
+12:true
+6:C
+11:0
+a:"$undefined"
+d:"$undefined"
+10:"$undefined"
+5:"$undefined"

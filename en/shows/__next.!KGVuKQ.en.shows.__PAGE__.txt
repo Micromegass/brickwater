@@ -1,0 +1,47 @@
+1:"$Sreact.fragment"
+2:I[85437,["/brickwater/_next/static/chunks/3tm4ot0u_jj-p.js","/brickwater/_next/static/chunks/1tfhbvj_d0_te.js","/brickwater/_next/static/chunks/1venr3b9zd9xd.js"],"Image"]
+3:I[97367,["/brickwater/_next/static/chunks/3fntmmi971322.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+8:I[97367,["/brickwater/_next/static/chunks/3fntmmi971322.js"],"ViewportBoundary"]
+9:I[97367,["/brickwater/_next/static/chunks/3fntmmi971322.js"],"MetadataBoundary"]
+7:X
+24:X
+24:C
+0:{"buildId":"q13VBX9n_ROOKtx9d-BXR","data":[{"rsc":["$","$1","c",{"children":[["$","main",null,{"id":"main","children":[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Brickwater\",\"item\":\"https://micromegass.github.io/brickwater/en/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Shows\",\"item\":\"https://micromegass.github.io/brickwater/en/shows/\"}]}]}"}}],["$","section",null,{"className":"section pt-12 md:pt-16","children":[["$","span",null,{"aria-hidden":"true","className":"stain stain-drift-a right-0 top-0 h-[26rem] w-[32rem]","style":{"--stain-shape":"url(/brickwater/images/stain-clay.webp)","--stain-color":"var(--color-clay)","--stain-opacity":"0.26"}}],["$","span",null,{"aria-hidden":"true","className":"stain stain-drift-c bottom-0 left-0 h-[22rem] w-[26rem]","style":{"--stain-shape":"url(/brickwater/images/stain-sage.webp)","--stain-color":"var(--color-sage-paint)","--stain-opacity":"0.2"}}],["$","div",null,{"className":"container","children":[["$","h1",null,{"className":"text-display font-semibold reveal","children":"Shows"}],["$","div",null,{"className":"mt-10 rule pt-2 reveal","children":["$","div",null,{"className":"shows-empty","children":[["$","p",null,{"className":"text-h3 font-semibold text-balance","children":"No shows are announced right now. New dates appear here first."}],["$","div",null,{"className":"mt-6 flex flex-wrap gap-3","children":["$","a",null,{"href":"https://www.instagram.com/brickwater_/","className":"sticker sticker-ink","rel":"me noopener","children":"Follow Brickwater on Instagram"}]}]]}]}]]}]]}],["$","section",null,{"className":"section pt-0","children":["$","div",null,{"className":"container grid gap-12 lg:grid-cols-12 lg:items-center","children":[["$","figure",null,{"className":"lg:col-span-5 reveal","children":["$","$L2",null,{"src":"/images/brickwater-bricky-waters-stage-portrait-02","alt":"Bricky Waters holding his guitar and looking into the camera, stage in the background","width":2296,"height":4080,"sizes":"(min-width: 1024px) 38vw, 100vw","placeholder":"blur","blurDataURL":"data:image/webp;base64,UklGRpwAAABXRUJQVlA4IJAAAACwAwCdASoQABwAPu1iqk2ppaQiMAgBMB2JQAAJR3BKYkgJ1Ej9YAD+8N93aYhMALdAPvji33AS0kpR6nBCPW97P7ZGftfiFnB7m5b0Q5IrC3nepey65Gs/8v+4abnD6gHg4KFan/vN1hb1AhXfQP3bqXoMu/0YgJC09gCxpvRVSyzCtvSBf68861Pc/bVgAAA=","className":"sleeve-photo"}]}],["$","div",null,{"className":"lg:col-span-7 reveal","children":[["$","blockquote",null,{"className":"text-h2 font-semibold text-balance","children":["$","p",null,{"children":"All people are equal. Immigrants and refugees are welcome. Diversity is celebrated. Stop deportation now. Love wins."}]}],["$","p",null,{"className":"etch mt-4 text-ink-soft uppercase","children":"From the Season One LP inlay"}]]}]]}]}]]}],[["$","script","script-0",{"src":"/brickwater/_next/static/chunks/1venr3b9zd9xd.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":"$@6","staleTime":"$7","varyParams":null},{"rsc":["$","$1","h",{"children":[null,["$","$L8",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","2",{"name":"theme-color","content":"#faf7f2"}]]}],["$","div",null,{"hidden":true,"children":["$","$L9",null,{"children":["$","$4",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Shows | Brickwater"}],["$","meta","1",{"name":"description","content":"All Brickwater show dates: solo, with Folk's Worst Nightmare, at festivals and in clubs. With tickets and calendar files."}],["$","link","2",{"rel":"manifest","href":"/brickwater/manifest.webmanifest"}],["$","meta","3",{"name":"robots","content":"noindex, nofollow"}],["$","link","4",{"rel":"canonical","href":"https://micromegass.github.io/brickwater/en/shows/"}],["$","link","5",{"rel":"alternate","hrefLang":"de","href":"https://micromegass.github.io/brickwater/konzerte/"}],["$","link","6",{"rel":"alternate","hrefLang":"en","href":"https://micromegass.github.io/brickwater/en/shows/"}],"$La","$Lb","$Lc","$Ld","$Le","$Lf","$L10","$L11","$L12","$L13","$L14","$L15","$L16","$L17","$L18","$L19","$L1a","$L1b","$L1c","$L1d","$L1e","$L1f"]}]}]}],"$L20"]}],"isPartial":"$@21","staleTime":"$7","varyParams":null},{"rsc":"$L22","isPartial":"$@23","staleTime":"$7","varyParams":"$24"},{"rsc":"$L25","isPartial":"$@26","staleTime":"$7","varyParams":"$24"}],"isUpgradeableISRFallback":false,"a":"$@27","rootVaryParams":null,"needsRuntimeRequest":"$@28"}
+29:I[27201,["/brickwater/_next/static/chunks/3fntmmi971322.js"],"IconMark"]
+2a:I[39756,["/brickwater/_next/static/chunks/3fntmmi971322.js"],"default"]
+2b:I[37457,["/brickwater/_next/static/chunks/3fntmmi971322.js"],"default"]
+5:null
+a:["$","link","7",{"rel":"alternate","hrefLang":"x-default","href":"https://micromegass.github.io/brickwater/konzerte/"}]
+b:["$","meta","8",{"property":"og:title","content":"Shows"}]
+c:["$","meta","9",{"property":"og:description","content":"All Brickwater show dates: solo, with Folk's Worst Nightmare, at festivals and in clubs. With tickets and calendar files."}]
+d:["$","meta","10",{"property":"og:url","content":"https://micromegass.github.io/brickwater/en/shows/"}]
+e:["$","meta","11",{"property":"og:site_name","content":"Brickwater"}]
+f:["$","meta","12",{"property":"og:locale","content":"en_GB"}]
+10:["$","meta","13",{"property":"og:image","content":"https://micromegass.github.io/brickwater/og/shows-en.png"}]
+11:["$","meta","14",{"property":"og:image:width","content":"1200"}]
+12:["$","meta","15",{"property":"og:image:height","content":"630"}]
+13:["$","meta","16",{"property":"og:image:alt","content":"Shows"}]
+14:["$","meta","17",{"property":"og:locale:alternate","content":"de_DE"}]
+15:["$","meta","18",{"property":"og:type","content":"website"}]
+16:["$","meta","19",{"name":"twitter:card","content":"summary_large_image"}]
+17:["$","meta","20",{"name":"twitter:title","content":"Shows"}]
+18:["$","meta","21",{"name":"twitter:description","content":"All Brickwater show dates: solo, with Folk's Worst Nightmare, at festivals and in clubs. With tickets and calendar files."}]
+19:["$","meta","22",{"name":"twitter:image","content":"https://micromegass.github.io/brickwater/og/shows-en.png"}]
+1a:["$","meta","23",{"name":"twitter:image:alt","content":"Shows"}]
+1b:["$","meta","24",{"name":"twitter:image:width","content":"1200"}]
+1c:["$","meta","25",{"name":"twitter:image:height","content":"630"}]
+1d:["$","link","26",{"rel":"icon","href":"/brickwater/icon.png?icon.156rbw8ercdye.png","sizes":"512x512","type":"image/png"}]
+1e:["$","link","27",{"rel":"apple-touch-icon","href":"/brickwater/apple-icon.png?apple-icon.3g9y2bur605sd.png","sizes":"180x180","type":"image/png"}]
+1f:["$","$L29","28",{}]
+20:["$","meta",null,{"name":"next-size-adjust","content":""}]
+22:["$","$1","c",{"children":[null,["$","$L2a",null,{"parallelRouterKey":"children","template":["$","$L2b",null,{}]}]]}]
+25:["$","$1","c",{"children":[null,["$","$L2a",null,{"parallelRouterKey":"children","template":["$","$L2b",null,{}]}]]}]
+28:true
+7:300
+7:C
+27:0
+21:"$undefined"
+23:"$undefined"
+26:"$undefined"
+6:"$undefined"

@@ -1,0 +1,5 @@
+User-Agent: *
+Disallow: /
+
+Host: https://micromegass.github.io/brickwater
+Sitemap: https://micromegass.github.io/brickwater/sitemap.xml
