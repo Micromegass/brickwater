@@ -1,139 +1,98 @@
-# Go-live: brickwater.de auf Cloudflare Pages
+# Betrieb: brickwater.de auf goneo
 
-## 1. Repository und Pages-Projekt
+Die Seite liegt bei goneo (Webspace `w11.goneo.de`, Document-Root `/htdocs`),
+wo auch die Domain liegt. Apache liefert aus, HTTPS mit Let's Encrypt ist
+eingerichtet, gzip ist an. Cloudflare Pages und die Vorschau auf GitHub Pages
+sind seit dem 28. September 2026 abgeschaltet und aus dem Repository entfernt.
 
-1. Repository auf GitHub anlegen (z. B. `Micromegass/brickwater`) und pushen.
-2. Cloudflare Dashboard → Workers & Pages → Create → Pages → Connect to Git → Repository wählen.
-3. Build-Einstellungen: Framework-Preset **Next.js (Static HTML Export)**, Build command `npm run build`, Build output directory `out`. Node-Version kommt aus `.node-version` (24.15.0).
-4. Ersten Build abwarten; die Vorschau unter `<projekt>.pages.dev` prüfen (dort ist `noindex` gesetzt, siehe `public/_headers`).
+## 1. Wie die Seite auf den Server kommt
 
-## 2. Deploy-Hook für den wöchentlichen Neubau
+`.github/workflows/deploy-goneo.yml` baut die Seite und lädt sie per SFTP hoch:
 
-Pages-Projekt → Settings → Builds & deployments → Deploy hooks → neuen Hook anlegen. Die URL als GitHub-Secret `CF_PAGES_DEPLOY_HOOK_URL` hinterlegen (Repository → Settings → Secrets → Actions). Der Workflow `.github/workflows/weekly-rebuild.yml` ruft ihn montags auf, damit vergangene Konzerte automatisch in "Gespielt" wandern.
+- **jede Nacht** um 01:23 UTC (03:23 Uhr Sommerzeit, 02:23 Uhr Winterzeit),
+  auch wenn nichts geändert wurde. Eine statische Seite entscheidet beim Bauen,
+  welche Konzerte noch bevorstehen; ohne nächtlichen Neubau bliebe ein
+  gespieltes Konzert unter "Demnächst" stehen.
+- **auf Knopfdruck**: Actions → "Deploy to goneo" → Run workflow. Damit ist eine
+  Änderung sofort online, statt erst in der nächsten Nacht.
 
-## 3. Domain umziehen
+GitHub startet geplante Läufe bei hoher Last verspätet, manchmal um Stunden.
+Deshalb ist der Upload so geordnet, dass ein Besucher ihn nie bemerkt: erst
+kommen neue Skripte und Bilder neben die alten, dann die Seiten, und erst zum
+Schluss wird gelöscht, worauf keine Seite mehr verweist.
 
-1. Pages-Projekt → Custom domains → `www.brickwater.de` und `brickwater.de` hinzufügen. Liegt die DNS-Zone bereits bei Cloudflare, werden die Einträge automatisch gesetzt; sonst beim aktuellen Registrar die Nameserver auf Cloudflare umstellen oder CNAME/ALIAS-Einträge auf `<projekt>.pages.dev` anlegen.
-2. Redirect Rule (Rules → Redirect Rules): `brickwater.de/*` → `https://www.brickwater.de/$1`, 301. Die kanonischen URLs der Seite nutzen `www`.
-3. SSL/TLS auf **Full (strict)**, HSTS ist über `public/_headers` gesetzt.
+Schlägt der Build fehl (etwa wegen eines Tippfehlers in `content/`), wird nichts
+hochgeladen und die bisherige Seite bleibt online. GitHub schickt dann eine
+E-Mail an den Account, der den Zeitplan zuletzt geändert hat.
 
-## 4. Zone-Einstellungen, die sonst die Seite kaputt machen
+## 2. Einmalig einrichten
 
-In Speed → Optimization **ausschalten**: Rocket Loader, Auto Minify, Mirage. In Scrape Shield **ausschalten**: Email Address Obfuscation. Alle drei injizieren Skripte in das HTML und kollidieren mit der Content-Security-Policy und der React-Hydration.
+Unter Settings → Secrets and variables → Actions → **Secrets**:
 
-## 5. Nach dem Umzug prüfen
+- `GONEO_USER`: der SFTP-Benutzer
+- `GONEO_PASSWORD`: das SFTP-Passwort
 
-- `https://www.brickwater.de/` lädt, Sprachwechsel funktioniert, `/konzerte/` und `/en/shows/` antworten mit 200.
-- `https://www.brickwater.de/sitemap.xml` und `/robots.txt` erreichbar; Sitemap in der Google Search Console einreichen (beide Sprachversionen sind darin enthalten).
-- Rich-Results-Test (search.google.com/test/rich-results) für `/` und `/musik/season-one/`.
-- Security-Header prüfen (securityheaders.com): CSP, HSTS, X-Frame-Options sollten grün sein.
-- Im Cloudflare-Konto das Data Processing Addendum bestätigen (Account → Compliance), Basis für Abschnitt 2 der Datenschutzerklärung.
-- Alte Seite: Das bisherige Apache-Hosting kann gekündigt werden, sobald DNS umgestellt ist. Es gibt keine alten Unterseiten, die weitergeleitet werden müssten.
+Beides steht im goneo-Kundencenter unter *Webserver* → **FTP-Zugriff** bzw.
+**FTP- & SSH-Zugriff**; dort lassen sich Benutzer auch neu anlegen und
+Passwörter setzen. Lokal liegen dieselben Werte in `.env.goneo.local`
+(gitignored).
 
-## 6. Vorschau auf GitHub Pages
+Server, Port (2222, goneo spricht SFTP nicht auf 22) und Zielordner sind nicht
+geheim und stehen direkt im Workflow. Weitere Variablen braucht es nicht.
 
-Die Seite liegt zusätzlich als Vorschau auf GitHub Pages, damit es einen Link
-gibt, bevor die Domain umgezogen ist. Deployt wird bei jedem Push auf `main`
-über `.github/workflows/deploy-pages.yml`.
+Danach einmal von Hand auslösen (Run workflow) und prüfen, dass der Lauf grün
+wird. Beim ersten Lauf verschwinden vom Server die Reste der alten Seite
+(`css/`, `js/`), die Testkopie `neu/` und die Cloudflare-Dateien `_headers`,
+`_redirects` und `.nojekyll`.
 
-Einmalig einzustellen: Settings -> Pages -> Build and deployment -> Source:
-GitHub Actions. Der Workflow versucht das selbst, darf dabei aber scheitern.
-
-Adresse: `https://micromegass.github.io/brickwater/`
-
-Was dabei anders ist als auf Cloudflare, und warum die Vorschau nicht die
-Produktion ersetzt:
-
-- GitHub Pages sendet **keine eigenen Header**. `public/_headers` wird dort
-  ignoriert, also gelten CSP, HSTS, `X-Frame-Options` und die Cache-Regeln
-  nicht. Auf Cloudflare gelten sie.
-- Die Vorschau ist bewusst auf **noindex** gestellt (`robots.txt` verbietet
-  alles, jede Seite trägt `robots: noindex`), damit sie brickwater.de in der
-  Suche nicht verdrängt.
-- Die Seite läuft dort unter `/brickwater/`. Der Build bekommt das über
-  `NEXT_PUBLIC_BASE_PATH` und `NEXT_PUBLIC_SITE_URL` gesagt; ohne diese
-  Variablen baut alles genau wie bisher für die Wurzel von brickwater.de.
-- Der wöchentliche Neubau, der vergangene Konzerte ausblendet, hängt am
-  Cloudflare-Deploy-Hook und läuft für die Vorschau nicht.
-
-Soll die Vorschau später doch die echte Seite werden: eine Datei `public/CNAME`
-mit `www.brickwater.de` anlegen, im Workflow `NEXT_PUBLIC_BASE_PATH` leeren,
-`NEXT_PUBLIC_SITE_URL` auf `https://www.brickwater.de` setzen,
-`NEXT_PUBLIC_NOINDEX` entfernen und die DNS-Einträge auf GitHub zeigen lassen.
-Die fehlenden Security-Header bleiben dann trotzdem ein Nachteil gegenüber
-Cloudflare.
-
-## 7. Alternative: auf goneo deployen (empfohlen)
-
-Die Domain liegt bereits bei goneo (`w11.goneo.de`), dort läuft Apache, HTTPS
-mit Let's Encrypt ist eingerichtet und gzip ist an. Das macht goneo zur
-naheliegendsten Adresse für die neue Seite:
-
-- **Kein DNS-Umzug.** Die Domain zeigt schon dorthin, also kein Warten, keine
-  Ausfallzeit, kein Risiko durch eine Nameserver-Änderung.
-- **Echte Security-Header.** Apache liest `.htaccess`, deshalb liegt in
-  `public/.htaccess` die vollständige Fassung von CSP, HSTS, X-Frame-Options,
-  Referrer-Policy und Permissions-Policy. GitHub Pages kann das nicht, die alte
-  Seite dort sendet heute **gar keine** dieser Header.
-- **Deutsches Hosting.** Damit fällt die letzte Abhängigkeit von einem
-  US-Anbieter weg, was zur Datenschutz-Linie der Seite passt.
-
-### Einmalig einrichten
-
-Unter Settings → Secrets and variables → Actions:
-
-**Secrets:** `GONEO_HOST`, `GONEO_USER`, `GONEO_PASSWORD`.
-
-Wo die herkommen (goneo-Kundencenter):
-
-- **Hostname**: Kundencenter → *Servernamen*, dort der Eintrag unter **FTP & SSH**.
-- **Benutzer und Passwort**: Kundencenter → *Webserver* → **FTP-Zugriff** bzw.
-  **FTP- & SSH-Zugriff**. Dort lassen sich Benutzer auch neu anlegen und
-  Passwörter setzen.
-- **Port 2222.** goneo betreibt SFTP nicht auf dem Standardport 22. Der Workflow
-  nimmt 2222 von sich aus; die Variable `GONEO_PORT` überschreibt das nur, falls
-  goneo das jemals ändert.
-- Unverschlüsseltes FTP unterstützt goneo nicht mehr, SFTP steht auch in
-  Paketen ohne SSH-Zugang zur Verfügung.
-
-**Variables:** `GONEO_STAGING_PATH` (Zielordner der Testkopie),
-`GONEO_STAGING_URL` (wie sie erreichbar ist), `GONEO_STAGING_BASE` (leer bei
-eigener Subdomain, sonst z. B. `/neu`), `GONEO_PRODUCTION_PATH` (das echte
-Document-Root).
-
-`GONEO_WEEKLY_TARGET` bleibt zunächst **leer**. Damit läuft der wöchentliche
-Lauf ins Leere und kann die Live-Seite nicht anfassen.
-
-### Reihenfolge
-
-1. **Testkopie**: Actions → "Deploy to goneo" → Run workflow → Target
-   `staging`. Die Kopie wird mit `noindex` gebaut, kann also nicht in der Suche
-   gegen die echte Domain antreten.
-2. Mit dem Künstler anschauen.
-3. **Umschalten**: derselbe Workflow, Target `production`, und in das Feld
-   `confirm` muss genau `deploy` eingetragen werden. Ohne das bricht der Lauf ab.
-4. Danach `GONEO_WEEKLY_TARGET` auf `production` setzen. Erst dann baut sich die
-   Seite montags neu und vergangene Konzerte verschwinden von allein.
-
-### Was der Workflow absichert
+## 3. Was der Workflow absichert
 
 - Anmeldedaten und `npm` laufen in **getrennten Jobs**. Der Job, der baut, hat
   keine Zugangsdaten; der Job, der hochlädt, führt nichts aus `node_modules` aus.
-- Vor dem Hochladen wird geprüft, dass `index.html` und `.htaccess` überhaupt da
-  sind, und der Zielordner wird aufgelistet. Sieht er nach einem Account-Root
-  aus (Ordner wie `mail`, `logs`), bricht der Lauf ab, statt dort zu spiegeln.
+- Der **SSH-Hostschlüssel von goneo ist fest hinterlegt**
+  (`SHA256:G3pffhoFJHdoHklKqgM8jTYFfQhJXzuJOfLGzxwjffY`). Meldet sich ein
+  Server mit einem anderen Schlüssel, bricht die Verbindung ab, bevor das
+  Passwort gesendet wird. Wechselt goneo den Schlüssel einmal, schlägt der Lauf
+  mit "Host key verification failed" fehl: neuen Fingerprint bei goneo
+  bestätigen lassen, dann die Zeile `GONEO_KNOWN_HOST` im Workflow ersetzen.
+- Vor dem Hochladen wird geprüft, dass `index.html` und `.htaccess` da sind, und
+  der Zielordner wird aufgelistet. Sieht er nach einem Account-Root aus (Ordner
+  wie `mail`, `logfiles`), bricht der Lauf ab, statt dort zu spiegeln.
 - Das Passwort wird über eine Umgebungsvariable übergeben und steht nie in einer
   Kommandozeile.
+- GitHub schaltet geplante Workflows ab, wenn ein Repository 60 Tage lang keinen
+  Commit gesehen hat. Der Job `keepalive` schaltet den Workflow nach jedem Lauf
+  wieder ein, damit der nächtliche Neubau nicht still stehen bleibt.
 
-### Wichtig zum Zurückrollen
+## 4. Security-Header
 
-Der Upload spiegelt und **löscht dabei serverseitig, was lokal nicht mehr
-existiert**. Beim Umschalten verschwindet also die alte Bootstrap-Seite. Das ist
-gewollt. Der Weg zurück ist goneos eigenes Backup (im Leistungsumfang
-enthalten) — bewusst **keine** Kopie als GitHub-Artefakt, denn dieses
-Repository ist öffentlich und Artefakte öffentlicher Repositories kann jeder
-herunterladen.
+Apache liest `public/.htaccess` mit: CSP, HSTS, X-Frame-Options,
+Referrer-Policy, Permissions-Policy, Cache-Regeln, die Weiterleitung von
+`brickwater.de` auf `www.brickwater.de` und die eigene 404-Seite. Jeder Block
+steht in `<IfModule>`, damit ein fehlendes Apache-Modul keinen 500er auslöst.
 
-Offener Punkt: Der Workflow akzeptiert den SSH-Hostschlüssel von goneo
-ungeprüft (`sftp:auto-confirm`). Sobald der Fingerprint einmal bekannt ist,
-sollte er fest hinterlegt werden.
+## 5. Zurückrollen
+
+Der Upload spiegelt und **löscht dabei serverseitig, was im Build nicht mehr
+existiert**. Der Weg zurück ist goneos eigenes Backup (im Leistungsumfang
+enthalten), oder ein älterer Commit, der über Run workflow neu gebaut wird.
+Bewusst **keine** Kopie als GitHub-Artefakt: Dieses Repository ist öffentlich,
+und Artefakte öffentlicher Repositories kann jeder herunterladen.
+
+## 6. Datenschutz
+
+Abschnitt 2 der Datenschutzerklärung nennt goneo als Hoster und verweist auf
+einen Vertrag über Auftragsverarbeitung nach Art. 28 DSGVO. Den stellt goneo
+im Kundencenter bereit; er muss vom Vertragsinhaber des goneo-Pakets
+abgeschlossen sein, sonst stimmt dieser Satz nicht.
+
+## 7. Nach größeren Änderungen prüfen
+
+- `https://www.brickwater.de/` lädt, Sprachwechsel funktioniert, `/konzerte/` und
+  `/en/shows/` antworten mit 200.
+- `https://www.brickwater.de/sitemap.xml` und `/robots.txt` erreichbar; Sitemap in
+  der Google Search Console und bei Bing einreichen.
+- Rich-Results-Test (search.google.com/test/rich-results) für `/` und
+  `/musik/season-one/`.
+- Security-Header prüfen (securityheaders.com): CSP, HSTS, X-Frame-Options
+  sollten grün sein.

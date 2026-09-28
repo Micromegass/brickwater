@@ -8,7 +8,7 @@ Stand 10.09.2026. Abgehakt, was im Build verifiziert ist (Unit-/E2E-Tests, Light
 - [x] Canonical auf jeder Seite, hreflang de/en/x-default wechselseitig (E2E-Test)
 - [x] `sitemap.xml` mit `xhtml:link`-Alternates für beide Sprachen, `robots.txt` mit Sitemap-Verweis
 - [x] Eigene 404-Seite (`out/404.html`), `noindex`
-- [x] `_headers`: HSTS, CSP, nosniff, Referrer-Policy; Pages-Vorschau mit `X-Robots-Tag: noindex`
+- [x] `.htaccess` (Apache bei goneo): HSTS, CSP, nosniff, Referrer-Policy, Permissions-Policy
 - [x] Bilder als WebP in vier Breiten mit `srcset`, `sizes`, Blur-Platzhalter, Lazy Loading; Hero-Text als LCP-Element
 - [x] Schriften selbst gehostet, `font-display: swap`, Preload durch next/font
 - [x] Keine Cookies, kein Consent-Banner (Zwei-Klick-Einbettungen)

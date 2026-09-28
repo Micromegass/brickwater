@@ -1,8 +1,8 @@
 # Inhalte pflegen (für Brickwater)
 
-Alles, was auf der Website steht, liegt in diesem Ordner als Textdateien. Du brauchst keinen Entwickler: Datei im GitHub-Webeditor öffnen (Stiftsymbol), ändern, unten auf **Commit changes** klicken. Die Seite baut sich danach von selbst neu und ist nach etwa drei Minuten aktuell. Unter **Actions** siehst du den Lauf: grüner Haken heißt, es ist online. Wenn etwas an deiner Änderung nicht stimmt, wird der Lauf rot und die **alte Seite bleibt unverändert online** — kaputt machen kannst du also nichts.
+Alles, was auf der Website steht, liegt in diesem Ordner als Textdateien. Du brauchst keinen Entwickler: Datei im GitHub-Webeditor öffnen (Stiftsymbol), ändern, unten auf **Commit changes** klicken. Die Seite baut sich jede Nacht von selbst neu, deine Änderung ist also spätestens am nächsten Morgen online. Soll es schneller gehen: unter **Actions** links **Deploy to goneo** wählen, rechts **Run workflow** und nochmal **Run workflow** klicken; nach etwa fünf Minuten ist die Seite aktuell. Grüner Haken heißt, es ist online. Wenn etwas an deiner Änderung nicht stimmt, wird der Lauf rot und die **alte Seite bleibt unverändert online** — kaputt machen kannst du also nichts.
 
-Zusätzlich baut sich die Seite jeden Montagmorgen automatisch neu. Das ist der Grund, warum ein Konzert von allein aus "Demnächst" verschwindet, nachdem es gespielt wurde, ohne dass du etwas tun musst.
+Der nächtliche Neubau ist auch der Grund, warum ein Konzert von allein aus "Demnächst" verschwindet, nachdem es gespielt wurde, ohne dass du etwas tun musst.
 
 ## Konzerte ankündigen: `shows.json`
 

@@ -8,7 +8,7 @@ web
 
 ## Stack
 
-Next.js 16 (App Router, `output: 'export'`, fully static), React 19.2, Tailwind CSS 4, next-intl for German/English, no animation library and no WebGL, deployed to Cloudflare Pages from GitHub. Chosen by the user (Axel Braunschweiger, building for the artist) from three offered options on 2026-09-10.
+Next.js 16 (App Router, `output: 'export'`, fully static), React 19.2, Tailwind CSS 4, next-intl for German/English, no animation library and no WebGL, hosted at goneo (German shared hosting, Apache) and uploaded over SFTP by a GitHub Actions workflow. Chosen by the user (Axel Braunschweiger, building for the artist) from three offered options on 2026-09-10.
 
 ## Users
 
@@ -28,7 +28,7 @@ Brickwater is one person with a guitar case and a harmonica, playing "irgendwo i
 
 ## Operating Context
 
-- Shows are announced by editing `content/shows.json` in GitHub; Cloudflare rebuilds the site on every push and once a week on a schedule so past shows retire automatically.
+- Shows are announced by editing `content/shows.json` in GitHub; the site is rebuilt and uploaded every night (and on demand from the Actions tab) so past shows retire automatically.
 - Releases live as JSON files with tracklists and lyrics; covers and photos go through `npm run images`.
 - Videos are hosted on YouTube (Folk's Worst Nightmare channel), music on Bandcamp, Spotify, Apple Music and Deezer; Bandcamp is the purchase channel because the former label shop is offline.
 - Legal pages (Impressum, Datenschutzerklärung) are mandatory for a German operator and are part of the product, not an afterthought.

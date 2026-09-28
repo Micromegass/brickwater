@@ -2,9 +2,9 @@
  * Where the site is served from.
  *
  * Empty by default, which is the real deployment: brickwater.de serves from the
- * root and every path in this codebase is written for that. A GitHub Pages
- * project page serves under /<repo>/ instead, so the build sets these two
- * values and everything that emits a URL reads them from here.
+ * root and every path in this codebase is written for that. A copy served from
+ * a subfolder (a test copy under /neu/, say) sets these two values at build
+ * time, and everything that emits a URL reads them from here.
  *
  * `next/link` and `next-intl`'s Link prepend the base path themselves. Anything
  * that builds an href or an asset path by hand has to call `withBase`, which is

@@ -1,48 +1,43 @@
 name: Deploy to goneo
 
-# Uploads the built site to the artist's own German hosting over SFTP.
+# Builds the site and uploads it to the artist's hosting at goneo over SFTP,
+# every night and on demand (Actions -> "Deploy to goneo" -> Run workflow).
 #
-# Two jobs on purpose, the same split as the Pages workflow: `build` runs npm
-# and never sees a credential, `publish` holds the SFTP login and runs nothing
-# from node_modules. A compromised dependency therefore cannot reach the server.
+# It runs nightly even when nothing was pushed, because a static export decides
+# at build time which concerts are still upcoming: without a rebuild a concert
+# that has been played stays under "Demnächst".
 #
-# Nothing here runs automatically against the live domain. `staging` is the
-# default and the only thing a scheduled run will touch until someone sets the
-# repository variable GONEO_WEEKLY_TARGET to `production`.
+# Two jobs on purpose: `build` runs npm and never sees a credential, `publish`
+# holds the SFTP login and runs nothing from node_modules. A compromised
+# dependency therefore cannot reach the server.
 #
 # Repository secrets (Settings -> Secrets and variables -> Actions -> Secrets):
-#   GONEO_HOST       from Kundencenter -> Servernamen, under "FTP & SSH"
 #   GONEO_USER       the SFTP user
 #   GONEO_PASSWORD   the SFTP password
-#
-# Repository variables (same page, Variables tab):
-#   GONEO_STAGING_PATH      remote directory for the test copy, e.g. /neu
-#   GONEO_STAGING_URL       how it is reached, e.g. https://neu.brickwater.de
-#   GONEO_STAGING_BASE      "" for a subdomain, or "/neu" for a subfolder
-#   GONEO_PRODUCTION_PATH   the live document root, e.g. /
-#   GONEO_WEEKLY_TARGET     leave unset, or "production" once the switch is done
-#   GONEO_PORT              optional; goneo speaks SFTP on 2222, which is the default here
+# The server, its port and the document root are not secret and live below.
 
 on:
-  workflow_dispatch:
-    inputs:
-      target:
-        description: "Where to deploy"
-        type: choice
-        options: [staging, production]
-        default: staging
-      confirm:
-        description: "Type deploy to confirm a PRODUCTION upload (ignored for staging)"
-        type: string
-        default: ""
-  # Past concerts retire only when the site is rebuilt. Harmless while
-  # GONEO_WEEKLY_TARGET is unset: the publish job then skips.
   schedule:
-    - cron: "41 3 * * 1"
+    # 01:23 UTC is 03:23 in Nürnberg in summer, 02:23 in winter. GitHub starts
+    # scheduled runs late when it is busy, sometimes by hours, so the upload
+    # below is ordered to be invisible to a visitor whenever it lands.
+    - cron: "23 1 * * *"
+  workflow_dispatch:
 
 concurrency:
   group: goneo-deploy
   cancel-in-progress: false
+
+env:
+  GONEO_HOST: w11.goneo.de
+  GONEO_PORT: "2222"
+  GONEO_ROOT: /htdocs
+  # The server's own key, pinned so the password is only ever sent to goneo.
+  # Taken with `ssh-keyscan -p 2222 w11.goneo.de` on 2026-09-28,
+  # SHA256:G3pffhoFJHdoHklKqgM8jTYFfQhJXzuJOfLGzxwjffY. If goneo ever changes
+  # it the upload stops with a host key error; check the new fingerprint with
+  # goneo before replacing this line.
+  GONEO_KNOWN_HOST: "[w11.goneo.de]:2222 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDicLf/F5cZXWj7zRlYccQnY/mDKkVmEXFCxZgUZGlFdpiyGhO/lpJDl30vZJbkKFJ5rEj88o9ufVO4M1cn+D3bhgP9wBWUzerbXbWNQS8ZWIjGEQknANu3yOeSGQukLdSfgCm/coHoOueGwFozEiL5xmJRJQhP8nMnCI8avT5DVNYPInG9D2JYgVFfZ0xjRDJNVEYOT6pMK9g1FmZuB/CLbCoEuvkGtfJ+ZoprQwOSq+1ljS3Ydlo1TNgvqUpUS0pDRMkhyQ36alC+8LA5KrbOmhnrCjHCd5zrroVV3Ef8t01FGcfKEVUEwuZSFIGeInIiZrUCbpOtqAGYq5XZNndhgI7uQsgJo+UoHDgKg88lt+pN/dmhTF184fvdaMsR4tLY6yvXcpEck9CV2RwToBNOLITEmi6sSwCK51BrVujJW0BvklotRuMlT2e4Jc0EqctNNd7U0Pd0ENcox9WDghbspWAgi5IvZHTJtmzkCA9IVdj3yw8vE3IJvpeCtzF7tZMdzkSvv+V2H3OstcVxYoMw60i4iAVDRQkvLDVKUr1unv+tjHg/2CedrVKAu/TDA/m5ku2c7SoqgVhQ9Sxlx2rRrEluS+gF7J0cNfoSwT7vmgm2FTcSi2ytnZqUmgRn5nfT95mzDoKGQsJFBGOEFd9bLzPbkYO722SD4PRY4tQctQ=="
 
 jobs:
   build:
@@ -50,68 +45,24 @@ jobs:
     timeout-minutes: 20
     permissions:
       contents: read
-    outputs:
-      target: ${{ steps.plan.outputs.target }}
     steps:
       - uses: actions/checkout@v4
 
-      - name: Work out the target and refuse an unconfirmed production upload
-        id: plan
-        env:
-          REQUESTED: ${{ inputs.target }}
-          CONFIRM: ${{ inputs.confirm }}
-          WEEKLY: ${{ vars.GONEO_WEEKLY_TARGET }}
-        run: |
-          if [ "${GITHUB_EVENT_NAME}" = "schedule" ]; then
-            target="${WEEKLY:-none}"
-          else
-            target="${REQUESTED:-staging}"
-          fi
-          if [ "$target" = "production" ] && [ "${GITHUB_EVENT_NAME}" != "schedule" ] && [ "$CONFIRM" != "deploy" ]; then
-            echo "Production upload requires the confirm field to read exactly: deploy" >&2
-            exit 1
-          fi
-          echo "target=${target}" >> "$GITHUB_OUTPUT"
-          echo "Deploying to: ${target}"
-
-      - name: Nothing to do
-        if: steps.plan.outputs.target == 'none'
-        run: echo "GONEO_WEEKLY_TARGET is not set, so the scheduled run stops here."
-
       - uses: actions/setup-node@v4
-        if: steps.plan.outputs.target != 'none'
         with:
           node-version-file: .node-version
           cache: npm
 
       - run: npm ci
-        if: steps.plan.outputs.target != 'none'
 
       - run: npm run check
-        if: steps.plan.outputs.target != 'none'
 
-      # Staging is built noindex and at its own address so it can never compete
-      # with the real domain in search. Production is built for www.brickwater.de.
       - name: Build
-        if: steps.plan.outputs.target != 'none'
         env:
-          NEXT_PUBLIC_SITE_URL: ${{ steps.plan.outputs.target == 'production' && 'https://www.brickwater.de' || vars.GONEO_STAGING_URL }}
-          NEXT_PUBLIC_BASE_PATH: ${{ steps.plan.outputs.target == 'production' && '' || vars.GONEO_STAGING_BASE }}
-          NEXT_PUBLIC_NOINDEX: ${{ steps.plan.outputs.target == 'production' && '' || '1' }}
+          NEXT_PUBLIC_SITE_URL: https://www.brickwater.de
         run: npm run build
 
-      # .htaccess ships from public/, so its error page path is written for the
-      # site root. A staging copy in a subfolder needs the prefix.
-      - name: Point the error page at the right place
-        if: steps.plan.outputs.target == 'staging' && vars.GONEO_STAGING_BASE != ''
-        env:
-          BASE: ${{ vars.GONEO_STAGING_BASE }}
-        run: |
-          sed -i "s#^ErrorDocument 404 /404.html#ErrorDocument 404 ${BASE}/404.html#" out/.htaccess
-          grep '^ErrorDocument' out/.htaccess
-
       - uses: actions/upload-artifact@v4
-        if: steps.plan.outputs.target != 'none'
         with:
           name: site-goneo
           path: out
@@ -120,7 +71,6 @@ jobs:
 
   publish:
     needs: build
-    if: needs.build.outputs.target != 'none'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
@@ -140,76 +90,74 @@ jobs:
       - name: Install lftp
         run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
 
-      - name: Resolve the remote directory
-        id: remote
-        env:
-          TARGET: ${{ needs.build.outputs.target }}
-          STAGING: ${{ vars.GONEO_STAGING_PATH }}
-          PRODUCTION: ${{ vars.GONEO_PRODUCTION_PATH }}
+      # lftp drives the system ssh for SFTP. Pointing it at a known_hosts file
+      # holding only goneo's key, with strict checking, makes a server that
+      # answers with any other key a hard failure before the password is sent.
+      - name: Trust goneo's host key and nothing else
         run: |
-          if [ "$TARGET" = "production" ]; then path="$PRODUCTION"; else path="$STAGING"; fi
-          if [ -z "$path" ]; then
-            echo "No remote path configured for ${TARGET}. Set the repository variable first." >&2
-            exit 1
-          fi
-          echo "path=${path}" >> "$GITHUB_OUTPUT"
-          echo "Remote directory: ${path}"
+          mkdir -p ~/.ssh
+          printf '%s\n' "$GONEO_KNOWN_HOST" > ~/.ssh/known_hosts_goneo
+          cat > ~/.lftprc <<EOF
+          set sftp:connect-program "ssh -a -x -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$HOME/.ssh/known_hosts_goneo"
+          set sftp:auto-confirm no
+          set net:max-retries 2
+          set cmd:trace off
+          EOF
 
-      # A mirror deletes whatever is no longer in the build, so look before
-      # leaping: list what is about to be replaced and refuse if the directory
-      # looks nothing like a web root. Deliberately only a listing, never a
-      # downloaded copy kept as an artifact: this repository is public, and
-      # artifacts of a public repository can be downloaded by anyone. Restoring
-      # is goneo's own backup feature, documented in GO-LIVE.md.
+      # A mirror deletes whatever is no longer in the build, so refuse if the
+      # directory looks like an account root rather than a web root: mail or
+      # log directories there mean the path is wrong. Only a listing, never a
+      # downloaded copy kept as an artifact, because this repository is public
+      # and its artifacts can be downloaded by anyone.
       - name: Look at what is on the server now
         env:
           LFTP_PASSWORD: ${{ secrets.GONEO_PASSWORD }}
-          HOST: ${{ secrets.GONEO_HOST }}
           USER: ${{ secrets.GONEO_USER }}
-          PORT: ${{ vars.GONEO_PORT || '2222' }}
-          REMOTE: ${{ steps.remote.outputs.path }}
-          TARGET: ${{ needs.build.outputs.target }}
         run: |
-          lftp -u "$USER" --env-password "sftp://$HOST:$PORT" -e "
-            set cmd:trace off;
-            set sftp:auto-confirm yes;
-            set net:max-retries 2;
-            cls -1 '$REMOTE';
-            bye
-          " > listing.txt 2>/dev/null || echo "(could not list the remote directory)" > listing.txt
-          echo "Currently in ${REMOTE}:"
+          lftp -u "$USER" --env-password "sftp://$GONEO_HOST:$GONEO_PORT" -e "cls -1 '$GONEO_ROOT'; bye" > listing.txt
+          echo "Currently in ${GONEO_ROOT}:"
           sed 's/^/    /' listing.txt
-          # A document root holds web files. Mail or account directories mean the
-          # configured path is wrong, and a mirror there would delete them.
-          if grep -qiE '^(mail|logs?|backup|\.ssh|etc)/?$' listing.txt; then
+          if grep -qiE '^(mail|logs?|logfiles|backup|\.ssh|etc)/?$' listing.txt; then
             echo "That looks like an account root, not a document root. Refusing to mirror into it." >&2
             exit 1
           fi
 
+      # Three passes so a visitor never gets a page whose files are missing:
+      # 1. new scripts and images go up first, beside the old ones. Everything
+      #    under _next/ carries a content hash in its name, so size is enough
+      #    to skip what is unchanged; images/ has a few fixed names (the paint
+      #    and the logo), so there the usual size-and-time check applies.
+      # 2. the pages and everything else are replaced; stale pages are removed.
+      # 3. only then are scripts and images no page refers to any more removed.
       - name: Upload the site
         env:
           LFTP_PASSWORD: ${{ secrets.GONEO_PASSWORD }}
-          HOST: ${{ secrets.GONEO_HOST }}
           USER: ${{ secrets.GONEO_USER }}
-          PORT: ${{ vars.GONEO_PORT || '2222' }}
-          REMOTE: ${{ steps.remote.outputs.path }}
         run: |
-          lftp -u "$USER" --env-password "sftp://$HOST:$PORT" -e "
-            set cmd:trace off;
-            set sftp:auto-confirm yes;
-            set net:max-retries 2;
+          lftp -u "$USER" --env-password "sftp://$GONEO_HOST:$GONEO_PORT" -e "
             set mirror:parallel-transfer-count 4;
-            mirror --reverse --delete --verbose=1 site '$REMOTE';
+            mirror --reverse --ignore-time --no-perms --verbose=1 site/_next '$GONEO_ROOT/_next';
+            mirror --reverse --no-perms --verbose=1 site/images '$GONEO_ROOT/images';
+            mirror --reverse --delete --no-perms --verbose=1 --exclude-glob _next/ --exclude-glob images/ site '$GONEO_ROOT';
+            mirror --reverse --delete --ignore-time --no-perms --verbose=1 site/_next '$GONEO_ROOT/_next';
+            mirror --reverse --delete --no-perms --verbose=1 site/images '$GONEO_ROOT/images';
             bye
           "
+          echo "Live at https://www.brickwater.de/"
 
-      - name: Where it landed
+  # GitHub switches off scheduled workflows in a repository that has seen no
+  # commit for 60 days. The artist may well not touch the site for that long,
+  # and the nightly rebuild would then stop without anyone noticing. Enabling
+  # the workflow again from inside it resets that clock. This job holds no
+  # secret and may do nothing but manage workflows.
+  keepalive:
+    needs: publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      actions: write
+    steps:
+      - name: Keep the nightly schedule switched on
         env:
-          TARGET: ${{ needs.build.outputs.target }}
-          STAGING_URL: ${{ vars.GONEO_STAGING_URL }}
-        run: |
-          if [ "$TARGET" = "production" ]; then
-            echo "Live at https://www.brickwater.de/"
-          else
-            echo "Staging at ${STAGING_URL}"
-          fi
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method PUT "repos/${{ github.repository }}/actions/workflows/deploy-goneo.yml/enable"

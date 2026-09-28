@@ -73,8 +73,10 @@ Datenliste, zählte jeder einzelne Besucher — dann wären 1.200 schnell voll.)
 
 **Der einzige Haken:** Die Posts sind nicht in derselben Sekunde auf der Seite,
 in der du sie postest, sondern nach dem nächsten Bauen der Seite. Behold
-aktualisiert im Gratis-Tarif einmal täglich, und die Seite baut sich ebenfalls
-täglich neu. Der Instagram-Bereich ist damit höchstens einen Tag alt.
+aktualisiert im Gratis-Tarif einmal täglich, und die Seite baut sich jede Nacht
+neu. Ein neuer Post ist damit in der Regel am nächsten Tag auf der Seite, im
+ungünstigsten Fall nach zwei Tagen. Eilt es, kann Axel die Seite auch sofort
+neu bauen lassen.
 
 ---
 

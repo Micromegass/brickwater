@@ -1,6 +1,6 @@
 # Übergabe: brickwater.de Relaunch
 
-Stand: 10. September 2026. Die Seite läuft lokal mit `npm run dev` unter http://localhost:3100 und wird als statischer Export (`npm run build` → `out/`) auf Cloudflare Pages veröffentlicht.
+Stand: 10. September 2026. Die Seite läuft lokal mit `npm run dev` unter http://localhost:3100 und wird als statischer Export (`npm run build` → `out/`) bei goneo veröffentlicht; seit dem 28. September 2026 baut ein GitHub-Actions-Workflow sie jede Nacht neu und lädt sie per SFTP hoch (siehe `GO-LIVE.md`).
 
 ## Was die Seite kann
 
@@ -28,7 +28,7 @@ Stand: 10. September 2026. Die Seite läuft lokal mit `npm run dev` unter http:/
 
 ## Rechtliches
 
-Impressum und Datenschutzerklärung wurden mit anwaltlicher Sorgfalt für den tatsächlichen Umfang der Seite geschrieben (statisch, Cloudflare-Hosting, Zwei-Klick-Einbettungen, E-Mail-Kontakt). Sie sind KI-unterstützt entstanden: Das reduziert das Risiko erheblich, ersetzt aber keine Rechtsberatung. Es gibt keine Hochrisikobereiche (keine Gesundheitsdaten, keine Minderjährigen, keine Zahlungen). Zwei Dinge sind im Cloudflare-Konto zu tun: das Data Processing Addendum (AVV) akzeptieren und in den Zone-Einstellungen Rocket Loader, Auto Minify und E-Mail-Obfuscation ausschalten (siehe `GO-LIVE.md`).
+Impressum und Datenschutzerklärung wurden mit anwaltlicher Sorgfalt für den tatsächlichen Umfang der Seite geschrieben (statisch, Hosting bei goneo in Deutschland, Zwei-Klick-Einbettungen, E-Mail-Kontakt). Sie sind KI-unterstützt entstanden: Das reduziert das Risiko erheblich, ersetzt aber keine Rechtsberatung. Es gibt keine Hochrisikobereiche (keine Gesundheitsdaten, keine Minderjährigen, keine Zahlungen). Eine Sache ist im goneo-Kundencenter zu tun: den Vertrag über Auftragsverarbeitung (AVV) abschließen, auf den Abschnitt 2 der Datenschutzerklärung verweist (siehe `GO-LIVE.md`).
 
 ## Für Entwickler
 

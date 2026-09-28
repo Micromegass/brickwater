@@ -1,8 +1,7 @@
 # Apache configuration for goneo (and any other classic shared host).
 #
-# This is the counterpart to public/_headers, which only Cloudflare Pages reads.
-# GitHub Pages ignores both and can send no custom headers at all, which is why
-# the preview there is the one deployment without a content security policy.
+# This file is where the site's security headers, caching rules and error page
+# live: goneo serves the site with Apache, which reads it on every request.
 #
 # Every block is wrapped in <IfModule>. On shared hosting a directive from a
 # module that is not loaded is a 500 on every request, and this file ships with
