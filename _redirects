@@ -1,0 +1,3 @@
+# Cloudflare Pages redirects. German lives at the root, English under /en, so nothing is needed today.
+# Legacy anchors of the 2018 single-page site map to the new sections:
+/index.html  /  301

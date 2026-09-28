@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<url>
+<loc>https://micromegass.github.io/brickwater/</loc>
+<xhtml:link rel="alternate" hreflang="de" href="https://micromegass.github.io/brickwater/" />
+<xhtml:link rel="alternate" hreflang="en" href="https://micromegass.github.io/brickwater/en/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://micromegass.github.io/brickwater/" />
+<changefreq>weekly</changefreq>
+<priority>1</priority>
+</url>
+<url>
+<loc>https://micromegass.github.io/brickwater/en/</loc>
+<xhtml:link rel="alternate" hreflang="de" href="https://micromegass.github.io/brickwater/" />
+<xhtml:link rel="alternate" hreflang="en" href="https://micromegass.github.io/brickwater/en/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://micromegass.github.io/brickwater/" />
+<changefreq>weekly</changefreq>
+<priority>1</priority>
+</url>
+<url>
+<loc>https://micromegass.github.io/brickwater/konzerte/</loc>
+<xhtml:link rel="alternate" hreflang="de" href="https://micromegass.github.io/brickwater/konzerte/" />
+<xhtml:link rel="alternate" hreflang="en" href="https://micromegass.github.io/brickwater/en/shows/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://micromegass.github.io/brickwater/konzerte/" />
+<changefreq>weekly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://micromegass.github.io/brickwater/en/shows/</loc>
+<xhtml:link rel="alternate" hreflang="de" href="https://micromegass.github.io/brickwater/konzerte/" />
+<xhtml:link rel="alternate" hreflang="en" href="https://micromegass.github.io/brickwater/en/shows/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://micromegass.github.io/brickwater/konzerte/" />
+<changefreq>weekly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://micromegass.github.io/brickwater/musik/</loc>
+<xhtml:link rel="alternate" hreflang="de" href="https://micromegass.github.io/brickwater/musik/" />
+<xhtml:link rel="alternate" hreflang="en" href="https://micromegass.github.io/brickwater/en/music/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://micromegass.github.io/brickwater/musik/" />
+<changefreq>weekly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://micromegass.github.io/brickwater/en/music/</loc>
+<xhtml:link rel="alternate" hreflang="de" href="https://micromegass.github.io/brickwater/musik/" />
+<xhtml:link rel="alternate" hreflang="en" href="https://micromegass.github.io/brickwater/en/music/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://micromegass.github.io/brickwater/musik/" />
+<changefreq>weekly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://micromegass.github.io/brickwater/galerie/</loc>
+<xhtml:link rel="alternate" hreflang="de" href="https://micromegass.github.io/brickwater/galerie/" />
+<xhtml:link rel="alternate" hreflang="en" href="https://micromegass.github.io/brickwater/en/gallery/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://micromegass.github.io/brickwater/galerie/" />
+<changefreq>weekly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://micromegass.github.io/brickwater/en/gallery/</loc>
+<xhtml:link rel="alternate" hreflang="de" href="https://micromegass.github.io/brickwater/galerie/" />
+<xhtml:link rel="alternate" hreflang="en" href="https://micromegass.github.io/brickwater/en/gallery/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://micromegass.github.io/brickwater/galerie/" />
+<changefreq>weekly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://micromegass.github.io/brickwater/impressum/</loc>
+<xhtml:link rel="alternate" hreflang="de" href="https://micromegass.github.io/brickwater/impressum/" />
+<xhtml:link rel="alternate" hreflang="en" href="https://micromegass.github.io/brickwater/en/legal-notice/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://micromegass.github.io/brickwater/impressum/" />
+<changefreq>weekly</changefreq>
+<priority>0.2</priority>
+</url>
+<url>
+<loc>https://micromegass.github.io/brickwater/en/legal-notice/</loc>
+<xhtml:link rel="alternate" hreflang="de" href="https://micromegass.github.io/brickwater/impressum/" />
+<xhtml:link rel="alternate" hreflang="en" href="https://micromegass.github.io/brickwater/en/legal-notice/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://micromegass.github.io/brickwater/impressum/" />
+<changefreq>weekly</changefreq>
+<priority>0.2</priority>
+</url>
+<url>
+<loc>https://micromegass.github.io/brickwater/datenschutz/</loc>
+<xhtml:link rel="alternate" hreflang="de" href="https://micromegass.github.io/brickwater/datenschutz/" />
+<xhtml:link rel="alternate" hreflang="en" href="https://micromegass.github.io/brickwater/en/privacy/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://micromegass.github.io/brickwater/datenschutz/" />
+<changefreq>weekly</changefreq>
+<priority>0.2</priority>
+</url>
+<url>
+<loc>https://micromegass.github.io/brickwater/en/privacy/</loc>
+<xhtml:link rel="alternate" hreflang="de" href="https://micromegass.github.io/brickwater/datenschutz/" />
+<xhtml:link rel="alternate" hreflang="en" href="https://micromegass.github.io/brickwater/en/privacy/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://micromegass.github.io/brickwater/datenschutz/" />
+<changefreq>weekly</changefreq>
+<priority>0.2</priority>
+</url>
+<url>
+<loc>https://micromegass.github.io/brickwater/musik/season-one/</loc>
+<xhtml:link rel="alternate" hreflang="de" href="https://micromegass.github.io/brickwater/musik/season-one/" />
+<xhtml:link rel="alternate" hreflang="en" href="https://micromegass.github.io/brickwater/en/music/season-one/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://micromegass.github.io/brickwater/musik/season-one/" />
+<changefreq>weekly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://micromegass.github.io/brickwater/en/music/season-one/</loc>
+<xhtml:link rel="alternate" hreflang="de" href="https://micromegass.github.io/brickwater/musik/season-one/" />
+<xhtml:link rel="alternate" hreflang="en" href="https://micromegass.github.io/brickwater/en/music/season-one/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://micromegass.github.io/brickwater/musik/season-one/" />
+<changefreq>weekly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://micromegass.github.io/brickwater/musik/jumping-just-to-fall/</loc>
+<xhtml:link rel="alternate" hreflang="de" href="https://micromegass.github.io/brickwater/musik/jumping-just-to-fall/" />
+<xhtml:link rel="alternate" hreflang="en" href="https://micromegass.github.io/brickwater/en/music/jumping-just-to-fall/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://micromegass.github.io/brickwater/musik/jumping-just-to-fall/" />
+<changefreq>weekly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://micromegass.github.io/brickwater/en/music/jumping-just-to-fall/</loc>
+<xhtml:link rel="alternate" hreflang="de" href="https://micromegass.github.io/brickwater/musik/jumping-just-to-fall/" />
+<xhtml:link rel="alternate" hreflang="en" href="https://micromegass.github.io/brickwater/en/music/jumping-just-to-fall/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://micromegass.github.io/brickwater/musik/jumping-just-to-fall/" />
+<changefreq>weekly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://micromegass.github.io/brickwater/musik/against-couragefalls/</loc>
+<xhtml:link rel="alternate" hreflang="de" href="https://micromegass.github.io/brickwater/musik/against-couragefalls/" />
+<xhtml:link rel="alternate" hreflang="en" href="https://micromegass.github.io/brickwater/en/music/against-couragefalls/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://micromegass.github.io/brickwater/musik/against-couragefalls/" />
+<changefreq>weekly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://micromegass.github.io/brickwater/en/music/against-couragefalls/</loc>
+<xhtml:link rel="alternate" hreflang="de" href="https://micromegass.github.io/brickwater/musik/against-couragefalls/" />
+<xhtml:link rel="alternate" hreflang="en" href="https://micromegass.github.io/brickwater/en/music/against-couragefalls/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://micromegass.github.io/brickwater/musik/against-couragefalls/" />
+<changefreq>weekly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://micromegass.github.io/brickwater/musik/aloah-from-brickwater/</loc>
+<xhtml:link rel="alternate" hreflang="de" href="https://micromegass.github.io/brickwater/musik/aloah-from-brickwater/" />
+<xhtml:link rel="alternate" hreflang="en" href="https://micromegass.github.io/brickwater/en/music/aloah-from-brickwater/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://micromegass.github.io/brickwater/musik/aloah-from-brickwater/" />
+<changefreq>weekly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://micromegass.github.io/brickwater/en/music/aloah-from-brickwater/</loc>
+<xhtml:link rel="alternate" hreflang="de" href="https://micromegass.github.io/brickwater/musik/aloah-from-brickwater/" />
+<xhtml:link rel="alternate" hreflang="en" href="https://micromegass.github.io/brickwater/en/music/aloah-from-brickwater/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://micromegass.github.io/brickwater/musik/aloah-from-brickwater/" />
+<changefreq>weekly</changefreq>
+<priority>0.6</priority>
+</url>
+</urlset>
